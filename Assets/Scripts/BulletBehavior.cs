@@ -12,7 +12,7 @@ public class BulletBehavior : MonoBehaviour
     void Start()
     {
         // Find the direction from the main character towards the mouse.
-        direction = Vector3.Normalize(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+        direction = (Vector3)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
     }
 
     // Update is called once per frame
