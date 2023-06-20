@@ -4,26 +4,58 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int health;
-    public GameObject gameObjet;
+    private float maxHealth = 100;
+    private float currentHealth = 100;
 
-    private void Update()
+    void Update()
     {
         Die();
     }
 
-    public void ChangeHealth(int change) {
-        health += change;
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 
-    public void SetHealth(int set) {
-        health += set;
+    public float GetHealth()
+    {
+        return currentHealth;
     }
 
-    public void Die() {
-        if (health <= 0) {
-            Destroy(gameObjet);
+    public void SetMaxHealth(float newMax)
+    {
+        maxHealth = newMax;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
     }
 
+    public void SetHealth(float newCurrent)
+    {
+        currentHealth = newCurrent;
+    }
+
+    public void ChangeHealth(float amount)
+    {
+        currentHealth += amount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else if (currentHealth < 0f)
+        {
+            currentHealth = 0f;
+        }
+    }
+
+    public void Die()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
