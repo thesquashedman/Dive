@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class PlayerMovement : MonoBehaviour
+public class SceneCulling : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
+    void Awake() {
+        
+        Tools.visibleLayers = ~((1 << LayerMask.NameToLayer("Shadow")));
         
     }
 
