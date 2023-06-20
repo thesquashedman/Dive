@@ -7,12 +7,17 @@ public class Health : MonoBehaviour
     private float maxHealth = 100;
     private float currentHealth = 100;
 
+    void Update()
+    {
+        Die();
+    }
+
     public float GetMaxHealth()
     {
         return maxHealth;
     }
 
-    public float GetCurrentHealth()
+    public float GetHealth()
     {
         return currentHealth;
     }
@@ -27,12 +32,12 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void SetCurrentHealth(float newCurrent)
+    public void SetHealth(float newCurrent)
     {
         currentHealth = newCurrent;
     }
 
-    public void ChangeCurrentHealth(float amount)
+    public void ChangeHealth(float amount)
     {
         currentHealth += amount;
 
@@ -43,6 +48,14 @@ public class Health : MonoBehaviour
         else if (currentHealth < 0f)
         {
             currentHealth = 0f;
+        }
+    }
+
+    public void Die()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

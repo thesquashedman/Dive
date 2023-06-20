@@ -11,6 +11,12 @@ public class EelBehavior : FishEnemyBehavior
     private float headlightAngle;
     private float headlightDistance;
 
+    // Variables for running away from the player.
+    private float runAwayTimer = 0f;
+    private float runAwayTime = 1.4f;
+    private Vector3 runAwayDirection = Vector3.zero;
+    private bool isShinedOn = false;
+
     private LayerMask obstacleLayerMask;
 
 
@@ -34,49 +40,70 @@ public class EelBehavior : FishEnemyBehavior
     void UpdateHeadlightRange()
     {
         headlightAngle = 30f;
-        headlightDistance = 14f;
+        headlightDistance = 7f;
     }
 
     // This function checks whether the eel is shined on by the player's headlight.
     // If this eel is shined on, it will run away from the player.
     void CheckShined()
     {
-        // Compute the vector of the player's headlight.
-        float angle = playerHeadlight.transform.rotation.eulerAngles.z;
-        float radianAngle = angle * Mathf.Deg2Rad;
-        float sinAngle = Mathf.Sin(radianAngle);
-        float cosAngle = Mathf.Cos(radianAngle);
-        
-        Vector3 vector = Vector3.up;
-        float rotatedX = vector.x * cosAngle - vector.y * sinAngle;
-        float rotatedY = vector.x * sinAngle + vector.y * cosAngle;
-        Vector3 headlightDirection = new Vector3(rotatedX, rotatedY, 0f);
-        
-        // Compute the vector from the player's headlight to this eel.
-        Vector3 headlightToEel = (transform.position - playerHeadlight.transform.position);
-        
-        // If this eel is within the headlight's range, do a raycast to see if there 
-        // is an obstacle between the player's headlight and this eel.
-        if (Vector3.Angle(headlightDirection, headlightToEel) <= headlightAngle && Vector3.Magnitude(headlightToEel) <= headlightDistance)
+        if (!isShinedOn)
         {
-            Vector2 start = new Vector2(transform.position.x, transform.position.y);
-            RaycastHit2D hit = Physics2D.Raycast(start, -headlightToEel, Vector3.Magnitude(headlightToEel), obstacleLayerMask);
+            // Compute the vector of the player's headlight.
+            float angle = playerHeadlight.transform.rotation.eulerAngles.z;
+            float radianAngle = angle * Mathf.Deg2Rad;
+            float sinAngle = Mathf.Sin(radianAngle);
+            float cosAngle = Mathf.Cos(radianAngle);
+        
+            Vector3 vector = Vector3.up;
+            float rotatedX = vector.x * cosAngle - vector.y * sinAngle;
+            float rotatedY = vector.x * sinAngle + vector.y * cosAngle;
+            Vector3 headlightDirection = new Vector3(rotatedX, rotatedY, 0f);
+        
+            // Compute the vector from the player's headlight to this eel.
+            Vector3 headlightToEel = (transform.position - playerHeadlight.transform.position);
+        
+            // If this eel is within the headlight's range, do a raycast to see if there 
+            // is an obstacle between the player's headlight and this eel.
+            if (Vector3.Angle(headlightDirection, headlightToEel) <= headlightAngle && Vector3.Magnitude(headlightToEel) <= headlightDistance)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, -headlightToEel, Vector3.Magnitude(headlightToEel), obstacleLayerMask);
             
-            // If there is not an obstacle, this eel is shined on.
-            if (hit.collider == null)
-            {
-                print("Shined on!");
-                aiPath.canMove = false;
-                transform.position += (headlightToEel.normalized * speed * Time.deltaTime);
+                // If there is not an obstacle, this eel is shined on.
+                if (hit.collider == null)
+                {
+                    isShinedOn = true;
+                    runAwayDirection = headlightToEel.normalized;
+                    SwitchMode("runAway");
+                }
             }
-            else
-            {
-                aiPath.canMove = true;
-            }
+        }
+    }
+
+    // This function is called when this eel is shined on; this eel will run away
+    // from the player for a short amount of time.
+    protected override void RunAway()
+    {
+        aiPath.enableRotation = false;
+        runAwayTimer += Time.deltaTime;
+        if (runAwayTimer < runAwayTime)
+        {
+            transform.position += (runAwayDirection * speed * Time.deltaTime);
+            // Have a turnaround timer.
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, runAwayDirection);
         }
         else
         {
-            aiPath.canMove = true;
+            runAwayTimer = 0f;
+            aiPath.enableRotation = true;
+            isShinedOn = false;
+            SwitchMode("attack");
         }
+    }
+
+    // This function that this eels stays around just outside the player's headlight range.
+    void StayAround()
+    {
+
     }
 }
