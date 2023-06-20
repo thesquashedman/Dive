@@ -5,8 +5,12 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public string weaponName = "Weapon";
+    public string tragetTag = "Enemie";
     public int damage = 10;
     public float range = 5.0f;
+
+    public bool attackMode = false;
+
     [SerializeField] DamageSystem damageSystem;
     [SerializeField] AttackSystem attackSystem;
 
@@ -16,11 +20,18 @@ public class Weapon : MonoBehaviour
         attackSystem = GetComponent<AttackSystem>();
     }
 
+    private void Update()
+    {
+        if (attackMode) {
+            Attack();
+        }
+    }
+
     // This is a virtual method, meaning it can be overridden by derived classes
     public virtual void Attack()
     {
 
-        attackSystem.Attack();
+        attackSystem.Attack(tragetTag);
 
         // Logic for the basic weapon attack
         Debug.Log(weaponName + " attacks with " + damage + " damage!");

@@ -16,8 +16,10 @@ public class CloseAttack : AttackSystem
         atackElement.SetActive(false);
     }
 
-    public override void Attack() {
+    public override void Attack(string tragetTag) {
+        atackElement.GetComponent<AttackElement>().SetAttackTargetTag(tragetTag);
         this.CloseAttackStart();
+        
     }
 
     public override void StopAttack()

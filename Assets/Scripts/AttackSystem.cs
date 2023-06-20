@@ -13,7 +13,7 @@ public class AttackSystem : MonoBehaviour
         damageSystem = new DamageSystem();
     }
 
-    public virtual void Attack() {
+    public virtual void Attack(string tragetTag) {
         Debug.Log("BBBBBBBBBB");
     }
 

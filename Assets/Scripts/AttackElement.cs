@@ -8,6 +8,7 @@ public class AttackElement : MonoBehaviour
 
     private Sprite sprite;
     private Collider attackElementCollider;
+    string tragetTag = "";
 
     public AttackElement(AttackSystem attackSystem)
     {
@@ -38,11 +39,15 @@ public class AttackElement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemie"))
+        if (other.gameObject.CompareTag(tragetTag))
         {
             //Debug.Log(other.gameObject.name);
             attackSystem.ApplyDamage(other.gameObject.GetComponent<Health>());
         }
+    }
+
+    public void SetAttackTargetTag(string tragetTag) {
+        this.tragetTag = tragetTag;
     }
 
 
