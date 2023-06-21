@@ -26,6 +26,11 @@ public class FishEnemyBehavior : MonoBehaviour
     // The maximum angle in radians that the direction of this enemy can turn in a second.
     protected float deltaAngle = Mathf.PI;
 
+    // The time and decceleration for this enemy to slow down. The decceleration will not
+    // be a fixed value because of the SmoothDamp function.
+    protected float slowDownTime = 0.4f;
+    protected float decceleration = -20f;
+
     // Variables for stuck detection and struggling.
     protected Vector3 previousPosition;
     protected float struggleTimer = 0f;
@@ -155,6 +160,10 @@ public class FishEnemyBehavior : MonoBehaviour
         Vector3 direction = (transform.position - player.transform.position).normalized;
 
         // Move in that direction.
-        transform.position += direction * speed * Time.deltaTime;
+        Vector3 newPosition = transform.position;
+        newPosition.x += direction.x * speed * Time.deltaTime;
+        newPosition.y += direction.y * speed * Time.deltaTime;
+        newPosition.z = 0f;
+        transform.position = newPosition;
     }
 }

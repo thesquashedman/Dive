@@ -13,9 +13,10 @@ public class EelBehavior : FishEnemyBehavior
 
     // Variables for running away from the player.
     private float runAwayTimer = 0f;
-    private float runAwayTime = 1.6f;
+    private float runAwayTime = 1.4f;
     private Vector3 currentDirection = Vector3.zero;
     private Vector3 runAwayDirection = Vector3.zero;
+    private float currentSpeed = 0f;
     private bool isShinedOn = false;
 
     private LayerMask obstacleLayerMask;
@@ -30,7 +31,6 @@ public class EelBehavior : FishEnemyBehavior
     {
         speed = 7f;
         acceleration = 12f;
-        deltaAngle = Mathf.PI * 3f;
         base.Start();
         UpdateHeadlightRange();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
@@ -74,13 +74,14 @@ public class EelBehavior : FishEnemyBehavior
             if (Vector3.Angle(headlightDirection, headlightToEel) <= headlightAngle && Vector3.Magnitude(headlightToEel) <= headlightDistance)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, -headlightToEel, Vector3.Magnitude(headlightToEel), obstacleLayerMask);
-            
+
                 // If there is not an obstacle, this eel is shined on.
                 if (hit.collider == null)
                 {
                     isShinedOn = true;
                     currentDirection = aiPath.desiredVelocity.normalized;
                     runAwayDirection = headlightToEel.normalized;
+                    currentSpeed = speed;
                     SwitchMode("runAway");
                 }
             }
@@ -98,10 +99,23 @@ public class EelBehavior : FishEnemyBehavior
             // Rotate the current direction gradually.
             if (currentDirection != runAwayDirection)
             {
+                deltaAngle = Mathf.PI * 3f;
                 currentDirection = Vector3.RotateTowards(currentDirection, runAwayDirection, deltaAngle * Time.deltaTime, 0f);
                 transform.rotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
             }
-            transform.position += currentDirection * speed * Time.deltaTime;
+            Vector3 newPosition = transform.position;
+            newPosition.x += currentDirection.x * currentSpeed * Time.deltaTime;
+            newPosition.y += currentDirection.y * currentSpeed * Time.deltaTime;
+            newPosition.z = 0f;
+            transform.position = newPosition;
+        }
+        else if (runAwayTimer < runAwayTime + slowDownTime)
+        {
+            // Slow down gradually.
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, 0f, ref decceleration, slowDownTime);
+            // print(currentSpeed);
+            // print(decceleration);
+            transform.position += currentDirection * currentSpeed * Time.deltaTime;
         }
         else
         {
