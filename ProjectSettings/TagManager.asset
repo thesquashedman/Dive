@@ -3,13 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemie
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Shadow
   - Water
   - UI
   - 
@@ -42,6 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: CameraSortingLayer
-    uniqueID: 1623687937
+  - name: HardShadow
+    uniqueID: 1022703159
     locked: 0
