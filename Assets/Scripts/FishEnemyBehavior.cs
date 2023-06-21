@@ -18,9 +18,13 @@ public class FishEnemyBehavior : MonoBehaviour
     protected string mode = "attack";
 
     // Variables for the path and movement.
+    // protected Rigidbody2D rb;
     protected AIPath aiPath;
     protected float speed = 5f;
     protected float acceleration = 10f;
+
+    // The maximum angle in radians that the direction of this enemy can turn in a second.
+    protected float deltaAngle = Mathf.PI;
 
     // Variables for stuck detection and struggling.
     protected Vector3 previousPosition;
@@ -34,6 +38,7 @@ public class FishEnemyBehavior : MonoBehaviour
     protected virtual void Start()
     {
         previousPosition = transform.position;
+        // rb = GetComponent<Rigidbody2D>();
         aiPath = GetComponent<AIPath>();
         aiPath.maxSpeed = speed;
         aiPath.maxAcceleration = acceleration;
@@ -45,6 +50,10 @@ public class FishEnemyBehavior : MonoBehaviour
         if (mode == "attack")
         {
             CheckStuck();
+        }
+        else if (mode == "idle")
+        {
+            StayAround();
         }
         else if (mode == "runAway")
         {
@@ -60,16 +69,19 @@ public class FishEnemyBehavior : MonoBehaviour
         {
             mode = "attack";
             aiPath.maxSpeed = speed;
+            aiPath.enableRotation = true;
         }
         else if (newMode == "idle")
         {
             mode = "idle";
             aiPath.maxSpeed = 0f;
+            aiPath.enableRotation = false;
         }
         else if (newMode == "runAway")
         {
             mode = "runAway";
             aiPath.maxSpeed = 0f;
+            aiPath.enableRotation = false;
         }
     }
 
@@ -131,6 +143,11 @@ public class FishEnemyBehavior : MonoBehaviour
         }
     }
 
+    protected virtual void StayAround()
+    {
+        // Do nothing.
+    }
+
     // This function makes the enemy run away from the player.
     protected virtual void RunAway()
     {
@@ -138,6 +155,6 @@ public class FishEnemyBehavior : MonoBehaviour
         Vector3 direction = (transform.position - player.transform.position).normalized;
 
         // Move in that direction.
-        transform.position += direction * Time.deltaTime * speed;
+        transform.position += direction * speed * Time.deltaTime;
     }
 }

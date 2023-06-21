@@ -13,11 +13,16 @@ public class EelBehavior : FishEnemyBehavior
 
     // Variables for running away from the player.
     private float runAwayTimer = 0f;
-    private float runAwayTime = 1.4f;
+    private float runAwayTime = 1.6f;
+    private Vector3 currentDirection = Vector3.zero;
     private Vector3 runAwayDirection = Vector3.zero;
     private bool isShinedOn = false;
 
     private LayerMask obstacleLayerMask;
+
+    // Variables for staying around.
+    private float stayAroundTimer = 0f;
+    private float stayAroundTime = 2f;
 
 
     // Start is called before the first frame update
@@ -25,6 +30,7 @@ public class EelBehavior : FishEnemyBehavior
     {
         speed = 7f;
         acceleration = 12f;
+        deltaAngle = Mathf.PI * 3f;
         base.Start();
         UpdateHeadlightRange();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
@@ -73,6 +79,7 @@ public class EelBehavior : FishEnemyBehavior
                 if (hit.collider == null)
                 {
                     isShinedOn = true;
+                    currentDirection = aiPath.desiredVelocity.normalized;
                     runAwayDirection = headlightToEel.normalized;
                     SwitchMode("runAway");
                 }
@@ -81,28 +88,32 @@ public class EelBehavior : FishEnemyBehavior
     }
 
     // This function is called when this eel is shined on; this eel will run away
-    // from the player for a short amount of time.
+    // from the player for a short amount of time and then stay around for a
+    // short amount of time before continuing to attack the player.
     protected override void RunAway()
     {
-        aiPath.enableRotation = false;
         runAwayTimer += Time.deltaTime;
         if (runAwayTimer < runAwayTime)
         {
-            transform.position += (runAwayDirection * speed * Time.deltaTime);
-            // Have a turnaround timer.
-            transform.rotation = Quaternion.LookRotation(Vector3.forward, runAwayDirection);
+            // Rotate the current direction gradually.
+            if (currentDirection != runAwayDirection)
+            {
+                currentDirection = Vector3.RotateTowards(currentDirection, runAwayDirection, deltaAngle * Time.deltaTime, 0f);
+                transform.rotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
+            }
+            transform.position += currentDirection * speed * Time.deltaTime;
         }
         else
         {
             runAwayTimer = 0f;
-            aiPath.enableRotation = true;
             isShinedOn = false;
             SwitchMode("attack");
         }
     }
 
-    // This function that this eels stays around just outside the player's headlight range.
-    void StayAround()
+    // This function makes this eels stays around outside the player's headlight range
+    // for a short amount of time.
+    protected override void StayAround()
     {
 
     }

@@ -6566,6 +6566,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 18370218}
+    - target: {fileID: 2462034768868158028, guid: d5ae811b3e7cfd344b7fd029c2b0165c, type: 3}
+      propertyPath: m_LinearDrag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462034768868158028, guid: d5ae811b3e7cfd344b7fd029c2b0165c, type: 3}
+      propertyPath: m_AngularDrag
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6620725816742440572, guid: d5ae811b3e7cfd344b7fd029c2b0165c, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -6584,11 +6592,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986021853191844168, guid: d5ae811b3e7cfd344b7fd029c2b0165c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.3
+      value: -24.64
       objectReference: {fileID: 0}
     - target: {fileID: 8986021853191844168, guid: d5ae811b3e7cfd344b7fd029c2b0165c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.67
+      value: -6.77
       objectReference: {fileID: 0}
     - target: {fileID: 8986021853191844168, guid: d5ae811b3e7cfd344b7fd029c2b0165c, type: 3}
       propertyPath: m_LocalPosition.z
