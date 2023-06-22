@@ -23,7 +23,8 @@ public class EelBehavior : FishEnemyBehavior
 
     // Variables for staying around.
     private float stayAroundTimer = 0f;
-    private float stayAroundTime = 2f;
+    private float stayAroundTime = 1f;
+    private float lingeringSpeed = 1.2f;
 
 
     // Start is called before the first frame update
@@ -31,6 +32,8 @@ public class EelBehavior : FishEnemyBehavior
     {
         speed = 7f;
         acceleration = 12f;
+        decceleration = -16f;
+        stayAroundTime = Random.Range(1f, 3f);
         base.Start();
         UpdateHeadlightRange();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
@@ -113,22 +116,33 @@ public class EelBehavior : FishEnemyBehavior
         {
             // Slow down gradually.
             currentSpeed = Mathf.SmoothDamp(currentSpeed, 0f, ref decceleration, slowDownTime);
-            // print(currentSpeed);
-            // print(decceleration);
-            transform.position += currentDirection * currentSpeed * Time.deltaTime;
+            Vector3 newPosition = transform.position;
+            newPosition.x += currentDirection.x * currentSpeed * Time.deltaTime;
+            newPosition.y += currentDirection.y * currentSpeed * Time.deltaTime;
+            newPosition.z = 0f;
+            transform.position = newPosition;
         }
         else
         {
             runAwayTimer = 0f;
             isShinedOn = false;
-            SwitchMode("attack");
+            SwitchMode("idle");
         }
     }
 
-    // This function makes this eels stays around outside the player's headlight range
-    // for a short amount of time.
+    // This function makes this eel stays around outside the player's headlight range
+    // for a short amount of time. After this, this eel will start attacking again.
     protected override void StayAround()
     {
+        aiPath.enableRotation = true;
+        aiPath.maxSpeed = lingeringSpeed;
 
+        stayAroundTimer += Time.deltaTime;
+        if (stayAroundTimer >= stayAroundTime)
+        {
+            stayAroundTimer = 0f;
+            stayAroundTime = Random.Range(1f, 3f);
+            SwitchMode("attack");
+        }
     }
 }

@@ -29,7 +29,7 @@ public class FishEnemyBehavior : MonoBehaviour
     // The time and decceleration for this enemy to slow down. The decceleration will not
     // be a fixed value because of the SmoothDamp function.
     protected float slowDownTime = 0.4f;
-    protected float decceleration = -20f;
+    protected float decceleration = -10f;
 
     // Variables for stuck detection and struggling.
     protected Vector3 previousPosition;
