@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     public int damage = 10;
     public float range = 5.0f;
 
-    public bool attackMode = false;
+    public bool attackMode = false; //for test
 
     [SerializeField] DamageSystem damageSystem;
     [SerializeField] AttackSystem attackSystem;

@@ -6,9 +6,9 @@ public class AttackElement : MonoBehaviour
 {
     public AttackSystem attackSystem;
 
-    private Sprite sprite;
-    private Collider attackElementCollider;
-    string tragetTag = "";
+    public Sprite sprite;
+    protected Collider attackElementCollider;
+    protected string tragetTag = "";
 
     public AttackElement(AttackSystem attackSystem)
     {
