@@ -14,7 +14,6 @@ public class MoveByMouse : MonoBehaviour
     void Start()
     {
         // initialize space between character and weapon
-        spacing = 1f;
     }
 
     // Update is called once per frame
@@ -39,6 +38,7 @@ public class MoveByMouse : MonoBehaviour
             spacing*Mathf.Cos(angle),
             spacing*Mathf.Sin(angle)
         );
+
         transform.localPosition = curPosition;
         transform.right = direction;
 
