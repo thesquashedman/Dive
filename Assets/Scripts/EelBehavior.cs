@@ -25,7 +25,12 @@ public class EelBehavior : FishEnemyBehavior
     private float stayAroundTime = 1f;
     private float lingeringSpeed = 1.2f;
 
-    private float attackRange = 30f;
+    // Variables for returning to this eel's habitat and staying idle.
+    public GameObject habitat;
+    private float returingSpeed = 4f;
+
+    // The radius within which this eel will attack the player.
+    public float attackRange = 30f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -43,14 +48,49 @@ public class EelBehavior : FishEnemyBehavior
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        if (mode == "attack")
+        {
+            CheckAttackRange();
+            CheckStuck();
+        }
+        else if (mode == "coolDown")
+        {
+            StayAround();
+        }
+        else if (mode == "runAway")
+        {
+            RunAway();
+        }
+        else if (mode == "wander")
+        {
+            Wander();
+        }
+        else if (mode == "idle")
+        {
+            CheckAttackRange();
+            Idle();
+        }
         CheckShined();
     }
 
-    void UpdateHeadlightRange()
+    public void UpdateHeadlightRange()
     {
         headlightAngle = 30f;
         headlightDistance = 7f;
+    }
+
+    // This function checks whether the player is within this eel's attack range. If the player
+    // is, switch to attack mode. If the player is not, switch to idle mode.
+    private void CheckAttackRange()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+        {
+            SwitchMode("attack");
+        }
+        else
+        {
+            SwitchMode("idle");
+        }
     }
 
     // This function checks whether the eel is shined on by the player's headlight.
@@ -148,13 +188,11 @@ public class EelBehavior : FishEnemyBehavior
         }
     }
 
-    // This function makes this eel idle around until the player is within its
-    // attack range.
+    // For the eel, it will move back to its habitat when it is idle.
     protected override void Idle()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
-        {
-            SwitchMode("attack");
-        }
+        aiPath.maxSpeed = returingSpeed;
+        aiPath.enableRotation = true;
+        aiDestinationSetter.target = habitat.transform;
     }
 }
