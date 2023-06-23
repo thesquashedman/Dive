@@ -1,0 +1,22 @@
+Lighting system can now specifically render hard shadows on a seperate layer so that they can be combined onto the main layer.
+This makes it possible to render both hard shadows (non see through shadows) and softer shadows (see through shadows) from the same light.
+
+Important things necessary for the lighting system to work. Only necessary for levels where we need a light to be able to make different kinds of shadows	
+
+1. There must be two cameras. 
+One (Main render camera) renders everything except things on the shadow layer. 
+The other (Hard shadow camera) renders everything on the shadow layer
+and renders it to the "Hard Shadow Render" Render texture. 
+Main render camera must use RendererAllEffects as the renderer to apply the hard shadows. 
+Hard shadow camera must use RenderNoPost as the renderer so that it doesn't apply any post processing to the texture it renders to.
+
+2. The background must be sperated onto two layers. The main background is on the default layer, and can have whatever we want on it.
+The second will be on the shadow layer, and should be entirely white.
+
+3. Every light must be made up of two lights. The lights should be the same save for two differences
+a. The layers (default vs shadow)
+b. The target layers (default vs HardShadow)
+Note: If a light doesn't cast multiple shadow types, we still need two lights for it, since if there is no light affecting the hard shadow layer
+that area will be treated as being fully in shadow. 
+
+4. On the shadowcasters, if they should be affected by the HardShadowLight their target layer should be Hardshadow, otherwise their target layer is default
