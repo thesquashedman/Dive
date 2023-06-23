@@ -260,6 +260,8 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+<<<<<<< HEAD
+=======
 --- !u!1001 &1568352285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,6 +323,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4156a9f52284101a9c83042455f33d, type: 3}
+>>>>>>> main
 --- !u!1001 &3881858955530384998
 PrefabInstance:
   m_ObjectHideFlags: 0
