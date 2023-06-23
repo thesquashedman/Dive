@@ -18,7 +18,6 @@ public class EelBehavior : FishEnemyBehavior
     private Vector3 runAwayDirection = Vector3.zero;
     private float currentSpeed = 0f;
     private bool isShinedOn = false;
-
     private LayerMask obstacleLayerMask;
 
     // Variables for staying around.
@@ -26,6 +25,7 @@ public class EelBehavior : FishEnemyBehavior
     private float stayAroundTime = 1f;
     private float lingeringSpeed = 1.2f;
 
+    private float attackRange = 30f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -37,6 +37,7 @@ public class EelBehavior : FishEnemyBehavior
         base.Start();
         UpdateHeadlightRange();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
+        SwitchMode("idle");
     }
 
     // Update is called once per frame
@@ -126,7 +127,7 @@ public class EelBehavior : FishEnemyBehavior
         {
             runAwayTimer = 0f;
             isShinedOn = false;
-            SwitchMode("idle");
+            SwitchMode("coolDown");
         }
     }
 
@@ -134,14 +135,25 @@ public class EelBehavior : FishEnemyBehavior
     // for a short amount of time. After this, this eel will start attacking again.
     protected override void StayAround()
     {
-        aiPath.enableRotation = true;
         aiPath.maxSpeed = lingeringSpeed;
+        aiPath.enableRotation = true;
+        aiDestinationSetter.target = player.transform;
 
         stayAroundTimer += Time.deltaTime;
         if (stayAroundTimer >= stayAroundTime)
         {
             stayAroundTimer = 0f;
             stayAroundTime = Random.Range(1f, 3f);
+            SwitchMode("attack");
+        }
+    }
+
+    // This function makes this eel idle around until the player is within its
+    // attack range.
+    protected override void Idle()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+        {
             SwitchMode("attack");
         }
     }

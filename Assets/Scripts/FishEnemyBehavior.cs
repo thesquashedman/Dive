@@ -11,15 +11,20 @@ public class FishEnemyBehavior : MonoBehaviour
     // 1. attack: This enemy will chase and attack the player. This enemy will struggle
     // if it gets stuck along the way.
     //
-    // 2. idle: This enemy will not move towards the player; it will stay around a
-    // certain area.
+    // 2. coolDown: This enemy will stay around a certain area and exhibit an
+    // intermediate behavior before switching to other modes.
     //
     // 3. runAway: This enemy will run away from the player.
+    //
+    // 4. wander: This enemy will wander around a certain area of the map.
+    //
+    // 5. idle: This enemy will stay at a certain position and do nothing.
     protected string mode = "attack";
 
     // Variables for the path and movement.
     // protected Rigidbody2D rb;
     protected AIPath aiPath;
+    protected AIDestinationSetter aiDestinationSetter;
     protected float speed = 5f;
     protected float acceleration = 10f;
 
@@ -45,6 +50,7 @@ public class FishEnemyBehavior : MonoBehaviour
         previousPosition = transform.position;
         // rb = GetComponent<Rigidbody2D>();
         aiPath = GetComponent<AIPath>();
+        aiDestinationSetter = GetComponent<AIDestinationSetter>();
         aiPath.maxSpeed = speed;
         aiPath.maxAcceleration = acceleration;
     }
@@ -56,13 +62,21 @@ public class FishEnemyBehavior : MonoBehaviour
         {
             CheckStuck();
         }
-        else if (mode == "idle")
+        else if (mode == "coolDown")
         {
             StayAround();
         }
         else if (mode == "runAway")
         {
             RunAway();
+        }
+        else if (mode == "wander")
+        {
+            Wander();
+        }
+        else if (mode == "idle")
+        {
+            Idle();
         }
     }
 
@@ -75,18 +89,35 @@ public class FishEnemyBehavior : MonoBehaviour
             mode = "attack";
             aiPath.maxSpeed = speed;
             aiPath.enableRotation = true;
+            aiDestinationSetter.target = player.transform;
         }
-        else if (newMode == "idle")
+        else if (newMode == "coolDown")
         {
-            mode = "idle";
+            mode = "coolDown";
             aiPath.maxSpeed = 0f;
             aiPath.enableRotation = false;
+            aiDestinationSetter.target = null;
         }
         else if (newMode == "runAway")
         {
             mode = "runAway";
             aiPath.maxSpeed = 0f;
             aiPath.enableRotation = false;
+            aiDestinationSetter.target = null;
+        }
+        else if (newMode == "wander")
+        {
+            mode = "wander";
+            aiPath.maxSpeed = speed;
+            aiPath.enableRotation = true;
+            aiDestinationSetter.target = null;
+        }
+        else if (newMode == "idle")
+        {
+            mode = "idle";
+            aiPath.maxSpeed = 0f;
+            aiPath.enableRotation = false;
+            aiDestinationSetter.target = null;
         }
     }
 
@@ -165,5 +196,35 @@ public class FishEnemyBehavior : MonoBehaviour
         newPosition.y += direction.y * speed * Time.deltaTime;
         newPosition.z = 0f;
         transform.position = newPosition;
+    }
+
+    // This function is written based on the documentation of the A* Pathfinding Project.
+    // https://arongranberg.com/astar/docs/wander.html
+    //
+    // This function makes the enemy wander around the map.
+    protected virtual void Wander()
+    {
+        if (!aiPath.pathPending && (aiPath.reachedEndOfPath || !aiPath.hasPath))
+        {
+            aiPath.destination = GetRandomPointWithinEllipse(transform.position, 5f, 25f);
+            aiPath.SearchPath();
+        }
+    }
+
+    // This function gets a random point within an ellipse whose position, height, and width
+    // are specified by the parameters.
+    protected Vector3 GetRandomPointWithinEllipse(Vector3 position, float height, float width)
+    {
+        Vector3 point = Random.insideUnitCircle;
+        point.x *= (width / 2f);
+        point.y *= (height / 2f);
+        point += position;
+        point.z = 0f;
+        return point;
+    }
+
+    protected virtual void Idle()
+    {
+        // Do nothing.
     }
 }
