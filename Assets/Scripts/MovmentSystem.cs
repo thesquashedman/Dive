@@ -2,39 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovmentSystem : MonoBehaviour
+public class MovementSystem : MonoBehaviour
 {
-    public float speed = 5f; // Variable to control the speed of the character
-    public float rotationSpeed = 200f; // Variable to control the rotation speed of the character
+    public float speed = 5f;
+    public float rotationSpeed = 200f; // Rotation speed in degrees per second
 
-    private Rigidbody2D rb; // Reference to the Rigidbody2D component
+    private Rigidbody2D rb;
 
-    void Start()
+    private void Start()
     {
-        // Get the Rigidbody2D component attached to the GameObject
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        // Get input from the user for movement
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        // Calculate the target angle to face the direction of the mouse
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.z - transform.position.z));
+        Vector3 direction = (mousePosition - transform.position).normalized;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
-        // Create a 2D vector for the direction
-        Vector2 direction = new Vector2(horizontal, vertical).normalized;
+        // Smoothly rotate the player to the target angle
+        float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+        transform.eulerAngles = new Vector3(0, 0, angle);
 
-        // Add force to the Rigidbody2D to move the character
-        rb.AddForce(direction * speed);
-
-        // Rotate the character using 'N' and 'M' keys
-        if (Input.GetKey(KeyCode.N))
+        // Add force in the direction of the mouse if "k" is pressed
+        if (Input.GetKey("m"))
         {
-            transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+            rb.AddForce(direction * speed);
         }
-        else if (Input.GetKey(KeyCode.M))
+
+        // Add force in the opposite direction of the mouse if "j" is pressed
+        if (Input.GetKey("n"))
         {
-            transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
+            rb.AddForce(-direction * speed);
         }
     }
 }
