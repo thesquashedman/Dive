@@ -8608,7 +8608,7 @@ GameObject:
   - component: {fileID: 1750960385}
   - component: {fileID: 1750960384}
   m_Layer: 0
-  m_Name: OxygenTank (1)
+  m_Name: OxygenArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
