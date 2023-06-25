@@ -24,10 +24,11 @@ public class EelBehavior : FishEnemyBehavior
     private float stayAroundTimer = 0f;
     private float stayAroundTime = 1f;
     private float lingeringSpeed = 1.2f;
+    private float lingeringAcceleration = 0.6f;
 
     // Variables for returning to this eel's habitat and staying idle.
-    public GameObject habitat;
     private float returingSpeed = 4f;
+    private float returingAcceleration = 6f;
 
     // The radius within which this eel will attack the player.
     public float attackRange = 30f;
@@ -67,10 +68,56 @@ public class EelBehavior : FishEnemyBehavior
         }
         else if (mode == "idle")
         {
-            CheckAttackRange();
             Idle();
+            CheckAttackRange();
         }
         CheckShined();
+    }
+
+    // This function acts as the common interface for switching the action mode
+    // of the eel.
+    protected override void SwitchMode(string newMode)
+    {
+        if (newMode == "attack")
+        {
+            mode = "attack";
+            aiPath.maxSpeed = speed;
+            aiPath.maxAcceleration = acceleration;
+            aiPath.enableRotation = true;
+            aiDestinationSetter.target = player.transform;
+        }
+        else if (newMode == "coolDown")
+        {
+            mode = "coolDown";
+            aiPath.maxSpeed = lingeringSpeed;
+            aiPath.maxAcceleration = lingeringAcceleration;
+            aiPath.enableRotation = true;
+            aiDestinationSetter.target = player.transform;
+        }
+        else if (newMode == "runAway")
+        {
+            mode = "runAway";
+            aiPath.maxSpeed = 0f;
+            aiPath.maxAcceleration = 0f;
+            aiPath.enableRotation = false;
+            aiDestinationSetter.target = null;
+        }
+        else if (newMode == "wander")
+        {
+            mode = "wander";
+            aiPath.maxSpeed = wanderingSpeed;
+            aiPath.maxAcceleration = wanderingAcceleration;
+            aiPath.enableRotation = true;
+            aiDestinationSetter.target = null;
+        }
+        else if (newMode == "idle")
+        {
+            mode = "idle";
+            aiPath.maxSpeed = returingSpeed;
+            aiPath.maxAcceleration = returingAcceleration;
+            aiPath.enableRotation = true;
+            aiDestinationSetter.target = habitat.transform;
+        }
     }
 
     public void UpdateHeadlightRange()
@@ -83,11 +130,11 @@ public class EelBehavior : FishEnemyBehavior
     // is, switch to attack mode. If the player is not, switch to idle mode.
     private void CheckAttackRange()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+        if (mode != "attack" && Vector3.Distance(transform.position, player.transform.position) <= attackRange)
         {
             SwitchMode("attack");
         }
-        else
+        else if (mode == "attack" && Vector3.Distance(transform.position, player.transform.position) > attackRange)
         {
             SwitchMode("idle");
         }
@@ -175,10 +222,6 @@ public class EelBehavior : FishEnemyBehavior
     // for a short amount of time. After this, this eel will start attacking again.
     protected override void StayAround()
     {
-        aiPath.maxSpeed = lingeringSpeed;
-        aiPath.enableRotation = true;
-        aiDestinationSetter.target = player.transform;
-
         stayAroundTimer += Time.deltaTime;
         if (stayAroundTimer >= stayAroundTime)
         {
@@ -186,13 +229,5 @@ public class EelBehavior : FishEnemyBehavior
             stayAroundTime = Random.Range(1f, 3f);
             SwitchMode("attack");
         }
-    }
-
-    // For the eel, it will move back to its habitat when it is idle.
-    protected override void Idle()
-    {
-        aiPath.maxSpeed = returingSpeed;
-        aiPath.enableRotation = true;
-        aiDestinationSetter.target = habitat.transform;
     }
 }
