@@ -201,7 +201,7 @@ public class FishEnemyBehavior : MonoBehaviour
     protected virtual void RunAway()
     {
         // Find the direction away from the player.
-        Vector3 direction = (transform.position - player.transform.position).normalized;
+        Vector2 direction = (transform.position - player.transform.position).normalized;
 
         // Move in that direction.
         Vector3 newPosition = transform.position;
