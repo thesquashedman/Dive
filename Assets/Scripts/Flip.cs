@@ -15,7 +15,7 @@ public class Flip : MonoBehaviour
     void Update()
     {
         
-        Debug.Log(transform.eulerAngles);
+        //Debug.Log(transform.eulerAngles);
         if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 270)
             transform.localScale = new Vector3(1, -1, 1);
         else
