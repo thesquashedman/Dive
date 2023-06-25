@@ -67,9 +67,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _RippleCount: 3
-    - _RippleSpeed: 1
-    - _RippleStrength: 1.21
+    - _RippleCount: 7.73
+    - _RippleSpeed: 2.08
+    - _RippleStrength: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
