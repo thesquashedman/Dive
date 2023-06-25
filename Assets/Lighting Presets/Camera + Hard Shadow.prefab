@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5544106234741592288}
   - component: {fileID: 6309978333912745288}
   - component: {fileID: 6119171891653339801}
+  - component: {fileID: 2666366865388222618}
   m_Layer: 0
   m_Name: Hard Shadow Cam
   m_TagString: MainCamera
@@ -152,6 +153,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   distance: 10
+--- !u!114 &2666366865388222618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6074144786248671757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a842ced78603cdb41b9a09ce7c7594c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderTexture: {fileID: 8600000, guid: 06f4dd23d548dde4e8004414bfad0333, type: 2}
+  camera: {fileID: 1438562156060666064}
 --- !u!1 &7383663903049251154
 GameObject:
   m_ObjectHideFlags: 0
