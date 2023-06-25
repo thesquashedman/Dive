@@ -5,7 +5,7 @@ using UnityEngine;
 public class WandererEnemy : Enemy
 {
     private WandererBehavior wandererBehavior;
-    private float maxHealth = 100f;
+    private float maxHealth = 10f;
 
     // Start is called before the first frame update
     protected override void Start()

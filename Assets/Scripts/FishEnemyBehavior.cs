@@ -43,7 +43,15 @@ public class FishEnemyBehavior : MonoBehaviour
     protected float struggleIntensity = 20f;
     protected bool isStuck = false;
     protected Vector3[] unitVectors = new Vector3[] {Vector3.up, Vector3.down, Vector3.left, Vector3.right};
-    
+
+    // Variables for wandering. These variables are used to compute the area that the
+    // enemy can wander around and set the speed.
+    public GameObject habitat; // This is the habitat of this enemy.
+    public float wanderingAreaWidth = 10f;
+    public float wanderingAreaHeight = 10f;
+    protected float wanderingSpeed = 5f;
+    protected float wanderingAcceleration = 10f;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -82,12 +90,13 @@ public class FishEnemyBehavior : MonoBehaviour
 
     // This function acts as the common interface for switching the action mode
     // of the enemy.
-    protected void SwitchMode(string newMode)
+    protected virtual void SwitchMode(string newMode)
     {
         if (newMode == "attack")
         {
             mode = "attack";
             aiPath.maxSpeed = speed;
+            aiPath.maxAcceleration = acceleration;
             aiPath.enableRotation = true;
             aiDestinationSetter.target = player.transform;
         }
@@ -95,6 +104,7 @@ public class FishEnemyBehavior : MonoBehaviour
         {
             mode = "coolDown";
             aiPath.maxSpeed = 0f;
+            aiPath.maxAcceleration = 0f;
             aiPath.enableRotation = false;
             aiDestinationSetter.target = null;
         }
@@ -102,13 +112,15 @@ public class FishEnemyBehavior : MonoBehaviour
         {
             mode = "runAway";
             aiPath.maxSpeed = 0f;
+            aiPath.maxAcceleration = 0f;
             aiPath.enableRotation = false;
             aiDestinationSetter.target = null;
         }
         else if (newMode == "wander")
         {
             mode = "wander";
-            aiPath.maxSpeed = speed;
+            aiPath.maxSpeed = wanderingSpeed;
+            aiPath.maxAcceleration = wanderingAcceleration;
             aiPath.enableRotation = true;
             aiDestinationSetter.target = null;
         }
@@ -116,6 +128,7 @@ public class FishEnemyBehavior : MonoBehaviour
         {
             mode = "idle";
             aiPath.maxSpeed = 0f;
+            aiPath.maxAcceleration = 0f;
             aiPath.enableRotation = false;
             aiDestinationSetter.target = null;
         }
@@ -201,12 +214,12 @@ public class FishEnemyBehavior : MonoBehaviour
     // This function is written based on the documentation of the A* Pathfinding Project.
     // https://arongranberg.com/astar/docs/wander.html
     //
-    // This function makes the enemy wander around the map.
+    // This function makes the enemy wander around an ellipse area of the map.
     protected virtual void Wander()
     {
         if (!aiPath.pathPending && (aiPath.reachedEndOfPath || !aiPath.hasPath))
         {
-            aiPath.destination = GetRandomPointWithinEllipse(transform.position, 5f, 25f);
+            aiPath.destination = GetRandomPointWithinEllipse(habitat.transform.position, wanderingAreaHeight, wanderingAreaWidth);
             aiPath.SearchPath();
         }
     }
