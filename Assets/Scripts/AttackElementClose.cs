@@ -7,6 +7,9 @@ public class AttackElementClose : AttackElement
 
     public float attackRange; // Example: range within which attack is effective
 
+    public float attackPeriod = 2;
+    public float attackPeriodTimer = 0;
+
     // Optionally, create a constructor for the subclass
     public AttackElementClose(AttackSystem attackSystem, float attackRange) : base(attackSystem)
     {
@@ -25,12 +28,15 @@ public class AttackElementClose : AttackElement
     {
         if (other.gameObject.CompareTag(tragetTag))
         {
-            //Debug.Log(other.gameObject.name);
-            //attackSystem.ApplyDamage(other.gameObject.GetComponent<Health>());
+            attackPeriodTimer += Time.deltaTime;
+            if (attackPeriodTimer > attackPeriod) {
+                int damage = attackSystem.damageSystem.GetDamage();
+                damage *= -1;
+                other.gameObject.GetComponent<Health>().ChangeHealth(damage);
 
-            int damage = attackSystem.damageSystem.GetDamage();
-            damage *= -1;
-            other.gameObject.GetComponent<Health>().ChangeHealth(damage);
+                attackPeriodTimer = 0;
+            }
+
         }
     }
 
