@@ -16,8 +16,6 @@ public class WandererBehavior : FishEnemyBehavior
     {
         speed = 9f;
         acceleration = 12f;
-        wanderingAreaWidth = 30f;
-        wanderingAreaHeight = 10f;
         wanderingSpeed = 1.2f;
         wanderingAcceleration = 0.6f;
         idleTime = Random.Range(3f, 5f);
