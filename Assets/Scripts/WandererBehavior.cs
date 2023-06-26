@@ -57,11 +57,11 @@ public class WandererBehavior : FishEnemyBehavior
     // is, switch to attack mode. If the player is not, switch to wander mode.
     private void CheckAttackRange()
     {
-        if (mode != "attack" && Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+        if (mode != "attack" && Vector2.Distance(transform.position, player.transform.position) <= attackRange)
         {
             SwitchMode("attack");
         }
-        else if (mode == "attack" && Vector3.Distance(transform.position, player.transform.position) > attackRange)
+        else if (mode == "attack" && Vector2.Distance(transform.position, player.transform.position) > attackRange)
         {
             SwitchMode("wander");
         }

@@ -14,8 +14,8 @@ public class EelBehavior : FishEnemyBehavior
     // Variables for running away from the player.
     private float runAwayTimer = 0f;
     private float runAwayTime = 1.4f;
-    private Vector3 currentDirection = Vector3.zero;
-    private Vector3 runAwayDirection = Vector3.zero;
+    private Vector2 currentDirection = Vector2.zero;
+    private Vector2 runAwayDirection = Vector2.zero;
     private float currentSpeed = 0f;
     private bool isShinedOn = false;
     private LayerMask obstacleLayerMask;
@@ -130,11 +130,11 @@ public class EelBehavior : FishEnemyBehavior
     // is, switch to attack mode. If the player is not, switch to idle mode.
     private void CheckAttackRange()
     {
-        if (mode != "attack" && Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+        if (mode != "attack" && Vector2.Distance(transform.position, player.transform.position) <= attackRange)
         {
             SwitchMode("attack");
         }
-        else if (mode == "attack" && Vector3.Distance(transform.position, player.transform.position) > attackRange)
+        else if (mode == "attack" && Vector2.Distance(transform.position, player.transform.position) > attackRange)
         {
             SwitchMode("idle");
         }
@@ -152,17 +152,17 @@ public class EelBehavior : FishEnemyBehavior
             float sinAngle = Mathf.Sin(radianAngle);
             float cosAngle = Mathf.Cos(radianAngle);
         
-            Vector3 vector = Vector3.up;
+            Vector2 vector = Vector2.up;
             float rotatedX = vector.x * cosAngle - vector.y * sinAngle;
             float rotatedY = vector.x * sinAngle + vector.y * cosAngle;
-            Vector3 headlightDirection = new Vector3(rotatedX, rotatedY, 0f);
+            Vector2 headlightDirection = new Vector2(rotatedX, rotatedY);
         
             // Compute the vector from the player's headlight to this eel.
-            Vector3 headlightToEel = (transform.position - playerHeadlight.transform.position);
+            Vector2 headlightToEel = (transform.position - playerHeadlight.transform.position);
         
             // If this eel is within the headlight's range, do a raycast to see if there 
             // is an obstacle between the player's headlight and this eel.
-            if (Vector3.Angle(headlightDirection, headlightToEel) <= headlightAngle && Vector3.Magnitude(headlightToEel) <= headlightDistance)
+            if (Vector2.Angle(headlightDirection, headlightToEel) <= headlightAngle && Vector3.Magnitude(headlightToEel) <= headlightDistance)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, -headlightToEel, Vector3.Magnitude(headlightToEel), obstacleLayerMask);
 
