@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class FishEnemyBehavior : MonoBehaviour
 {
     public GameObject player;
 
     // The behavior mode of this enemy. The possible modes are the following ones:
-    // 1. attack: This enemy will chase and attack the player. This enemy will struggle
-    // if it gets stuck along the way.
+    // 1. attack: This enemy will chase and attack the player.
     //
     // 2. coolDown: This enemy will stay around a certain area and exhibit an
     // intermediate behavior before switching to other modes.
@@ -22,27 +20,20 @@ public class FishEnemyBehavior : MonoBehaviour
     protected string mode = "attack";
 
     // Variables for the path and movement.
-    // protected Rigidbody2D rb;
-    protected AIPath aiPath;
-    protected AIDestinationSetter aiDestinationSetter;
+    protected Rigidbody2D rigidbody;
+    protected EnemyAIPath aiPath;
     protected float speed = 5f;
-    protected float acceleration = 10f;
-
-    // The maximum angle in radians that the direction of this enemy can turn in a second.
-    protected float deltaAngle = Mathf.PI;
-
-    // The time and decceleration for this enemy to slow down. The decceleration will not
-    // be a fixed value because of the SmoothDamp function.
-    protected float slowDownTime = 0.4f;
-    protected float decceleration = -10f;
+    protected float rotationSpeed = 250f;
 
     // Variables for stuck detection and struggling.
+    /*
     protected Vector3 previousPosition;
     protected float struggleTimer = 0f;
     protected float struggleTime = 0.5f;
     protected float struggleIntensity = 20f;
     protected bool isStuck = false;
     protected Vector3[] unitVectors = new Vector3[] {Vector3.up, Vector3.down, Vector3.left, Vector3.right};
+    */
 
     // Variables for wandering. These variables are used to compute the area that the
     // enemy can wander around and set the speed.
@@ -50,29 +41,24 @@ public class FishEnemyBehavior : MonoBehaviour
     public float wanderingAreaWidth = 10f;
     public float wanderingAreaHeight = 10f;
     protected float wanderingSpeed = 5f;
-    protected float wanderingAcceleration = 10f;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        previousPosition = transform.position;
-        // rb = GetComponent<Rigidbody2D>();
-        aiPath = GetComponent<AIPath>();
-        aiDestinationSetter = GetComponent<AIDestinationSetter>();
-        aiPath.maxSpeed = speed;
-        aiPath.maxAcceleration = acceleration;
+        rigidbody = GetComponent<Rigidbody2D>();
+        aiPath = GetComponent<EnemyAIPath>();
+        aiPath.speed = speed;
     }
 
-    // Update is called once per frame
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if (mode == "attack")
         {
-            CheckStuck();
+            Attack();
         }
         else if (mode == "coolDown")
         {
-            StayAround();
+            CoolDown();
         }
         else if (mode == "runAway")
         {
@@ -95,47 +81,39 @@ public class FishEnemyBehavior : MonoBehaviour
         if (newMode == "attack")
         {
             mode = "attack";
-            aiPath.maxSpeed = speed;
-            aiPath.maxAcceleration = acceleration;
-            aiPath.enableRotation = true;
-            aiDestinationSetter.target = player.transform;
+            aiPath.speed = speed;
+            aiPath.target = player.transform;
         }
         else if (newMode == "coolDown")
         {
             mode = "coolDown";
-            aiPath.maxSpeed = 0f;
-            aiPath.maxAcceleration = 0f;
-            aiPath.enableRotation = false;
-            aiDestinationSetter.target = null;
+            aiPath.speed = 0f;
+            aiPath.target = null;
         }
         else if (newMode == "runAway")
         {
             mode = "runAway";
-            aiPath.maxSpeed = 0f;
-            aiPath.maxAcceleration = 0f;
-            aiPath.enableRotation = false;
-            aiDestinationSetter.target = null;
+            aiPath.speed = 0f;
+            aiPath.target = null;
         }
         else if (newMode == "wander")
         {
             mode = "wander";
-            aiPath.maxSpeed = wanderingSpeed;
-            aiPath.maxAcceleration = wanderingAcceleration;
-            aiPath.enableRotation = true;
-            aiDestinationSetter.target = null;
+            aiPath.speed = wanderingSpeed;
+            aiPath.target = null;
         }
         else if (newMode == "idle")
         {
             mode = "idle";
-            aiPath.maxSpeed = 0f;
-            aiPath.maxAcceleration = 0f;
-            aiPath.enableRotation = false;
-            aiDestinationSetter.target = null;
+            aiPath.speed = 0f;
+            aiPath.target = null;
         }
     }
 
     // This function verifies whether this enemy is stuck and needs to struggle.
     // If the enemy is stuck, this function calls the struggle function.
+    // This function is discarded since it is based on transform.
+    /*
     protected void CheckStuck()
     {
         if (!isStuck)
@@ -168,9 +146,12 @@ public class FishEnemyBehavior : MonoBehaviour
             Struggle();
         }
     }
+    */
 
     // This function is called when the enemy gets stuck with another object.
-    // This function makes the enemy struggles for a short time.
+    // This function makes the enemy struggle for a short time.
+    // This function is discarded since it is based on transform.
+    /*
     protected void Struggle()
     {
         aiPath.maxSpeed = 0f;
@@ -191,8 +172,14 @@ public class FishEnemyBehavior : MonoBehaviour
             isStuck = false;
         }
     }
+    */
 
-    protected virtual void StayAround()
+    protected virtual void Attack()
+    {
+        // Do nothing.
+    }
+
+    protected virtual void CoolDown()
     {
         // Do nothing.
     }
@@ -201,25 +188,26 @@ public class FishEnemyBehavior : MonoBehaviour
     protected virtual void RunAway()
     {
         // Find the direction away from the player.
-        Vector2 direction = (transform.position - player.transform.position).normalized;
+        Vector2 direction = ((Vector2)transform.position - (Vector2)player.transform.position).normalized;
+
+        // Slowly rotate the enemy towards the run away direction.
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float newAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+        transform.eulerAngles = new Vector3(0f, 0f, newAngle);
 
         // Move in that direction.
-        Vector3 newPosition = transform.position;
-        newPosition.x += direction.x * speed * Time.deltaTime;
-        newPosition.y += direction.y * speed * Time.deltaTime;
-        newPosition.z = 0f;
-        transform.position = newPosition;
+        rigidbody.AddForce(direction * speed);
     }
 
     // This function is written based on the documentation of the A* Pathfinding Project.
-    // https://arongranberg.com/astar/docs/wander.html
+    // The link to the documentation is https://arongranberg.com/astar/docs/wander.html
     //
     // This function makes the enemy wander around an ellipse area of the map.
     protected virtual void Wander()
     {
-        if (!aiPath.pathPending && (aiPath.reachedEndOfPath || !aiPath.hasPath))
+        if (aiPath.reachedEndOfPath)
         {
-            aiPath.destination = GetRandomPointWithinEllipse(habitat.transform.position, wanderingAreaHeight, wanderingAreaWidth);
+            aiPath.targetPosition = GetRandomPointWithinEllipse(habitat.transform.position, wanderingAreaHeight, wanderingAreaWidth);
             aiPath.SearchPath();
         }
     }

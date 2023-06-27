@@ -37,8 +37,6 @@ public class EelBehavior : FishEnemyBehavior
     protected override void Start()
     {
         speed = 7f;
-        acceleration = 12f;
-        decceleration = -16f;
         stayAroundTime = Random.Range(1f, 3f);
         base.Start();
         UpdateHeadlightRange();
@@ -47,12 +45,11 @@ public class EelBehavior : FishEnemyBehavior
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void FixedUpdate()
     {
         if (mode == "attack")
         {
             CheckAttackRange();
-            CheckStuck();
         }
         else if (mode == "coolDown")
         {
@@ -81,42 +78,32 @@ public class EelBehavior : FishEnemyBehavior
         if (newMode == "attack")
         {
             mode = "attack";
-            aiPath.maxSpeed = speed;
-            aiPath.maxAcceleration = acceleration;
-            aiPath.enableRotation = true;
-            aiDestinationSetter.target = player.transform;
+            aiPath.speed = speed;
+            aiPath.target = player.transform;
         }
         else if (newMode == "coolDown")
         {
             mode = "coolDown";
-            aiPath.maxSpeed = lingeringSpeed;
-            aiPath.maxAcceleration = lingeringAcceleration;
-            aiPath.enableRotation = true;
-            aiDestinationSetter.target = player.transform;
+            aiPath.speed = lingeringSpeed;
+            aiPath.target = null;
         }
         else if (newMode == "runAway")
         {
             mode = "runAway";
-            aiPath.maxSpeed = 0f;
-            aiPath.maxAcceleration = 0f;
-            aiPath.enableRotation = false;
-            aiDestinationSetter.target = null;
+            aiPath.speed = 0f;
+            aiPath.target = null;
         }
         else if (newMode == "wander")
         {
             mode = "wander";
-            aiPath.maxSpeed = wanderingSpeed;
-            aiPath.maxAcceleration = wanderingAcceleration;
-            aiPath.enableRotation = true;
-            aiDestinationSetter.target = null;
+            aiPath.speed = wanderingSpeed;
+            aiPath.target = null;
         }
         else if (newMode == "idle")
         {
             mode = "idle";
-            aiPath.maxSpeed = returingSpeed;
-            aiPath.maxAcceleration = returingAcceleration;
-            aiPath.enableRotation = true;
-            aiDestinationSetter.target = habitat.transform;
+            aiPath.speed = returingSpeed;
+            aiPath.target = habitat.transform;
         }
     }
 
@@ -170,7 +157,7 @@ public class EelBehavior : FishEnemyBehavior
                 if (hit.collider == null)
                 {
                     isShinedOn = true;
-                    currentDirection = aiPath.desiredVelocity.normalized;
+                    currentDirection = aiPath.direction;
                     runAwayDirection = headlightToEel.normalized;
                     currentSpeed = speed;
                     SwitchMode("runAway");
@@ -190,7 +177,7 @@ public class EelBehavior : FishEnemyBehavior
             // Rotate the current direction gradually.
             if (currentDirection != runAwayDirection)
             {
-                deltaAngle = Mathf.PI * 3f;
+                float deltaAngle = Mathf.PI * 3f;
                 currentDirection = Vector3.RotateTowards(currentDirection, runAwayDirection, deltaAngle * Time.deltaTime, 0f);
                 transform.rotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
             }
@@ -200,10 +187,11 @@ public class EelBehavior : FishEnemyBehavior
             newPosition.z = 0f;
             transform.position = newPosition;
         }
-        else if (runAwayTimer < runAwayTime + slowDownTime)
+        else if (runAwayTimer < runAwayTime + 0.5f)
         {
             // Slow down gradually.
-            currentSpeed = Mathf.SmoothDamp(currentSpeed, 0f, ref decceleration, slowDownTime);
+            float decceleration = 0f;
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, 0f, ref decceleration, 0.5f);
             Vector3 newPosition = transform.position;
             newPosition.x += currentDirection.x * currentSpeed * Time.deltaTime;
             newPosition.y += currentDirection.y * currentSpeed * Time.deltaTime;
@@ -220,7 +208,7 @@ public class EelBehavior : FishEnemyBehavior
 
     // This function makes this eel stays around outside the player's headlight range
     // for a short amount of time. After this, this eel will start attacking again.
-    protected override void StayAround()
+    protected void StayAround()
     {
         stayAroundTimer += Time.deltaTime;
         if (stayAroundTimer >= stayAroundTime)

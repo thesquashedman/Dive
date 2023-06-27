@@ -15,25 +15,22 @@ public class WandererBehavior : FishEnemyBehavior
     protected override void Start()
     {
         speed = 9f;
-        acceleration = 12f;
         wanderingSpeed = 1.2f;
-        wanderingAcceleration = 0.6f;
         idleTime = Random.Range(3f, 5f);
         base.Start();
         SwitchMode("wander");
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void FixedUpdate()
     {
         if (mode == "attack")
         {
             CheckAttackRange();
-            CheckStuck();
         }
         else if (mode == "coolDown")
         {
-            StayAround();
+            CoolDown();
         }
         else if (mode == "runAway")
         {
@@ -69,7 +66,7 @@ public class WandererBehavior : FishEnemyBehavior
     // switch to idle mode for a while between each continuous movement.
     protected override void Wander()
     {
-        if (!aiPath.pathPending && (aiPath.reachedEndOfPath || !aiPath.hasPath))
+        if (aiPath.reachedEndOfPath)
         {
             if (idleTimer <= 0f)
             {
@@ -78,7 +75,7 @@ public class WandererBehavior : FishEnemyBehavior
             else
             {
                 idleTimer = 0f;
-                aiPath.destination = GetRandomPointWithinEllipse(habitat.transform.position, wanderingAreaHeight, wanderingAreaWidth);
+                aiPath.direction = GetRandomPointWithinEllipse(habitat.transform.position, wanderingAreaHeight, wanderingAreaWidth);
                 aiPath.SearchPath();
             }
         }
