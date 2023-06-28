@@ -31,7 +31,7 @@ public class EelBehavior : FishEnemyBehavior
         speed = 20f;
         base.Start();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
-        SetHeadlightRange(30f, 7f);
+        SetHeadlightRange(30f, 12f);
         SwitchMode("idle");
     }
 
@@ -152,6 +152,10 @@ public class EelBehavior : FishEnemyBehavior
             if (hit.collider == null)
             {
                 currentDirection = aiPath.direction;
+                if (Vector3.Magnitude(currentDirection) <= 0.9f)
+                {
+                    currentDirection = -(headlightToEel.normalized);
+                }
                 runAwayDirection = headlightToEel.normalized;
                 SwitchMode("runAway");
             }

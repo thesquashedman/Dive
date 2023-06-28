@@ -114,11 +114,12 @@ public class EnemyAIPath : MonoBehaviour
         // Compute the direction from the current position to the current waypoint.
         direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)transform.position).normalized;
 
-        // Slowly rotate the enemy towards the direction.
-        if (enableRotation)
+        // Slowly rotate the enemy towards the direction if the rotation is enable and the
+        // direction is valid.
+        if (enableRotation && Vector3.Magnitude(direction) > 0.9f)
         {
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            if (Mathf.Abs(transform.eulerAngles.z - targetAngle) >= 7f)
+            if (Mathf.Abs(transform.eulerAngles.z - targetAngle) >= 3f)
             {
                 float newAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
                 transform.eulerAngles = new Vector3(0f, 0f, newAngle);
