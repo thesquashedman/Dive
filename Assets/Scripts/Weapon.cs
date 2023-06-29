@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
         attackSystem.Attack(tragetTag);
 
         // Logic for the basic weapon attack
-        Debug.Log(weaponName + " attacks with " + damage + " damage!");
+        // Debug.Log(weaponName + " attacks with " + damage + " damage!");
     }
 
     public virtual void StopAttack()
@@ -43,13 +43,13 @@ public class Weapon : MonoBehaviour
         attackSystem.StopAttack();
 
         // Logic for the basic weapon attack
-        Debug.Log(weaponName + " attacks with " + damage + " damage!");
+        // Debug.Log(weaponName + " attacks with " + damage + " damage!");
     }
 
     // A method that derived classes may also override, if needed
     public virtual void SpecialAttack()
     {
         // Logic for the basic weapon special attack
-        Debug.Log(weaponName + " performs a special attack!");
+        // Debug.Log(weaponName + " performs a special attack!");
     }
 }
