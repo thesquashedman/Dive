@@ -36,6 +36,9 @@ public class EnemyAIPath : MonoBehaviour
     // The path that is computed by the A* algorithm.
     private Path path = null;
 
+    // Whether the enemy has a path to follow.
+    public bool hasPath = false;
+
     // The direction with which the enemy moved.
     public Vector2 direction = Vector2.up;
 
@@ -90,6 +93,7 @@ public class EnemyAIPath : MonoBehaviour
         {
             path = p;
             currentWaypoint = 0;
+            hasPath = true;
         }
     }
 

@@ -216,7 +216,7 @@ public class FishEnemyBehavior : MonoBehaviour
     // This function makes the enemy wander around an ellipse area of the map.
     protected virtual void Wander()
     {
-        if (aiPath.reachedEndOfPath)
+        if (aiPath.reachedEndOfPath || !aiPath.hasPath)
         {
             aiPath.targetPosition = GetRandomPointWithinEllipse(habitat.transform.position, wanderingAreaHeight, wanderingAreaWidth);
             aiPath.SearchPath();

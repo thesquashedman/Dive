@@ -46,6 +46,7 @@ public class WandererBehavior : FishEnemyBehavior
             Idle();
             CheckAttackRange();
         }
+        Debug.Log(aiPath.reachedEndOfPath);
     }
 
     // This function checks whether the player is within this wanderer's attack range. If the player
@@ -66,7 +67,7 @@ public class WandererBehavior : FishEnemyBehavior
     // switch to idle mode for a while between each continuous movement.
     protected override void Wander()
     {
-        if (aiPath.reachedEndOfPath)
+        if (aiPath.reachedEndOfPath || !aiPath.hasPath)
         {
             if (idleTimer <= 0f)
             {
