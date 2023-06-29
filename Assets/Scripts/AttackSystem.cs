@@ -7,12 +7,7 @@ public class AttackSystem : MonoBehaviour
     public string EnemyClass { get; set; }
 
     public DamageSystem damageSystem;
-
-    public AttackSystem()
-    {
-        damageSystem = new DamageSystem();
-    }
-
+    
     public virtual void Attack(string tragetTag) {
         Debug.Log("BBBBBBBBBB");
     }

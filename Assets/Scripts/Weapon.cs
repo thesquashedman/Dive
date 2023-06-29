@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
         attackSystem.Attack(tragetTag);
 
         // Logic for the basic weapon attack
-        // Debug.Log(weaponName + " attacks with " + damage + " damage!");
+        Debug.Log(weaponName + " attacks with " + damage + " damage!");
     }
 
     public virtual void StopAttack()
