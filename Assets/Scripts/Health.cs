@@ -55,6 +55,7 @@ public class Health : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            //Change this to whatever our death event is, never destroy the main character
             Destroy(gameObject);
         }
     }

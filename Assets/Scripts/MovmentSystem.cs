@@ -9,6 +9,13 @@ public class MovementSystem : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public Transform arms;
+
+    public Transform head;
+
+    public Flip flip;
+    
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,25 +49,57 @@ public class MovementSystem : MonoBehaviour
         */
     }
     void FixedUpdate() {
-        // Add force in the direction of the mouse if "k" is pressed
+
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Smoothly rotate the player to the target angle
-        float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
-        transform.eulerAngles = new Vector3(0, 0, angle);
-
-        // Add force in the direction of the mouse if "k" is pressed
-        if (Input.GetKey("m"))
+        //When leftControl, only move arms and head
+        if(Input.GetKey(KeyCode.LeftControl))
         {
-            rb.AddForce(direction * speed);
-        }
+            if(flip.isFlipped)
+            {
+                Debug.Log("Flipped");
+                float angle = Mathf.MoveTowardsAngle(arms.localEulerAngles.z, transform.eulerAngles.z - targetAngle, rotationSpeed * Time.deltaTime);
+                arms.localEulerAngles = new Vector3(0, 0, angle);
 
-        // Add force in the opposite direction of the mouse if "j" is pressed
-        if (Input.GetKey("n"))
-        {
-            rb.AddForce(-direction * speed);
+                angle = Mathf.MoveTowardsAngle(head.localEulerAngles.z, (transform.eulerAngles.z + 80) - targetAngle, rotationSpeed * Time.deltaTime);
+                head.localEulerAngles = new Vector3(0, 0, angle);
+            }
+            else
+            {
+                float angle = Mathf.MoveTowardsAngle(arms.localEulerAngles.z, targetAngle - transform.eulerAngles.z, rotationSpeed * Time.deltaTime);
+                arms.localEulerAngles = new Vector3(0, 0, angle);
+
+                angle = Mathf.MoveTowardsAngle(head.localEulerAngles.z, (targetAngle + 80) - transform.eulerAngles.z, rotationSpeed * Time.deltaTime);
+                head.localEulerAngles = new Vector3(0, 0, angle);
+            }
+            
+    
         }
+        else
+        {
+            float angle = Mathf.MoveTowardsAngle(arms.localEulerAngles.z, 0, rotationSpeed * Time.deltaTime);
+            arms.localEulerAngles = new Vector3(0, 0, angle);
+            angle = Mathf.MoveTowardsAngle(head.localEulerAngles.z, 80, rotationSpeed * Time.deltaTime);
+            head.localEulerAngles = new Vector3(0, 0, angle);
+
+            // Smoothly rotate the player to the target angle
+            angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+            transform.eulerAngles = new Vector3(0, 0, angle);
+
+            // Add force in the direction of the mouse if "k" is pressed
+            if (Input.GetKey("m"))
+            {
+                rb.AddForce(direction * speed);
+            }
+
+            // Add force in the opposite direction of the mouse if "j" is pressed
+            if (Input.GetKey("n"))
+            {
+                rb.AddForce(-direction * speed);
+            }
+        }
+        
     }
 }

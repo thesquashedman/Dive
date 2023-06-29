@@ -8,19 +8,43 @@ public class Flip : MonoBehaviour
     // Start is called before the first frame update
     public float lowerAngle = 90;
     public float upperAngle = 270;
+
+    public bool isFlipped = false;
+    
     void Start()
     {
-        
+        if (transform.eulerAngles.z > lowerAngle && transform.eulerAngles.z < upperAngle)
+        {
+            isFlipped = true;
+        }
+        else
+        {
+            isFlipped = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        //Debug.Log(transform.eulerAngles);
+        
+        //Write me a script to flip the scale of the object when the players rotation is changed
         if (transform.eulerAngles.z > lowerAngle && transform.eulerAngles.z < upperAngle)
-            transform.localScale = new Vector3(1, -1, 1);
+        {
+            if (!isFlipped)
+            {
+                transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+                isFlipped = true;
+            }
+        }
         else
-            transform.localScale = new Vector3(1, 1, 1);
+        {
+            if (isFlipped)
+            {
+                transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+                isFlipped = false;
+            }
+        }
+        
     }
 }

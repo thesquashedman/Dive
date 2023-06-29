@@ -47,6 +47,7 @@ public class OxygenSystem : MonoBehaviour
 
         if (oxygenLevel <= 0) {
             timePassedDamage += Time.deltaTime;
+            //Oxygen relies on Health, can't have that
             if (timePassedDamage > lackOfOxygenDamageInterval) {
                 this.GetComponent<Health>().ChangeHealth(-lackOfOxygenDamage);
                 timePassedDamage = 0;
