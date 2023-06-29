@@ -29,7 +29,7 @@ public class CloseAttack : AttackSystem
 
     public void CloseAttackStart()
     {
-        Debug.Log("AAAAAAAAA");
+        // Debug.Log("AAAAAAAAA");
         atackElement.SetActive(true);
     }
 

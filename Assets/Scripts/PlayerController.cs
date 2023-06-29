@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void Attack() {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             curentWeapon.Attack();
         }
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.B))
         {
             curentWeapon.StopAttack();
         }

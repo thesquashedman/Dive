@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11145981673336645838492a2d98e247, type: 3}
-  m_Name: Renderer2D
+  m_Name: RendererOnlyDistortion
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: FullScreenPassRendererFeature
   m_EditorClassIdentifier: 
   m_Active: 0
-  passMaterial: {fileID: -876546973899608171, guid: 6564d7af4cc7e854789b8c1a377051cc, type: 3}
+  passMaterial: {fileID: 2100000, guid: 38099e35fcec51c4bab28a2867e2cd05, type: 2}
   injectionPoint: 600
   requirements: 4
   passIndex: 0
