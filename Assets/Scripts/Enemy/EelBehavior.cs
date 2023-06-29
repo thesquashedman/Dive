@@ -18,7 +18,7 @@ public class EelBehavior : FishEnemyBehavior
 
     // Variables for running away from the player.
     private float runAwayTimer = 0f;
-    private float runAwayTime = 3f;
+    private float runAwayTime = 2f;
     private Vector2 currentDirection = Vector2.up;
     private Vector2 runAwayDirection = Vector2.up;
 
@@ -29,6 +29,7 @@ public class EelBehavior : FishEnemyBehavior
     protected override void Start()
     {
         speed = 20f;
+        runAwaySpeed = 30f;
         base.Start();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
         SetHeadlightRange(30f, 12f);
@@ -179,7 +180,7 @@ public class EelBehavior : FishEnemyBehavior
             }
             
             // Move towards the current direction.
-            rigidbody.AddForce(currentDirection * speed);
+            rigidbody.AddForce(currentDirection * runAwaySpeed);
         }
         else
         {

@@ -28,7 +28,7 @@ public class EnemyAIPath : MonoBehaviour
     public float speed = 5f;
 
     // The speed with which the enemy rotates.
-    public float rotationSpeed = 200f;
+    public float rotationSpeed = 250f;
 
     // Whether the enemy should rotate towards the direction of movement.
     public bool enableRotation = true;

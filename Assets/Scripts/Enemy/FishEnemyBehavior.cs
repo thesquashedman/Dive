@@ -22,8 +22,8 @@ public class FishEnemyBehavior : MonoBehaviour
     // Variables for the path and movement.
     protected Rigidbody2D rigidbody;
     protected EnemyAIPath aiPath;
-    protected float speed = 5f;
-    protected float rotationSpeed = 250f;
+    public float speed = 5f;
+    public float rotationSpeed = 250f;
 
     // Variables for stuck detection and struggling.
     /*
@@ -35,12 +35,15 @@ public class FishEnemyBehavior : MonoBehaviour
     protected Vector3[] unitVectors = new Vector3[] {Vector3.up, Vector3.down, Vector3.left, Vector3.right};
     */
 
+    // Variables for running away.
+    public float runAwaySpeed = 10f;
+
     // Variables for wandering. These variables are used to compute the area that the
     // enemy can wander around and set the speed.
     public GameObject habitat; // This is the habitat of this enemy.
     public float wanderingAreaWidth = 10f;
     public float wanderingAreaHeight = 10f;
-    protected float wanderingSpeed = 5f;
+    public float wanderingSpeed = 5f;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -204,7 +207,7 @@ public class FishEnemyBehavior : MonoBehaviour
         }
 
         // Move in that direction.
-        rigidbody.AddForce(direction * speed);
+        rigidbody.AddForce(direction * runAwaySpeed);
     }
 
     // This function is written based on the documentation of the A* Pathfinding Project.

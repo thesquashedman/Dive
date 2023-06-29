@@ -7,21 +7,21 @@ public class WandererBehavior : FishEnemyBehavior
     // The radius within which this wanderer will attack the player.
     public float attackRange = 10f;
 
+    // Variables for attacking.
+    public bool hostile = true;
+
     // Variables for idling.
     private float idleTimer = 0f;
-    private float idleTime = 5;
+    private float idleTime = 0f;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        speed = 9f;
-        wanderingSpeed = 1.2f;
         idleTime = Random.Range(3f, 5f);
         base.Start();
         SwitchMode("wander");
     }
 
-    // Update is called once per frame
     protected override void FixedUpdate()
     {
         if (mode == "attack")
@@ -75,7 +75,7 @@ public class WandererBehavior : FishEnemyBehavior
             else
             {
                 idleTimer = 0f;
-                aiPath.direction = GetRandomPointWithinEllipse(habitat.transform.position, wanderingAreaHeight, wanderingAreaWidth);
+                aiPath.targetPosition = GetRandomPointWithinEllipse(habitat.transform.position, wanderingAreaHeight, wanderingAreaWidth);
                 aiPath.SearchPath();
             }
         }
