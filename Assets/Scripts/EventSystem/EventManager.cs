@@ -47,12 +47,67 @@ public class EventManager : MonoBehaviour
         onObjInteract?.Invoke(id);
     }
 
-    //Event for player's death
+    ///<summary>
+    ///Add functions to trigger when the player receives damage
+    ///</summary>
+    public event Action<int> onDealDamagePlayer;
+
+    ///<summary>
+    ///Invoke event to deal damage to player
+    ///</summary>
+    public void dealDamagePlayer(int damage) {
+        onDealDamagePlayer?.Invoke(damage);
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player dies
+    ///</summary>
     public event Action onPlayerDeath;
 
+    ///<summary>
+    ///Trigger to kill the player
+    ///</summary>
     public void playerDeath() {
         onPlayerDeath?.Invoke();
     }
 
+    ///<summary>
+    ///Add functions to trigger when the player sprite flips
+    ///</summary>
+    public event Action onPlayerFlip;
 
+    ///<summary>
+    ///Trigger when the player flips
+    ///</summary>
+    public void playerFlip() {
+        onPlayerFlip?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player sprite flips
+    ///</summary>
+    public event Action onPlayerSuffocate;
+
+    ///<summary>
+    ///Trigger to suffocate player
+    ///</summary>
+    public void playerSuffocate() {
+        onPlayerSuffocate?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player picks up a resource
+    ///</summary>
+    public event Action<string, int> onPlayerPickupResource;
+
+    ///<summary>
+    ///Trigger to pick up a resoruce
+    ///</summary>
+    public void playerPickupResource(string resourceName, int amount) {
+        onPlayerPickupResource?.Invoke(resourceName, amount);
+    }
+
+    
+
+    
 }
