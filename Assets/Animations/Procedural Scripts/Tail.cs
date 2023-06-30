@@ -31,10 +31,20 @@ public class Tail : MonoBehaviour
     // The speed and magnitude of the wiggle of the tail.
     public float wiggleSpeed;
     public float wiggleMagnitude;
-    public Transform wiggleTarget;
 
     // The head that this tail should follow.
     public Transform target;
+
+    // The target to make it wiggle.
+    public Transform wiggleTarget;
+
+    // The transforms of the rigidbodies of the tail.
+    public Transform[] ridigbodies;
+
+    // The numbers of rigidbodies of the tail.
+    public int rigidbodyCount;
+
+    private int mod;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +53,17 @@ public class Tail : MonoBehaviour
         lineRenderer.positionCount = length;
         jointPositions = new Vector3[length];
         jointsVelocities = new Vector3[length];
+        mod = length / rigidbodyCount;
+
+        /*
+        for (int i = 0; i < rigidbodyCount; i++)
+        {
+            GameObject newObject = new GameObject("Rigidbody" + i, typeof(Rigidbody2D), typeof(CircleCollider2D));
+            newObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
+            newObject.GetComponent<CircleCollider2D>().radius = 0.5f;
+            ridigbodies[i] = newObject.transform;
+        }
+        */
     }
 
     // Update is called once per frame
@@ -50,7 +71,7 @@ public class Tail : MonoBehaviour
     {
         // Wiggle the tail.
         wiggleTarget.localRotation = Quaternion.Euler(0f, 0f, Mathf.Sin(Time.time * wiggleSpeed) * wiggleMagnitude);
-        
+
         // The position of the first joint is set to be the position of the target (head).
         jointPositions[0] = target.position;
 
@@ -58,6 +79,12 @@ public class Tail : MonoBehaviour
         for (int i = 1; i < jointPositions.Length; i++)
         {
             jointPositions[i] = Vector3.SmoothDamp(jointPositions[i], jointPositions[i - 1] - target.up * jointDistance, ref jointsVelocities[i], smoothTime + i / smoothTimeDivisor);
+
+            if (i % mod == 0)
+            {
+                ridigbodies[i / mod].position = jointPositions[i];
+            }
+                
         }
 
         // Apply the positions of the joints of the tail.
