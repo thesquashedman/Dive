@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 779715139904432582}
   - component: {fileID: 3212543036813005678}
-  - component: {fileID: 8754276679393290107}
+  - component: {fileID: 1100407492898368956}
   m_Layer: 0
   m_Name: Tail1
   m_TagString: Untagged
@@ -266,7 +266,7 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &8754276679393290107
+--- !u!114 &1100407492898368956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,25 +278,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f750db2a5287a47b379b438723e3a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 8
+  length: 20
   lineRenderer: {fileID: 3212543036813005678}
-  smoothTime: 0.1
-  smoothTimeDivisor: 900
-  jointDistance: 1
+  smoothTime: 0.05
+  smoothTimeDivisor: 800
+  jointDistance: 0.2
   wiggleSpeed: 10
   wiggleMagnitude: 20
   target: {fileID: 5288004266430101926}
   wiggleTarget: {fileID: 7300000600195992862}
-  rigidbodies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  rigidbodyCount: 8
+  rigidbodies: []
+  rigidbodyPrefab: {fileID: 0}
 --- !u!1 &4658487655914998874
 GameObject:
   m_ObjectHideFlags: 0

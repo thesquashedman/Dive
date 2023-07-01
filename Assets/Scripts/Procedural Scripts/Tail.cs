@@ -21,69 +21,77 @@ public class Tail : MonoBehaviour
     // How fast the joints move towards the position of the previous joint.
     public float smoothTime;
 
-    // The variable that is used in the function that slows the movement of the
-    // joints that are further away from the head.
-    public float smoothTimeDivisor;
-
     // The distance from one joint to the next joint.
     public float jointDistance;
 
-    // The speed and magnitude of the wiggle of the tail.
+    // The speed and magnitude of the wiggling of the tail.
     public float wiggleSpeed;
     public float wiggleMagnitude;
+
+    // Whether there is wiggling or not.
+    public bool enableWiggle;
 
     // The head that this tail should follow.
     public Transform target;
 
-    // The target to make it wiggle.
+    // The target on which the wiggling is based.
     public Transform wiggleTarget;
 
-    // The transforms of the rigidbodies of the tail.
+    // The transforms of the rigidbodies of the tail. One rigidbody corresponds to one joint.
     public Transform[] rigidbodies;
 
-    // The numbers of rigidbodies of the tail.
-    public int rigidbodyCount;
-
-    private int mod;
+    // The prefab of the rigidbody of the tail.
+    public GameObject rigidbodyPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        // The number of joints of the tail is set to be the length of the tail.
+        // The number of joints of the tail and the number of corresponding rigidbodies
+        // are set to be the length of the tail.
         lineRenderer.positionCount = length;
         jointPositions = new Vector3[length];
         jointsVelocities = new Vector3[length];
+        rigidbodies = new Transform[length];
 
-        /*
-        for (int i = 0; i < rigidbodyCount; i++)
+        
+        // Instantiate the rigidbodies of the tail. The first rigidbody will be the rigidbody
+        // of the head, so there is no need to instantiate it.
+        rigidbodies[0] = transform;
+        for (int i = 1; i < length; i++)
         {
-            GameObject newObject = new GameObject("Rigidbody" + i, typeof(Rigidbody2D), typeof(CircleCollider2D));
-            newObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
-            newObject.GetComponent<CircleCollider2D>().radius = 0.5f;
-            rigidbodies[i] = newObject.transform;
+            rigidbodies[i] = Instantiate(rigidbodyPrefab).transform;
         }
-        */
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        // Wiggle the tail.
-        wiggleTarget.localRotation = Quaternion.Euler(0f, 0f, Mathf.Sin(Time.time * wiggleSpeed) * wiggleMagnitude);
-
         // The position of the first joint is set to be the position of the target (head).
         jointPositions[0] = target.position;
-        rigidbodies[0].position = jointPositions[0];
 
         // Smoothly move each of the joints towards the position of the previous joint.
         for (int i = 1; i < jointPositions.Length; i++)
         {
-            Vector3 targetPosition = jointPositions[i - 1] - transform.up * jointDistance;
-            jointPositions[i] = Vector3.SmoothDamp(rigidbodies[i].position, targetPosition, ref jointsVelocities[i], smoothTime + i / smoothTimeDivisor);
+            Vector3 targetPosition;
+            // if (enableWiggle)
+            {
+                targetPosition = jointPositions[i - 1] - target.up * jointDistance;
+            }
+            // else
+            // {
+            //     targetPosition = jointPositions[i - 1] + (jointPositions[i] - jointPositions[i - 1]).normalized * jointDistance;
+            // }
+            jointPositions[i] = Vector3.SmoothDamp(rigidbodies[i].position, targetPosition, ref jointsVelocities[i], smoothTime);
             rigidbodies[i].position = jointPositions[i];
         }
 
         // Apply the positions of the joints of the tail.
         lineRenderer.SetPositions(jointPositions);
+
+        if (enableWiggle)
+        {
+            // Wiggle the tail.
+            wiggleTarget.localRotation = Quaternion.Euler(0f, 0f, Mathf.Sin(Time.time * wiggleSpeed) * wiggleMagnitude);
+        }
     }
 }
