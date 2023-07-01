@@ -32,12 +32,12 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void SetHealth(float newCurrent)
+    public virtual void SetHealth(float newCurrent)
     {
         currentHealth = newCurrent;
     }
 
-    public void ChangeHealth(float amount)
+    public virtual void ChangeHealth(float amount)
     {
         currentHealth += amount;
 
@@ -51,7 +51,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         if (currentHealth <= 0)
         {
