@@ -37,6 +37,11 @@ public class PavelMovement : MonoBehaviour
         if(shouldMove)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float distance = Vector2.Distance(mousePosition, transform.position);
+            if(distance < 0.5f)
+            {
+                return;
+            }
             Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
             rb.AddForce(direction * speed);
 
@@ -46,7 +51,7 @@ public class PavelMovement : MonoBehaviour
         }
         else
         {
-            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, 0, rotationSpeed * Time.deltaTime * 2);
+            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, 0, rotationSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 0, angle);
 
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PavelFlip : MonoBehaviour
+public class PavelPlayerFlip : MonoBehaviour
 {
     //Flip the scale of the object when the players rotation is changed
     // Start is called before the first frame update
@@ -14,6 +14,10 @@ public class PavelFlip : MonoBehaviour
     {
         EventManager.current.onPlayerStartMove += OnPlayerStartMove;
         EventManager.current.onPlayerStopMove += OnPlayerStopMove;
+    }
+    private void OnDisable() {
+        EventManager.current.onPlayerStartMove -= OnPlayerStartMove;
+        EventManager.current.onPlayerStopMove -= OnPlayerStopMove;
     }
 
     // Update is called once per frame

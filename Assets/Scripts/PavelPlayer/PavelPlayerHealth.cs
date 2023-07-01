@@ -9,6 +9,9 @@ public class PavelPlayerHealth : Health
     {
         EventManager.current.onDealDamagePlayer += DealDamage;
     }
+    private void OnDisable() {
+        EventManager.current.onDealDamagePlayer -= DealDamage;
+    }
 
     // Update is called once per frame
     void DealDamage(float damage)
