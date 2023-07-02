@@ -7,18 +7,20 @@ using UnityEngine;
 
 public class Tail : MonoBehaviour
 {
-    // The length of the tail.
+    // The number of joints of the tail.
     public int length;
 
     public LineRenderer lineRenderer;
 
-    // The positions of the joints of the tail.
+    // The theoratical positions of the joints of the tail. These are used for
+    // procedural animation computation.
     private Vector3[] jointPositions;
 
-    // The velocities for the joints of the tail.
+    // The velocities for the joints of the tail. These are used for procedural
+    // animation computation.
     private Vector3[] jointsVelocities;
 
-    // How fast the joints move towards the position of the previous joint.
+    // How fast the joints should move towards the position of the previous joint.
     public float smoothTime;
 
     // The distance from one joint to the next joint.
@@ -37,55 +39,61 @@ public class Tail : MonoBehaviour
     // The target on which the wiggling is based.
     public Transform wiggleTarget;
 
-    // The transforms of the rigidbodies of the tail. One rigidbody corresponds to one joint.
-    public Transform[] rigidbodies;
+    // The game objects that have the rigidbodies of the tail. One rigidbody
+    // corresponds to one joint, and the positions of these game objects are
+    // the actual positions of the joints.
+    public GameObject[] rigidbodies;
 
-    // The prefab of the rigidbody of the tail.
+    // The prefab of the game boject that has the rigidbody of the tail.
     public GameObject rigidbodyPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         // The number of joints of the tail and the number of corresponding rigidbodies
-        // are set to be the length of the tail.
+        // are the length.
         lineRenderer.positionCount = length;
         jointPositions = new Vector3[length];
         jointsVelocities = new Vector3[length];
-        rigidbodies = new Transform[length];
+        rigidbodies = new GameObject[length];
 
-        
-        // Instantiate the rigidbodies of the tail. The first rigidbody will be the rigidbody
+        // Instantiate the rigidbodies for the tail. The first rigidbody will be the rigidbody
         // of the head, so there is no need to instantiate it.
-        rigidbodies[0] = transform;
+        rigidbodies[0] = gameObject;
         for (int i = 1; i < length; i++)
         {
-            rigidbodies[i] = Instantiate(rigidbodyPrefab).transform;
+            rigidbodies[i] = Instantiate(rigidbodyPrefab);
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        // The position of the first joint is set to be the position of the target (head).
+        // The position of the first joint is to be the position of the target (head).
         jointPositions[0] = target.position;
 
-        // Smoothly move each of the joints towards the position of the previous joint.
+        // Compute the smooth movemenet from each of the joints to the previous joint.
         for (int i = 1; i < jointPositions.Length; i++)
         {
-            Vector3 targetPosition;
-            // if (enableWiggle)
+            // Compute the theoratical position of the joint based on the actual position.
+            Vector3 targetPosition = rigidbodies[i - 1].transform.position - target.up * jointDistance;
+            jointPositions[i] = Vector3.SmoothDamp(rigidbodies[i].transform.position, targetPosition, ref jointsVelocities[i], smoothTime);
+
+            // Compute the vector from the actual position of the joint to the theoratical position of the joint.
+            Vector3 toTheoraticalPosition = (jointPositions[i] - rigidbodies[i].transform.position);
+
+            // Move the actual position of the joint to the theoratical position.
+            if (toTheoraticalPosition.magnitude > jointDistance)
             {
-                targetPosition = jointPositions[i - 1] - target.up * jointDistance;
+                rigidbodies[i].transform.position = jointPositions[i];
+                rigidbodies[i].GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             }
-            // else
-            // {
-            //     targetPosition = jointPositions[i - 1] + (jointPositions[i] - jointPositions[i - 1]).normalized * jointDistance;
-            // }
-            jointPositions[i] = Vector3.SmoothDamp(rigidbodies[i].position, targetPosition, ref jointsVelocities[i], smoothTime);
-            rigidbodies[i].position = jointPositions[i];
+            else
+            {
+                rigidbodies[i].GetComponent<Rigidbody2D>().velocity = (toTheoraticalPosition * (1f / Time.deltaTime));
+            }
         }
 
-        // Apply the positions of the joints of the tail.
+        // Apply the theoratical positions of the joints to the tail.
         lineRenderer.SetPositions(jointPositions);
 
         if (enableWiggle)

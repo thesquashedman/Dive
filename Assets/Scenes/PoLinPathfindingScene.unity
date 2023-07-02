@@ -1004,12 +1004,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1100407492898368956, guid: b966f2fb87f64ca4eb90ead295c71b7f, type: 3}
+      propertyPath: length
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100407492898368956, guid: b966f2fb87f64ca4eb90ead295c71b7f, type: 3}
       propertyPath: smoothTime
-      value: 0.08
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 1100407492898368956, guid: b966f2fb87f64ca4eb90ead295c71b7f, type: 3}
       propertyPath: wiggleSpeed
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1100407492898368956, guid: b966f2fb87f64ca4eb90ead295c71b7f, type: 3}
       propertyPath: enableWiggle
@@ -1017,7 +1021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1100407492898368956, guid: b966f2fb87f64ca4eb90ead295c71b7f, type: 3}
       propertyPath: jointDistance
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1100407492898368956, guid: b966f2fb87f64ca4eb90ead295c71b7f, type: 3}
       propertyPath: rigidbodyPrefab
@@ -1025,7 +1029,7 @@ PrefabInstance:
       objectReference: {fileID: 1346198974800547916}
     - target: {fileID: 1100407492898368956, guid: b966f2fb87f64ca4eb90ead295c71b7f, type: 3}
       propertyPath: wiggleMagnitude
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1100407492898368956, guid: b966f2fb87f64ca4eb90ead295c71b7f, type: 3}
       propertyPath: smoothTimeDivisor
@@ -1146,12 +1150,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1852204487141301459, guid: ce83350d3bb0a4a4a87f2303afc72021, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852204487141301459, guid: ce83350d3bb0a4a4a87f2303afc72021, type: 3}
       propertyPath: m_LinearDrag
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1852204487141301459, guid: ce83350d3bb0a4a4a87f2303afc72021, type: 3}
       propertyPath: m_AngularDrag
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4046563507141123327, guid: ce83350d3bb0a4a4a87f2303afc72021, type: 3}
       propertyPath: m_Name
@@ -1159,7 +1167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063789325261647011, guid: ce83350d3bb0a4a4a87f2303afc72021, type: 3}
       propertyPath: m_Radius
-      value: 0.15
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
