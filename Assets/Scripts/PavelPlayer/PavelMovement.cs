@@ -9,6 +9,8 @@ public class PavelMovement : MonoBehaviour
     public float speed = 5f;
     public float rotationSpeed = 200f; // Rotation speed in degrees per second
 
+    public bool selfRight = false;
+
     Rigidbody2D rb;
     
     void Start() {
@@ -36,24 +38,22 @@ public class PavelMovement : MonoBehaviour
         
         if(shouldMove)
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float distance = Vector2.Distance(mousePosition, transform.position);
-            if(distance < 0.5f)
-            {
-                return;
-            }
-            Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
-            rb.AddForce(direction * speed);
+            Vector2 direction = PavelPlayerController.current.direction;
+            
 
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 0, angle);
+            rb.AddForce(transform.up * speed);
         }
         else
         {
-            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, 0, rotationSpeed * Time.deltaTime);
-            transform.eulerAngles = new Vector3(0, 0, angle);
-
+            if(selfRight)
+            {
+                float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, 0, rotationSpeed * Time.deltaTime);
+                transform.eulerAngles = new Vector3(0, 0, angle);
+            }
+            
         }
     }
 

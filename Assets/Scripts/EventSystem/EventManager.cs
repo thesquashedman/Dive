@@ -133,6 +133,18 @@ public class EventManager : MonoBehaviour
     }
 
     ///<summary>
+    ///Add functions to trigger when the player stops attacking
+    ///</summary>
+    public event Action onPlayerStopAttack;
+
+    ///<summary>
+    ///Stop Player's Attack
+    ///</summary>
+    public void PlayerStopAttack() {
+        onPlayerStopAttack?.Invoke();
+    }
+
+    ///<summary>
     ///Add functions to trigger when the player moves
     ///</summary>
     public event Action onPlayerStartMove;
@@ -156,6 +168,34 @@ public class EventManager : MonoBehaviour
         onPlayerStopMove?.Invoke();
     }
 
+    ///<summary>
+    ///Add functions to trigger when the player moves
+    ///</summary>
+    public event Action onPlayerStartAiming;
+
+    ///<summary>
+    ///Trigger player's movement
+    ///</summary>
+    public void PlayerStartAiming() {
+        onPlayerStartAiming?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player stops moving
+    ///</summary>
+    public event Action onPlayerStopAiming;
+
+    ///<summary>
+    ///Trigger player to stop moving
+    ///</summary>
+    public void PlayerStopAiming() {
+        onPlayerStopAiming?.Invoke();
+    }
+
+
+
+    
+    
     
 
     

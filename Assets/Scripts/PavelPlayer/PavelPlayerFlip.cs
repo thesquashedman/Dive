@@ -9,15 +9,21 @@ public class PavelPlayerFlip : MonoBehaviour
     public float lowerAngle = 90;
     public float upperAngle = 270;
 
-    public bool moving = false;
+    bool moving = false;
+    bool aiming = false;
+    public bool isFlipped = false;
     void Start()
     {
         EventManager.current.onPlayerStartMove += OnPlayerStartMove;
         EventManager.current.onPlayerStopMove += OnPlayerStopMove;
+        EventManager.current.onPlayerStartAiming += OnPlayerStartAiming;
+        EventManager.current.onPlayerStopAiming += OnPlayerStopAiming;
     }
     private void OnDisable() {
         EventManager.current.onPlayerStartMove -= OnPlayerStartMove;
         EventManager.current.onPlayerStopMove -= OnPlayerStopMove;
+        EventManager.current.onPlayerStartAiming -= OnPlayerStartAiming;
+        EventManager.current.onPlayerStopAiming -= OnPlayerStopAiming;
     }
 
     // Update is called once per frame
@@ -25,7 +31,7 @@ public class PavelPlayerFlip : MonoBehaviour
     {
         
         //Debug.Log(transform.eulerAngles);
-        if(moving)
+        if(moving & !aiming)
         {
             if (transform.eulerAngles.z > lowerAngle && transform.eulerAngles.z < upperAngle)
             {
@@ -38,8 +44,32 @@ public class PavelPlayerFlip : MonoBehaviour
         }
         else
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
+            
+            Vector2 direction = PavelPlayerController.current.aimDirection;
+            //turn vector 2 into angle
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            while(angle < 0)
+            {
+                angle += 360;
+            }
+            
+            float angle2 = transform.eulerAngles.z;
+            //Debug.Log("angle " + angle);
+            //Debug.Log("angle2 " + angle2);
+            Debug.Log("angle2 - angle " + (angle2 - angle));
+            
+            
+            if((angle2 - angle < 0  && angle2 - angle > -180) || (angle2 - angle > 180 && angle2 - angle < 360))
+            {
+                FlipScale(true);
+            }
+            else
+            {
+                FlipScale(false);
+            }
+           
+            
+            /*
             if(direction.x < 0)
             {
                 FlipScale(true);
@@ -48,6 +78,7 @@ public class PavelPlayerFlip : MonoBehaviour
             {
                 FlipScale(false);
             }
+            */
         }
         
     }
@@ -59,17 +90,27 @@ public class PavelPlayerFlip : MonoBehaviour
     {
         moving = false;
     }
+    void OnPlayerStartAiming()
+    {
+        aiming = true;
+    }
+    void OnPlayerStopAiming()
+    {
+        aiming = false;
+    }
     void FlipScale(bool flip)
     {
         if(flip)
         {
             transform.localScale = new Vector3(1, -1, 1);
             EventManager.current.playerFlip(true);
+            isFlipped = true;
         }
         else
         {
             transform.localScale = new Vector3(1, 1, 1);
             EventManager.current.playerFlip(false);
+            isFlipped = false;
         }
     }
 }
