@@ -5,21 +5,26 @@ using UnityEngine;
 public class PavelWeaponManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool attacking = false;
+    PavelWeapon[] weapons;
     void Start()
     {
-        EventManager.current.onPlayerAttack += Attack;
-        EventManager.current.onPlayerStopAttack += StopAttack;
+        weapons = GetComponentsInChildren<PavelWeapon>(includeInactive: true);
+    }
+    void SwitchWeapon(string weaponName)
+    {
+        foreach(PavelWeapon weapon in weapons)
+        {
+            if(weapon.weaponName == weaponName)
+            {
+                weapon.gameObject.SetActive(true);
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
+        }
     }
 
-    void Attack()
-    {
-        attacking = true;
-    }
-    void StopAttack()
-    {
-        attacking = false;
-    }
     // Update is called once per frame
     void Update()
     {
