@@ -62,6 +62,7 @@ public class EelBehavior : FishEnemyBehavior
             Idle();
             CheckAttackRange();
         }
+        Debug.Log(mode);
     }
 
     // This function acts as the common interface for switching the action mode
@@ -153,7 +154,7 @@ public class EelBehavior : FishEnemyBehavior
             if (hit.collider == null)
             {
                 currentDirection = aiPath.direction;
-                if (Vector3.Magnitude(currentDirection) <= 0.9f)
+                if (Vector3.Magnitude(currentDirection) <= 0.95f)
                 {
                     currentDirection = -(headlightToEel.normalized);
                 }
