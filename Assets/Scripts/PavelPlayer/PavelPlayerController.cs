@@ -1,0 +1,151 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PavelPlayerController : MonoBehaviour
+{
+    // Start is called before the first frame update
+
+    /*
+
+    [SerializeField]
+    bool mouseMovement = true;
+
+    [SerializeField]
+    bool WASDMovement = false;
+    [SerializeField]
+    bool mobileMovement = false;
+    
+
+    public Vector2 direction = Vector2.zero;
+    public Vector2 aimDirection = Vector2.zero;
+    
+    public bool isMoving = false;
+    public bool isAiming = false;
+    
+    public static PavelPlayerController current;
+
+    private void Awake() {
+        //Singleton pattern
+        if(current != null && current != this) {
+            Destroy(this);
+        } else {
+            current = this;
+            //Debug.Log("EventManager Active.");
+        }
+    }
+    */
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(PavelPlayerSettingStates.current.mobileMovement)
+        {
+            MobileMovementInput();
+        }
+        else
+        {
+            if (PavelPlayerSettingStates.current.WASDMovement)
+            {
+                WASDMovementInput();
+            }
+            else if (PavelPlayerSettingStates.current.mouseMovement)
+            {
+                MouseMovementInput();
+            }
+            if(Input.GetKeyDown(KeyCode.X))
+            {
+                PavelPlayerSettingStates.current.isAttacking = true;
+                EventManager.current.PlayerAttack();
+            }
+            if(Input.GetKeyUp(KeyCode.X))
+            {
+                PavelPlayerSettingStates.current.isAttacking = false;
+                EventManager.current.PlayerStopAttack();
+            }
+        }
+        
+        
+        
+    }
+    void MobileMovementInput()
+    {
+
+    }
+    void WASDMovementInput()
+    {
+        if(!PavelPlayerSettingStates.current.isAiming)
+        {
+            PavelPlayerSettingStates.current.isAiming = true;
+            EventManager.current.PlayerStartAiming();
+        }
+        PavelPlayerSettingStates.current.moveDirection = Vector2.zero;
+        if(Input.GetKey(KeyCode.W))
+        {
+            PavelPlayerSettingStates.current.moveDirection += Vector2.up;
+        }
+        if(Input.GetKey(KeyCode.S))
+        {
+            PavelPlayerSettingStates.current.moveDirection += Vector2.down;
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            PavelPlayerSettingStates.current.moveDirection += Vector2.left;
+        }
+        if(Input.GetKey(KeyCode.D))
+        {
+            PavelPlayerSettingStates.current.moveDirection += Vector2.right;
+        }
+        PavelPlayerSettingStates.current.moveDirection.Normalize();
+        //direction.Normalize();
+
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        PavelPlayerSettingStates.current.aimDirection = (mousePosition - (Vector2)transform.position).normalized;
+        
+
+        if(PavelPlayerSettingStates.current.moveDirection != Vector2.zero && !PavelPlayerSettingStates.current.isMoving)
+        {
+            PavelPlayerSettingStates.current.isMoving = true;
+            EventManager.current.PlayerStartMove();
+        }
+        else if(PavelPlayerSettingStates.current.moveDirection == Vector2.zero && PavelPlayerSettingStates.current.isMoving)
+        {
+            PavelPlayerSettingStates.current.isMoving = false;
+            EventManager.current.PlayerStopMove();
+        }
+
+    }
+    void MouseMovementInput()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        PavelPlayerSettingStates.current.aimDirection = (mousePosition - (Vector2)transform.position).normalized;
+        PavelPlayerSettingStates.current.moveDirection = (mousePosition - (Vector2)transform.position).normalized;
+        
+
+        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            
+            PavelPlayerSettingStates.current.isMoving = true;
+            EventManager.current.PlayerStartMove();
+        }
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            PavelPlayerSettingStates.current.isMoving = false;
+            EventManager.current.PlayerStopMove();
+        }
+        if(!PavelPlayerSettingStates.current.isMoving && !PavelPlayerSettingStates.current.isAiming)
+        {
+            PavelPlayerSettingStates.current.isAiming = true;
+            EventManager.current.PlayerStartAiming();
+        }
+        else if(PavelPlayerSettingStates.current.isMoving && PavelPlayerSettingStates.current.isAiming)
+        {
+            PavelPlayerSettingStates.current.isAiming = false;
+            EventManager.current.PlayerStopAiming();
+        }
+        
+        
+    }
+    
+}
