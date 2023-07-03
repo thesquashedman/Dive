@@ -14,13 +14,8 @@ CustomRenderTexture:
   m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
   serializedVersion: 5
-<<<<<<< HEAD
-  m_Width: 1920
-  m_Height: 1080
-=======
-  m_Width: 640
-  m_Height: 360
->>>>>>> parent of 1708edc (mobile movement)
+  m_Width: 1864
+  m_Height: 1117
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthStencilFormat: 0
