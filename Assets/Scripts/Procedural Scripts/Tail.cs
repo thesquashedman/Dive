@@ -79,7 +79,7 @@ public class Tail : MonoBehaviour
             jointPositions[i] = Vector3.SmoothDamp(rigidbodies[i].transform.position, targetPosition, ref jointsVelocities[i], smoothTime);
 
             // Compute the vector from the actual position of the joint to the theoratical position of the joint.
-            Vector3 toTheoraticalPosition = (jointPositions[i] - rigidbodies[i].transform.position);
+            Vector3 toTheoraticalPosition = ((Vector2)jointPositions[i] - (Vector2)rigidbodies[i].transform.position);
 
             // Move the actual position of the joint to the theoratical position.
             if (toTheoraticalPosition.magnitude > jointDistance)

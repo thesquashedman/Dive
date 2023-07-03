@@ -30,6 +30,7 @@ public class EelBehavior : FishEnemyBehavior
     {
         speed = 20f;
         runAwaySpeed = 30f;
+        rotationSpeed = 200f;
         base.Start();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
         SetHeadlightRange(30f, 12f);
@@ -62,7 +63,6 @@ public class EelBehavior : FishEnemyBehavior
             Idle();
             CheckAttackRange();
         }
-        Debug.Log(mode);
     }
 
     // This function acts as the common interface for switching the action mode
@@ -128,7 +128,7 @@ public class EelBehavior : FishEnemyBehavior
 
     // This function checks whether the eel is shined on by the player's headlight.
     // If this eel is shined on, it will run away from the player.
-    void CheckShined()
+    private void CheckShined()
     {
         // Compute the vector from the player's headlight.
         float angle = playerHeadlight.transform.rotation.eulerAngles.z;
@@ -154,7 +154,7 @@ public class EelBehavior : FishEnemyBehavior
             if (hit.collider == null)
             {
                 currentDirection = aiPath.direction;
-                if (Vector3.Magnitude(currentDirection) <= 0.95f)
+                if (Vector3.Magnitude(currentDirection) <= 0.9f)
                 {
                     currentDirection = -(headlightToEel.normalized);
                 }
@@ -173,11 +173,21 @@ public class EelBehavior : FishEnemyBehavior
         if (runAwayTimer < runAwayTime)
         {
             // Rotate the current direction gradually.
-            if (currentDirection != runAwayDirection)
+            if (!Vector3.Equals(currentDirection, runAwayDirection))
             {
                 float deltaAngle = Mathf.PI * 3f;
                 currentDirection = Vector3.RotateTowards(currentDirection, runAwayDirection, deltaAngle * Time.deltaTime, 0f);
                 transform.rotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
+            }
+            // Rotate the eel back if necessary.
+            else
+            {
+                float targetAngle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg - 90f;
+                if (Mathf.Abs(transform.eulerAngles.z - targetAngle) >= 8f)
+                {
+                    float newAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+                    transform.eulerAngles = new Vector3(0f, 0f, newAngle);
+                }
             }
             
             // Move towards the current direction.
@@ -207,6 +217,16 @@ public class EelBehavior : FishEnemyBehavior
         
         // Compute the vector from the player's headlight to this eel.
         Vector2 headlightToEel = ((Vector2)transform.position - (Vector2)playerHeadlight.transform.position);
+
+        // Stay outside of the headlight range.
+        if (Vector3.Magnitude(headlightToEel) > headlightDistance + 2f)
+        {
+            aiPath.speed = 1f;
+        }
+        else
+        {
+            aiPath.speed = 0f;
+        }
 
         // Switch to attack mode if the player looks away.
         if (Vector2.Angle(headlightDirection, headlightToEel) > headlightAngle)

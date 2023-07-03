@@ -51,6 +51,7 @@ public class FishEnemyBehavior : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         aiPath = GetComponent<EnemyAIPath>();
         aiPath.speed = speed;
+        aiPath.rotationSpeed = rotationSpeed;
     }
 
     protected virtual void FixedUpdate()
