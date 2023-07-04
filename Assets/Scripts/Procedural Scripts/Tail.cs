@@ -26,6 +26,9 @@ public class Tail : MonoBehaviour
     // The distance from one joint to the next joint.
     public float jointDistance;
 
+    // The distance from the head to the first joint.
+    public float headDistance;
+
     // The speed and magnitude of the wiggling of the tail.
     public float wiggleSpeed;
     public float wiggleMagnitude;
@@ -59,17 +62,20 @@ public class Tail : MonoBehaviour
 
         // Instantiate the rigidbodies for the tail. The first rigidbody will be the rigidbody
         // of the head, so there is no need to instantiate it.
-        rigidbodies[0] = gameObject;
+        rigidbodies[0] = new GameObject();
+        rigidbodies[0].transform.position = transform.position;
         for (int i = 1; i < length; i++)
         {
             rigidbodies[i] = Instantiate(rigidbodyPrefab);
+            rigidbodies[i].transform.position = transform.position;
         }
     }
 
     void FixedUpdate()
     {
-        // The position of the first joint is to be the position of the target (head).
-        jointPositions[0] = target.position;
+        // The position of the first joint is to be next to the position of the target (head).
+        jointPositions[0] = target.position - target.up * headDistance;
+        rigidbodies[0].transform.position = jointPositions[0];
 
         // Compute the smooth movemenet from each of the joints to the previous joint.
         for (int i = 1; i < jointPositions.Length; i++)

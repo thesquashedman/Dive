@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88043137125759569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436889015542347032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.41, z: 0}
+  m_LocalPosition: {x: -1.43, y: -0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -188,7 +188,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a171916dea05aa84eb50317632a32d46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 5808233898654969934}
   - component: {fileID: 6259987512156877782}
   - component: {fileID: 52334153212088642}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Eel With PA
   m_TagString: Enemie
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ Transform:
   - {fileID: 3335815481520940302}
   - {fileID: 7437888550566996421}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5183990091117518168
 MonoBehaviour:
@@ -312,13 +312,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.027545273, y: 0.297594}
-      - {x: -0.5654221, y: 1.7138289}
-      - {x: -0.56377923, y: 0.19709069}
-      - {x: -0.5740125, y: -1.7042403}
-      - {x: 0.5740127, y: -1.7042403}
-      - {x: 0.5191226, y: 0.20177078}
-      - {x: 0.5516491, y: 1.6587383}
+    - - {x: -0.050138414, y: 1.7347414}
+      - {x: -0.4200105, y: 2.9269936}
+      - {x: -0.6874334, y: 1.8749937}
+      - {x: -0.56377923, y: 0.19709074}
+      - {x: -0.5351707, y: -0.053462863}
+      - {x: 0.51574993, y: -0.034042}
+      - {x: 0.49970174, y: 0.026982546}
+      - {x: 0.6573405, y: 1.9369338}
+      - {x: 0.39135098, y: 2.9613183}
   m_UseDelaunayMesh: 0
 --- !u!50 &6988128152729988671
 Rigidbody2D:
@@ -583,7 +585,7 @@ LineRenderer:
   - {x: 7, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 5
+    widthMultiplier: 3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -656,9 +658,10 @@ MonoBehaviour:
   lineRenderer: {fileID: 4082093883096609536}
   smoothTime: 0.015
   jointDistance: 0.1
+  headDistance: 0
   wiggleSpeed: 5
   wiggleMagnitude: 20
-  enableWiggle: 0
+  enableWiggle: 1
   target: {fileID: 2302898530800450675}
   wiggleTarget: {fileID: 5167493096791529409}
   rigidbodies: []
@@ -672,13 +675,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5660296930640297839}
+  - component: {fileID: 1752891301395769035}
   m_Layer: 0
   m_Name: Eel Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5660296930640297839
 Transform:
   m_ObjectHideFlags: 0
@@ -695,6 +699,20 @@ Transform:
   m_Father: {fileID: 5167493096791529409}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1752891301395769035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929739559074338105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5433723525e0c4a9c50a8eb20543ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowerAngle: 90
+  upperAngle: 270
 --- !u!1 &2855355037183696432
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +724,7 @@ GameObject:
   - component: {fileID: 5144269993919347845}
   - component: {fileID: 5522595384293990074}
   - component: {fileID: 8603979008636930022}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SawAtackElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +739,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2855355037183696432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.78, y: -1.85, z: 0}
+  m_LocalPosition: {x: -5.58, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -808,6 +826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5167493096791529409}
+  - component: {fileID: 3478201476790507108}
   m_Layer: 0
   m_Name: WiggleTarget
   m_TagString: Untagged
@@ -832,6 +851,21 @@ Transform:
   m_Father: {fileID: 3335815481520940302}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3478201476790507108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409353308320171662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0083a582874e3c24e8cf6aa35f401d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowerAngle: 0
+  upperAngle: 180
+  material: {fileID: 2100000, guid: 2a59a90a6adde154881abf451a066ea1, type: 2}
 --- !u!1 &7624705571403423305
 GameObject:
   m_ObjectHideFlags: 0
