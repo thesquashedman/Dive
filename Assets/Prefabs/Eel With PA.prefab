@@ -200,7 +200,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   speed: 20
-  rotationSpeed: 250
+  rotationSpeed: 200
   runAwaySpeed: 30
   habitat: {fileID: 0}
   wanderingAreaWidth: 10
@@ -569,10 +569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4b88e8e495ae44e9f324c3090a3c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 25
+  length: 50
   lineRenderer: {fileID: 4082093883096609536}
-  smoothTime: 0.02
-  jointDistance: 0.2
+  smoothTime: 0.015
+  jointDistance: 0.1
   wiggleSpeed: 15
   wiggleMagnitude: 25
   enableWiggle: 1

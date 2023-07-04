@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1389921038243815152}
   - component: {fileID: 1852204487141301459}
   - component: {fileID: 4063789325261647011}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TailRigid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -95,7 +95,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
 --- !u!1 &4702795942193913596
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6753639934719151689}
   - component: {fileID: 4760647289172428389}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

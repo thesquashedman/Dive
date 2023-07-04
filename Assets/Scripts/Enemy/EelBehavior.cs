@@ -219,7 +219,7 @@ public class EelBehavior : FishEnemyBehavior
         Vector2 headlightToEel = ((Vector2)transform.position - (Vector2)playerHeadlight.transform.position);
 
         // Stay outside of the headlight range.
-        if (Vector3.Magnitude(headlightToEel) > headlightDistance + 2f)
+        if (Vector3.Magnitude(headlightToEel) > headlightDistance + 1f)
         {
             aiPath.speed = 1f;
         }
