@@ -12,8 +12,8 @@ TagManager:
   - Shadow
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - CollideWithPlayerOnly
   - 
   - 
   - Obstacles
