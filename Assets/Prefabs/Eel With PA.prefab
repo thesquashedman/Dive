@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 5808233898654969934}
   - component: {fileID: 6259987512156877782}
   - component: {fileID: 52334153212088642}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Eel With PA
   m_TagString: Enemie
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ Transform:
   - {fileID: 3335815481520940302}
   - {fileID: 7437888550566996421}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5183990091117518168
 MonoBehaviour:
