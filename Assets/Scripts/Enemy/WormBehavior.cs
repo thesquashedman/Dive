@@ -13,6 +13,8 @@ public class WormBehavior : FishEnemyBehavior
 
     public float maxReach;
 
+    private bool awake = false;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -21,6 +23,7 @@ public class WormBehavior : FishEnemyBehavior
         coolDownTime = Random.Range(1f, 3f);
         attackRange = maxReach + 5f;
         base.Start();
+        transform.position = habitat.transform.position;
         SwitchMode("idle");
     }
 
@@ -48,6 +51,12 @@ public class WormBehavior : FishEnemyBehavior
             Idle();
             CheckAttackRange();
         }
+
+        if (awake && transform.parent.transform.position != habitat.transform.position)
+        {
+            Vector2 position = Vector2.MoveTowards(transform.parent.transform.position, habitat.transform.position, 30f * Time.deltaTime);
+            transform.parent.transform.position = position;
+        }
     }
 
     // This function checks whether the player is within this worm's attack range. If the player
@@ -56,7 +65,7 @@ public class WormBehavior : FishEnemyBehavior
     {
         if (mode != "attack" && Vector2.Distance(habitat.transform.position, player.transform.position) <= attackRange)
         {
-            transform.position = habitat.transform.position;
+            awake = true;
             SwitchMode("attack");
         }
         else if (mode == "attack" && Vector2.Distance(habitat.transform.position, player.transform.position) > attackRange)
