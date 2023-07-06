@@ -36,6 +36,11 @@ public class ShotAttackRaycast : AttackSystem
     private void Update()
     {
         timer += Time.deltaTime;
+
+        if (timer > (spawnInterval / 4))
+        {
+            bulletTrail.SetActive(false);
+        }
     }
 
     public override void Attack(string tragetTag)
@@ -54,9 +59,6 @@ public class ShotAttackRaycast : AttackSystem
                 Debug.Log("Raycast");
                 RaycastAttack();
                 timer = 0f;
-            }
-            else if (timer > (spawnInterval/4)) {
-                bulletTrail.SetActive(false);
             }
         }
         //atackElement.GetComponent<AttackElement>().SetAttackTargetTag(tragetTag);
