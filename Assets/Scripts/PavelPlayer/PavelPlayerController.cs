@@ -131,13 +131,13 @@ public class PavelPlayerController : MonoBehaviour
         
 
         
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             
             PavelPlayerSettingStates.current.isMoving = true;
             EventManager.current.PlayerStartMove();
         }
-        if(Input.GetKeyUp(KeyCode.Space))
+        if(Input.GetKeyUp(KeyCode.Mouse0))
         {
             PavelPlayerSettingStates.current.isMoving = false;
             EventManager.current.PlayerStopMove();

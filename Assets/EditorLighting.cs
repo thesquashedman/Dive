@@ -11,7 +11,7 @@ public class EditorLighting : MonoBehaviour
         
         //Stops the shadow layer from being rendered in the editor, so that we can see the scene better
         //Shouldn't really be set here, since it's a permanent thing, but I have no clue how else to do it.
-        Tools.visibleLayers = ~((1 << LayerMask.NameToLayer("Shadow")));
+        //Tools.visibleLayers = ~((1 << LayerMask.NameToLayer("Shadow")));
         //Turn off the global light when the scene starts. Global light is so that there is no darkness in the editor
         globalLight.SetActive(false);
     }
