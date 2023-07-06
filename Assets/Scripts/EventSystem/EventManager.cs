@@ -192,6 +192,18 @@ public class EventManager : MonoBehaviour
         onPlayerStopAiming?.Invoke();
     }
 
+    ///<summary>
+    ///Add functions to trigger when the player stops moving
+    ///</summary>
+    public event Action<string> onPlayerSwitchWeapon;
+
+    ///<summary>
+    ///Trigger player to stop moving
+    ///</summary>
+    public void PlayerSwitchWeapon(string weaponName) {
+        onPlayerSwitchWeapon?.Invoke(weaponName);
+    }
+
 
 
     

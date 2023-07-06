@@ -63,6 +63,14 @@ public class PavelPlayerController : MonoBehaviour
                 PavelPlayerSettingStates.current.isAttacking = false;
                 EventManager.current.PlayerStopAttack();
             }
+            if(Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                EventManager.current.PlayerSwitchWeapon("Saw");
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                EventManager.current.PlayerSwitchWeapon("Unequip");
+            }
         }
         
         

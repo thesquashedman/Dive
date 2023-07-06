@@ -16,11 +16,21 @@ public class Flip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //Debug.Log(transform.eulerAngles);
-        if (transform.eulerAngles.z > lowerAngle && transform.eulerAngles.z < upperAngle)
-            transform.localScale = new Vector3(1, -1, 1);
+        if(lowerAngle > upperAngle)
+        {
+            if (transform.eulerAngles.z > lowerAngle || transform.eulerAngles.z < upperAngle)
+                transform.localScale = new Vector3(1, -1, 1);
+            else
+                transform.localScale = new Vector3(1, 1, 1);
+        }
         else
-            transform.localScale = new Vector3(1, 1, 1);
+        {
+            if (transform.eulerAngles.z > lowerAngle && transform.eulerAngles.z < upperAngle)
+                transform.localScale = new Vector3(1, -1, 1);
+            else
+                transform.localScale = new Vector3(1, 1, 1);
+        }
+        //Debug.Log(transform.eulerAngles);
+        
     }
 }

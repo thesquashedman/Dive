@@ -9,6 +9,8 @@ public class PavelWeaponManager : MonoBehaviour
     void Start()
     {
         weapons = GetComponentsInChildren<PavelWeapon>(includeInactive: true);
+        EventManager.current.onPlayerSwitchWeapon += SwitchWeapon;
+
     }
     void SwitchWeapon(string weaponName)
     {
