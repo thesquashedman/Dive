@@ -18,7 +18,7 @@ public class WormBehavior : FishEnemyBehavior
     // Start is called before the first frame update
     protected override void Start()
     {
-        speed = 100f;
+        speed = 500f;
         rotationSpeed = 200f;
         coolDownTime = Random.Range(1f, 3f);
         attackRange = maxReach + 5f;
