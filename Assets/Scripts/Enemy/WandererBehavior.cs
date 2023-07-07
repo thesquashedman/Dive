@@ -46,7 +46,7 @@ public class WandererBehavior : FishEnemyBehavior
             Idle();
             CheckAttackRange();
         }
-        Debug.Log(aiPath.reachedEndOfPath);
+        //Debug.Log(aiPath.reachedEndOfPath);
     }
 
     // This function checks whether the player is within this wanderer's attack range. If the player
