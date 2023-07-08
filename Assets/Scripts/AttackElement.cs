@@ -8,7 +8,7 @@ public class AttackElement : MonoBehaviour
 
     public Sprite sprite;
     protected Collider attackElementCollider;
-    protected string tragetTag = "";
+    public string tragetTag = "";
 
     public AttackElement(AttackSystem attackSystem)
     {
