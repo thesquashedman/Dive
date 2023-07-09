@@ -99,22 +99,38 @@ public class WormBehavior : FishEnemyBehavior
     {
         if (isAwaken)
         {
-            Vector2 direction = ((Vector2)initialPosition - (Vector2)habitat.transform.position).normalized;
-            Vector3 targetRootPosition = (Vector2)habitat.transform.position + direction * wormLength / 2f;
-            Vector3 targetHeadPosition = (Vector2)habitat.transform.position - direction * wormLength / 2;
+            Vector2 returnDirection = ((Vector2)initialPosition - (Vector2)habitat.transform.position).normalized;
+            Vector3 targetRootPosition = (Vector2)habitat.transform.position + returnDirection * wormLength * 3f / 4f;
+            Vector3 targetHeadPosition = (Vector2)habitat.transform.position - returnDirection * wormLength / 4f;
 
+            // Move this worm partially back.
             if (transform.parent.transform.position != targetRootPosition)
             {
                 Vector2 position = Vector2.MoveTowards(transform.parent.transform.position, targetRootPosition, attackSpeed / 4f * Time.deltaTime);
                 transform.parent.transform.position = position;
-            }
-
-            if (transform.position != targetHeadPosition)
-            {
-                direction = ((Vector2)targetHeadPosition - (Vector2)transform.position).normalized;
+                
+                Vector2 direction = ((Vector2)targetHeadPosition - (Vector2)transform.position).normalized;
                 rigidbody.AddForce(direction * speed / 2f);
             }
-            
+            // Make the worm wiggle.
+            else
+            {
+                wiggleTimer += Time.deltaTime;
+                if (wiggleTimer < wiggleIntervalLowerBound)
+                {
+                    Vector2 direction = new Vector2(returnDirection.y, -returnDirection.x);
+                    rigidbody.AddForce(direction * wiggleSpeed);
+                }
+                else if (wiggleTimer < wiggleIntervalUpperBound)
+                {
+                    Vector2 direction = new Vector2(-returnDirection.y, returnDirection.x);
+                    rigidbody.AddForce(direction * wiggleSpeed);
+                }
+                else
+                {
+                    wiggleTimer = 0f;
+                }
+            }
         }
 
     }
