@@ -4,24 +4,33 @@ using UnityEngine;
 
 public class WormBehavior : FishEnemyBehavior
 {
-     // The radius within which this worm will attack the player.
-    public float attackRange;
+    // The maximum distance that this worm should reach from its habitat.
+    public float maxReach = 30f;
+
+    // The minimum distance that this worm should reach from its habitat.
+    public float minReach = 3f;
+
+    // The radius from the habitat within which this worm will attack the player.
+    public float attackRange = 20f;
 
     // Variables for cooling down.
     private float coolDownTimer = 0f;
     private float coolDownTime;
 
-    public float maxReach;
+    // Variables for idling.
+    private float wiggleTimer = 0f;
+    public float wiggleInterval = 3f;
+    public float wiggleSpeed = 3f;
 
+    // Whether this worm is already out of the wall.
     private bool awake = false;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        speed = 500f;
-        rotationSpeed = 200f;
-        coolDownTime = Random.Range(1f, 3f);
-        attackRange = maxReach + 5f;
+        speed = 100f;
+        rotationSpeed = 250f;
+        coolDownTime = Random.Range(1f, 4f);
         base.Start();
         transform.position = habitat.transform.position;
         SwitchMode("idle");
@@ -31,7 +40,6 @@ public class WormBehavior : FishEnemyBehavior
     {
         if (mode == "attack")
         {
-            Attack();
             CheckAttackRange();
         }
         else if (mode == "coolDown")
@@ -74,27 +82,48 @@ public class WormBehavior : FishEnemyBehavior
         }
     }
 
-    protected override void Attack()
-    {
-        if (Vector2.Distance(transform.position, habitat.transform.position) >= maxReach)
-        {
-            rigidbody.velocity = Vector2.zero;
-            SwitchMode("coolDown");
-        }
-    }
-
+    // This function makes this worm cool down for a short amount of time before
+    // switching to attack mode.
     protected override void CoolDown()
     {
         coolDownTimer += Time.deltaTime;
         if (coolDownTimer >= coolDownTime)
         {
             coolDownTimer = 0f;
+            coolDownTime = Random.Range(1f, 4f);
             SwitchMode("attack");
         }
     }
 
     protected override void Idle()
     {
-        rigidbody.velocity = Vector2.zero;
+        if (awake)
+        {
+            Vector2 habitatToWorm = ((Vector2)transform.position - (Vector2)habitat.transform.position);
+            wiggleTimer += Time.deltaTime;
+            if (wiggleTimer < wiggleInterval)
+            {
+                if (Vector3.Magnitude(habitatToWorm) <= minReach)
+                {
+                    wiggleTimer = 0f;
+                }
+                else
+                {
+                    rigidbody.AddForce(-habitatToWorm.normalized * wiggleSpeed);
+                }
+            }
+            else
+            {
+                if (Vector3.Magnitude(habitatToWorm) >= maxReach)
+                {
+                    wiggleTimer = 0f;
+                }
+                else
+                {
+                    rigidbody.AddForce(habitatToWorm.normalized * wiggleSpeed);
+                }
+
+            }
+        }
     }
 }
