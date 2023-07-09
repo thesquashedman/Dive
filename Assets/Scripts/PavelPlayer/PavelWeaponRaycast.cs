@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PavelWeaponContact : PavelWeapon
+public class PavelWeaponRaycast : PavelWeapon
 {
-    // Start is called before the first frame update
     public float attackPeriod = 0.25f;
     public float attackPeriodTimer = 0f;
     public float damage = 10f;
+    public float attackRange = 50.0f;
     bool attackReady = false;
+    public string[] enemyTags;
 
-     public string[] enemyTags;
+    public Transform firePoint;
     void Start()
     {
-        attackPeriodTimer = 0;
-        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-        
+        attackPeriodTimer = attackPeriod;
     }
 
     // Update is called once per frame
@@ -24,19 +23,15 @@ public class PavelWeaponContact : PavelWeapon
         if(PavelPlayerSettingStates.current.isAttacking)
         {
             
-            if(!attackReady)
+            if(attackReady)
             {
-                attackPeriodTimer += Time.deltaTime;
-            }
-            else
-            {
-                gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+                FireProjectile();
             }
             
         }
-        else
+        if(!attackReady)
         {
-            gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+            attackPeriodTimer += Time.deltaTime;
         }
         if(!attackReady && attackPeriodTimer > attackPeriod)
         {
@@ -44,22 +39,32 @@ public class PavelWeaponContact : PavelWeapon
             attackReady = true;
             
         }
-        
-        
     }
-    private void OnTriggerStay2D(Collider2D hit)
+    void FireProjectile()
     {
+
+        //need to change raycast to ignore player layer
+        LayerMask mask = LayerMask.GetMask("Player");
+        mask = ~mask;
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right, attackRange, mask);
+        Debug.DrawRay(firePoint.position, firePoint.right * attackRange, Color.red, 50.0f);
+
         
-        if(attackReady)
+
+        // Check if the ray hit something
+        if (hit.collider != null)
         {
+
+            Debug.Log(hit.transform.name);
+            // Check if the object hit has the tag "Enemy"
             if (enemyTags.Length > 0)
             {
                 foreach (string tag in enemyTags)
                 {
-                    if (hit.gameObject.CompareTag(tag))
+                    if (hit.collider.CompareTag(tag))
                     {
                         // Get the Health component and call ChangeHealth
-                        Health enemyHealth = hit.gameObject.GetComponent<Health>();
+                        Health enemyHealth = hit.collider.GetComponent<Health>();
                         if (enemyHealth != null)
                         {
                             
@@ -68,10 +73,10 @@ public class PavelWeaponContact : PavelWeapon
                     }
                 }
             }
-
             
         }
-        
-        
+        attackPeriodTimer = 0;
+        attackReady = false;
+
     }
 }
