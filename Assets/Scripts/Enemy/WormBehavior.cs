@@ -4,34 +4,33 @@ using UnityEngine;
 
 public class WormBehavior : FishEnemyBehavior
 {
-    // The maximum distance that this worm should reach from its habitat.
-    public float maxReach = 30f;
-
-    // The minimum distance that this worm should reach from its habitat.
-    public float minReach = 3f;
-
     // The radius from the habitat within which this worm will attack the player.
-    public float attackRange = 20f;
+    public float initialAttackRange = 25f;
+    public float subsequentAttackRange = 40f;
 
-    // Variables for cooling down.
-    private float coolDownTimer = 0f;
-    private float coolDownTime;
+    // The estimated length of this worm.
+    public float wormLength = 30f;
+
+    // Variables for attacking.
+    public float attackSpeed = 25f;
 
     // Variables for idling.
     private float wiggleTimer = 0f;
-    public float wiggleInterval = 3f;
+    public float wiggleIntervalLowerBound = 2f;
+    public float wiggleIntervalUpperBound = 4f;
     public float wiggleSpeed = 3f;
+    private Vector3 initialPosition;
 
-    // Whether this worm is already out of the wall.
-    private bool awake = false;
+    // Whether this worm should be awaken and out of the wall.
+    private bool isAwaken = false;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        speed = 100f;
+        speed = 80f;
         rotationSpeed = 250f;
-        coolDownTime = Random.Range(1f, 4f);
         base.Start();
+        initialPosition = transform.parent.transform.position;
         transform.position = habitat.transform.position;
         SwitchMode("idle");
     }
@@ -40,6 +39,7 @@ public class WormBehavior : FishEnemyBehavior
     {
         if (mode == "attack")
         {
+            Attack();
             CheckAttackRange();
         }
         else if (mode == "coolDown")
@@ -59,71 +59,63 @@ public class WormBehavior : FishEnemyBehavior
             Idle();
             CheckAttackRange();
         }
-
-        if (awake && transform.parent.transform.position != habitat.transform.position)
-        {
-            Vector2 position = Vector2.MoveTowards(transform.parent.transform.position, habitat.transform.position, 30f * Time.deltaTime);
-            transform.parent.transform.position = position;
-        }
     }
 
     // This function checks whether the player is within this worm's attack range. If the player
     // is, switch to attack mode. If the player is not, switch to idle mode.
     private void CheckAttackRange()
     {
-        if (mode != "attack" && Vector2.Distance(habitat.transform.position, player.transform.position) <= attackRange)
+        if (isAwaken)
         {
-            awake = true;
-            SwitchMode("attack");
+            if (mode != "attack" && Vector2.Distance(habitat.transform.position, player.transform.position) <= initialAttackRange)
+            {
+                SwitchMode("attack");
+            }
+            else if (mode == "attack" && Vector2.Distance(habitat.transform.position, player.transform.position) > subsequentAttackRange)
+            {
+                SwitchMode("idle");
+            }
         }
-        else if (mode == "attack" && Vector2.Distance(habitat.transform.position, player.transform.position) > attackRange)
+        else if (Vector2.Distance(habitat.transform.position, player.transform.position) <= initialAttackRange)
         {
-            SwitchMode("idle");
+            isAwaken = true;
+            SwitchMode("attack");
         }
     }
 
-    // This function makes this worm cool down for a short amount of time before
-    // switching to attack mode.
-    protected override void CoolDown()
+    // This function moves this worm out of the wall.
+    protected override void Attack()
     {
-        coolDownTimer += Time.deltaTime;
-        if (coolDownTimer >= coolDownTime)
+        if (transform.parent.transform.position != habitat.transform.position)
         {
-            coolDownTimer = 0f;
-            coolDownTime = Random.Range(1f, 4f);
-            SwitchMode("attack");
+            Vector2 position = Vector2.MoveTowards(transform.parent.transform.position, habitat.transform.position, attackSpeed * Time.deltaTime);
+            transform.parent.transform.position = position;
         }
     }
 
+    // This function moves this worm partially back into the wall and makes this worm
+    // wiggle while idling.
     protected override void Idle()
     {
-        if (awake)
+        if (isAwaken)
         {
-            Vector2 habitatToWorm = ((Vector2)transform.position - (Vector2)habitat.transform.position);
-            wiggleTimer += Time.deltaTime;
-            if (wiggleTimer < wiggleInterval)
-            {
-                if (Vector3.Magnitude(habitatToWorm) <= minReach)
-                {
-                    wiggleTimer = 0f;
-                }
-                else
-                {
-                    rigidbody.AddForce(-habitatToWorm.normalized * wiggleSpeed);
-                }
-            }
-            else
-            {
-                if (Vector3.Magnitude(habitatToWorm) >= maxReach)
-                {
-                    wiggleTimer = 0f;
-                }
-                else
-                {
-                    rigidbody.AddForce(habitatToWorm.normalized * wiggleSpeed);
-                }
+            Vector2 direction = ((Vector2)initialPosition - (Vector2)habitat.transform.position).normalized;
+            Vector3 targetRootPosition = (Vector2)habitat.transform.position + direction * wormLength / 2f;
+            Vector3 targetHeadPosition = (Vector2)habitat.transform.position - direction * wormLength / 2;
 
+            if (transform.parent.transform.position != targetRootPosition)
+            {
+                Vector2 position = Vector2.MoveTowards(transform.parent.transform.position, targetRootPosition, attackSpeed / 4f * Time.deltaTime);
+                transform.parent.transform.position = position;
             }
+
+            if (transform.position != targetHeadPosition)
+            {
+                direction = ((Vector2)targetHeadPosition - (Vector2)transform.position).normalized;
+                rigidbody.AddForce(direction * speed / 2f);
+            }
+            
         }
+
     }
 }
