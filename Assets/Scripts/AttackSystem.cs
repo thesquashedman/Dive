@@ -14,12 +14,12 @@ public class AttackSystem : MonoBehaviour
     }
 
     public virtual void Attack(string tragetTag) {
-        Debug.Log("BBBBBBBBBB");
+        //Debug.Log("BBBBBBBBBB");
     }
 
     public virtual void StopAttack()
     {
-        Debug.Log("BBBBBBBBBB");
+        //Debug.Log("BBBBBBBBBB");
     }
 
     public void ApplyDamage(Health health)
