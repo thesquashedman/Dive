@@ -5,16 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/PavelsLightingScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Prot3(Mikhail) 1.unity
-    guid: 80a76d48745c76442a621c68b6881bb9
-  - enabled: 0
-    path: Assets/Scenes/SaveTest/PavelSaveTestTwo.unity
-    guid: ce4660f82d33c164b9dfb7194a268e57
-  - enabled: 0
-    path: Assets/Scenes/SaveTest/PavelSaveTest.unity
-    guid: f648383b43d12ca42b813497f6af94f0
+    path: Assets/Scenes/Prototype.unity
+    guid: 31f098411d163ed4692d71ecc4284d94
   m_configObjects: {}
