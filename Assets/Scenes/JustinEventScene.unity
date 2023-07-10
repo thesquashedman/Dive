@@ -473,6 +473,18 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     id: 1
+  - name: GunShot
+    clip: {fileID: 8300000, guid: 390607be967a98b4a8e55b6a7943bdb4, type: 3}
+    volume: 0.139
+    pitch: 0.764
+    source: {fileID: 0}
+    id: 1
+  - name: Crunch
+    clip: {fileID: 8300000, guid: 52faede2b4f7e9544b97c7ae84e3d24c, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    id: 1
   curr: 
 --- !u!1 &600901583
 GameObject:
