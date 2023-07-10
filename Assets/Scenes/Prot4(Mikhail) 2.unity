@@ -7436,7 +7436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185831595369343949, guid: bff85a390a662d241b9b2dc2aa0278f2, type: 3}
       propertyPath: m_Intensity
-      value: 23.88
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9185831595369343949, guid: bff85a390a662d241b9b2dc2aa0278f2, type: 3}
       propertyPath: m_FalloffIntensity
@@ -34631,7 +34631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185831595369343949, guid: bff85a390a662d241b9b2dc2aa0278f2, type: 3}
       propertyPath: m_Intensity
-      value: 9.6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9185831595369343949, guid: bff85a390a662d241b9b2dc2aa0278f2, type: 3}
       propertyPath: m_FalloffIntensity
@@ -38548,7 +38548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1930015638
 Transform:
   m_ObjectHideFlags: 0
