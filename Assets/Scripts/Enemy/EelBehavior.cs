@@ -19,8 +19,10 @@ public class EelBehavior : FishEnemyBehavior
     // Variables for running away from the player.
     private float runAwayTimer = 0f;
     private float runAwayTime = 2f;
-    private Vector2 currentDirection = Vector2.up;
     private Vector2 runAwayDirection = Vector2.up;
+    private float runAwayRotationSpeed = 300f;
+    private GameObject targetObject;
+    public GameObject targetPrefab;
 
     // Variables for returning to this eel's habitat and staying idle.
     private float returningSpeed = 5f;
@@ -29,11 +31,12 @@ public class EelBehavior : FishEnemyBehavior
     protected override void Start()
     {
         speed = 20f;
-        runAwaySpeed = 30f;
+        runAwaySpeed = 40f;
         rotationSpeed = 200f;
         base.Start();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
-        SetHeadlightRange(30f, 12f);
+        targetObject = Instantiate(targetPrefab, transform.position, Quaternion.identity);
+        SetHeadlightRange(30f, 15f);
         SwitchMode("idle");
     }
 
@@ -75,6 +78,7 @@ public class EelBehavior : FishEnemyBehavior
             aiPath.speed = speed;
             aiPath.target = player.transform;
             aiPath.enableRotation = true;
+            aiPath.rotationSpeed = rotationSpeed;
         }
         else if (newMode == "coolDown")
         {
@@ -82,13 +86,15 @@ public class EelBehavior : FishEnemyBehavior
             aiPath.speed = 0;
             aiPath.target = player.transform;
             aiPath.enableRotation = true;
+            aiPath.rotationSpeed = rotationSpeed;
         }
         else if (newMode == "runAway")
         {
             mode = "runAway";
-            aiPath.speed = 0f;
-            aiPath.target = null;
-            aiPath.enableRotation = false;
+            aiPath.speed = runAwaySpeed;
+            aiPath.target = targetObject.transform;
+            aiPath.enableRotation = true;
+            aiPath.rotationSpeed = runAwayRotationSpeed;
         }
         else if (newMode == "wander")
         {
@@ -96,6 +102,7 @@ public class EelBehavior : FishEnemyBehavior
             aiPath.speed = wanderingSpeed;
             aiPath.target = null;
             aiPath.enableRotation = true;
+            aiPath.rotationSpeed = rotationSpeed;
         }
         else if (newMode == "idle")
         {
@@ -103,6 +110,7 @@ public class EelBehavior : FishEnemyBehavior
             aiPath.speed = returningSpeed;
             aiPath.target = habitat.transform;
             aiPath.enableRotation = true;
+            aiPath.rotationSpeed = rotationSpeed;
         }
     }
 
@@ -153,12 +161,8 @@ public class EelBehavior : FishEnemyBehavior
             // If there is not an obstacle, this eel is shined on.
             if (hit.collider == null)
             {
-                currentDirection = aiPath.direction;
-                if (Vector3.Magnitude(currentDirection) <= 0.9f)
-                {
-                    currentDirection = -(headlightToEel.normalized);
-                }
                 runAwayDirection = headlightToEel.normalized;
+                targetObject.transform.position = transform.position;
                 SwitchMode("runAway");
             }
         }
@@ -172,26 +176,7 @@ public class EelBehavior : FishEnemyBehavior
         runAwayTimer += Time.deltaTime;
         if (runAwayTimer < runAwayTime)
         {
-            // Rotate the current direction gradually.
-            if (!Vector3.Equals(currentDirection, runAwayDirection))
-            {
-                float deltaAngle = Mathf.PI * 3f;
-                currentDirection = Vector3.RotateTowards(currentDirection, runAwayDirection, deltaAngle * Time.deltaTime, 0f);
-                transform.rotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
-            }
-            // Rotate the eel back if necessary.
-            else
-            {
-                float targetAngle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg - 90f;
-                if (Mathf.Abs(transform.eulerAngles.z - targetAngle) >= 8f)
-                {
-                    float newAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
-                    transform.eulerAngles = new Vector3(0f, 0f, newAngle);
-                }
-            }
-            
-            // Move towards the current direction.
-            rigidbody.AddForce(currentDirection * runAwaySpeed);
+            targetObject.GetComponent<Rigidbody2D>().AddForce(runAwayDirection * 200f);
         }
         else
         {

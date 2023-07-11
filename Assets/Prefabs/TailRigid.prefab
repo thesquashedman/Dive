@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1389921038243815152}
   - component: {fileID: 1852204487141301459}
   - component: {fileID: 4063789325261647011}
+  - component: {fileID: -8500116500099098466}
   m_Layer: 11
   m_Name: TailRigid
   m_TagString: Untagged
@@ -95,7 +96,19 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
+--- !u!114 &-8500116500099098466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046563507141123327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8c52e1413f30d4d9b12a9997331e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4702795942193913596
 GameObject:
   m_ObjectHideFlags: 0
