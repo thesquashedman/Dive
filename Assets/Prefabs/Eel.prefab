@@ -212,7 +212,7 @@ MonoBehaviour:
   damageSystem: {fileID: 7762875389873881477}
   attackOnce: 0
   damagePeriods: 1000
-  atackElement: {fileID: 7489288402824790276}
+  attackElement: {fileID: 7489288402824790276}
 --- !u!114 &3360352180157311346
 MonoBehaviour:
   m_ObjectHideFlags: 0
