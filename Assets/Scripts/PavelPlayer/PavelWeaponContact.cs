@@ -10,6 +10,7 @@ public class PavelWeaponContact : PavelWeapon
     public float damage = 10f;
     bool attackReady = false;
 
+     public string[] enemyTags;
     void Start()
     {
         attackPeriodTimer = 0;
@@ -46,17 +47,26 @@ public class PavelWeaponContact : PavelWeapon
         
         
     }
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D hit)
     {
         
         if(attackReady)
         {
-            Health health = other.gameObject.GetComponent<Health>();
-            if (health != null && other.gameObject.tag != "Player")
+            if (enemyTags.Length > 0)
             {
-                Debug.Log("Hit");
-                other.gameObject.GetComponent<Health>().ChangeHealth(-damage);
-                attackReady = false;
+                foreach (string tag in enemyTags)
+                {
+                    if (hit.gameObject.CompareTag(tag))
+                    {
+                        // Get the Health component and call ChangeHealth
+                        Health enemyHealth = hit.gameObject.GetComponent<Health>();
+                        if (enemyHealth != null)
+                        {
+                            
+                            enemyHealth.ChangeHealth(-damage);
+                        }
+                    }
+                }
             }
 
             

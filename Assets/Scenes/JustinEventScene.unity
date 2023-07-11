@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -435,6 +436,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c60609d8a7bfd74cafd8546e6f1a802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdf4007e25d0b44f9eb14f05e01d21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: WaterVibes
+    clip: {fileID: 8300000, guid: ceaad48c3e026874bbff857266f0f328, type: 3}
+    volume: 0.216
+    pitch: 1
+    source: {fileID: 0}
+    id: 0
+  - name: Explosion
+    clip: {fileID: 8300000, guid: e2d467bc41c1a6448996e90d4364ffba, type: 3}
+    volume: 0.506
+    pitch: 1
+    source: {fileID: 0}
+    id: 1
+  - name: Ambience
+    clip: {fileID: 8300000, guid: fdf85ff1921e13d419a0750a293fa9c6, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    id: 0
+  - name: Growl
+    clip: {fileID: 8300000, guid: 7b868dd6d99e4c3409a735e6b9cff34d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    id: 1
+  - name: GunShot
+    clip: {fileID: 8300000, guid: 390607be967a98b4a8e55b6a7943bdb4, type: 3}
+    volume: 0.139
+    pitch: 0.764
+    source: {fileID: 0}
+    id: 1
+  - name: Crunch
+    clip: {fileID: 8300000, guid: 52faede2b4f7e9544b97c7ae84e3d24c, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    id: 1
+  curr: 
 --- !u!1 &600901583
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,6 +598,7 @@ GameObject:
   - component: {fileID: 1408586611}
   - component: {fileID: 1408586610}
   - component: {fileID: 1408586614}
+  - component: {fileID: 1408586615}
   m_Layer: 0
   m_Name: Button and Active
   m_TagString: Untagged
@@ -694,6 +746,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   isActive: 0
+--- !u!114 &1408586615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408586609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ce923968f8a7345a6e1f54d5901f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios: []
+  audioNames:
+  - Growl
 --- !u!1 &1658900643
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +773,7 @@ GameObject:
   - component: {fileID: 1658900646}
   - component: {fileID: 1658900645}
   - component: {fileID: 1658900644}
+  - component: {fileID: 1658900648}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -839,6 +907,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658900648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658900643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ce923968f8a7345a6e1f54d5901f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios: []
+  audioNames:
+  - Growl
 --- !u!1 &1992666989
 GameObject:
   m_ObjectHideFlags: 0
