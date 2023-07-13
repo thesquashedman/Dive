@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class OptionMenu : MonoBehaviour
 {
 
-    // public AudioMixer audioMixer;
+    public AudioMixer musicAudioMixer;
+    public AudioMixer effectAudioMixer;
     public TMPro.TMP_Dropdown resolutionDropdown;
     
     Resolution[] resolutions; 
