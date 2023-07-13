@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemie
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -12,12 +13,12 @@ TagManager:
   - Shadow
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - CollideWithPlayerOnly
   - 
   - 
   - Obstacles
-  - 
+  - Ignore Internal Collision
   - 
   - 
   - 

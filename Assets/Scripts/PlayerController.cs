@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Weapon curentWeapon;
+    
+    public Weapon currentWeapon;
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +20,17 @@ public class PlayerController : MonoBehaviour
     }
 
     void Attack() {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKey(KeyCode.B))
         {
-            curentWeapon.Attack();
+            currentWeapon.Attack();
         }
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    currentWeapon.Attack();
+        //}
         if (Input.GetKeyUp(KeyCode.B))
         {
-            curentWeapon.StopAttack();
+            currentWeapon.StopAttack();
         }
     }
 }

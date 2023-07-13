@@ -27,6 +27,7 @@ public class EventManager : MonoBehaviour
     public static EventManager current;
 
     private void Awake() {
+        Debug.Log("EventManager Active.");
         //Singleton pattern
         if(current != null && current != this) {
             Destroy(this);
@@ -50,13 +51,25 @@ public class EventManager : MonoBehaviour
     ///<summary>
     ///Add functions to trigger when the player receives damage
     ///</summary>
-    public event Action<int> onDealDamagePlayer;
+    public event Action<float> onDealDamagePlayer;
 
     ///<summary>
     ///Invoke event to deal damage to player
     ///</summary>
-    public void dealDamagePlayer(int damage) {
+    public void dealDamagePlayer(float damage) {
         onDealDamagePlayer?.Invoke(damage);
+    }
+
+    ///<summary>
+    ///FOR UI, add functions to trigger when the player changes health. Float is the new health.
+    ///</summary>
+    public event Action<float> onChangeHealth;
+
+    ///<summary>
+    ///Invoke event when health is changed. SHOULD ONLY EVER BE CALLED BY PLAYER HEALTH, DOES NOT ACTUALLY CHANGE HEALTH.
+    ///</summary>
+    public void ChangeHealth(float newHealth) {
+        onChangeHealth?.Invoke(newHealth);
     }
 
     ///<summary>
@@ -72,15 +85,15 @@ public class EventManager : MonoBehaviour
     }
 
     ///<summary>
-    ///Add functions to trigger when the player sprite flips
+    ///Add functions to trigger when the player sprite flips, true = flipped false = normal
     ///</summary>
-    public event Action onPlayerFlip;
+    public event Action<bool> onPlayerFlip;
 
     ///<summary>
     ///Trigger when the player flips
     ///</summary>
-    public void playerFlip() {
-        onPlayerFlip?.Invoke();
+    public void playerFlip(bool flipped) {
+        onPlayerFlip?.Invoke(flipped);
     }
 
     ///<summary>
@@ -119,6 +132,93 @@ public class EventManager : MonoBehaviour
     public void taskCompleted(string id) {
         onTaskCompleted?.Invoke(id);
     }
+    ///Add functions to trigger when the player attacks
+    ///</summary>
+    public event Action onPlayerAttack;
+
+    ///<summary>
+    ///Trigger player's attack
+    ///</summary>
+    public void PlayerAttack() {
+        onPlayerAttack?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player stops attacking
+    ///</summary>
+    public event Action onPlayerStopAttack;
+
+    ///<summary>
+    ///Stop Player's Attack
+    ///</summary>
+    public void PlayerStopAttack() {
+        onPlayerStopAttack?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player moves
+    ///</summary>
+    public event Action onPlayerStartMove;
+
+    ///<summary>
+    ///Trigger player's movement
+    ///</summary>
+    public void PlayerStartMove() {
+        onPlayerStartMove?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player stops moving
+    ///</summary>
+    public event Action onPlayerStopMove;
+
+    ///<summary>
+    ///Trigger player to stop moving
+    ///</summary>
+    public void PlayerStopMove() {
+        onPlayerStopMove?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player moves
+    ///</summary>
+    public event Action onPlayerStartAiming;
+
+    ///<summary>
+    ///Trigger player's movement
+    ///</summary>
+    public void PlayerStartAiming() {
+        onPlayerStartAiming?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player stops moving
+    ///</summary>
+    public event Action onPlayerStopAiming;
+
+    ///<summary>
+    ///Trigger player to stop moving
+    ///</summary>
+    public void PlayerStopAiming() {
+        onPlayerStopAiming?.Invoke();
+    }
+
+    ///<summary>
+    ///Add functions to trigger when the player stops moving
+    ///</summary>
+    public event Action<string> onPlayerSwitchWeapon;
+
+    ///<summary>
+    ///Trigger player to stop moving
+    ///</summary>
+    public void PlayerSwitchWeapon(string weaponName) {
+        onPlayerSwitchWeapon?.Invoke(weaponName);
+    }
+
+
+
+    
+    
     
 
     
