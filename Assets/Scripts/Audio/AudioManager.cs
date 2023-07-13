@@ -75,6 +75,8 @@ public class AudioManager : MonoBehaviour
             Play("WaterVibes");
         } else if(Input.GetKeyDown(KeyCode.Space)) {
             Play("GunShot");
+        } else if(Input.GetKeyDown(KeyCode.L)) {
+            Play("Crunch");
         }
     }
 
