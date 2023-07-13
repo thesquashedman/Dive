@@ -48,7 +48,7 @@ public class FishEnemyBehavior : MonoBehaviour
     public float wanderingSpeed = 5f;
 
     // Variables for the death state.
-    protected float gravityScale = 2f;
+    protected float gravityScale = 1f;
 
     // Start is called before the first frame update
     protected virtual void Start()

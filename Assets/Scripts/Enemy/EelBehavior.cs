@@ -5,6 +5,9 @@ using UnityEngine;
 public class EelBehavior : FishEnemyBehavior
 {
     public GameObject playerHeadlight;
+
+    // References to other components.
+    public Tail tail;
     
     // Variables that define the range of the player's headlight.
     private float headlightAngle;
@@ -126,6 +129,7 @@ public class EelBehavior : FishEnemyBehavior
                 aiPath.rotationSpeed = 0f;
 
                 rigidbody.gravityScale = gravityScale;
+                tail.enableWiggle = false;
             }
         }
     }

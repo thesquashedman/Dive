@@ -9,6 +9,8 @@ public class WandererBehavior : FishEnemyBehavior
 
     // Variables for attacking.
     public bool hostile = true;
+    public bool activeChase = true;
+    public float chaseRange = 60f;
 
     // Variables for idling.
     private float idleTimer = 0f;
@@ -43,12 +45,18 @@ public class WandererBehavior : FishEnemyBehavior
             else if (mode == "wander")
             {
                 Wander();
-                CheckAttackRange();
+                if (hostile)
+                {
+                    CheckAttackRange();
+                }
             }
             else if (mode == "idle")
             {
                 Idle();
-                CheckAttackRange();
+                if (hostile)
+                {
+                    CheckAttackRange();
+                }
             }
         }
     }
@@ -57,13 +65,29 @@ public class WandererBehavior : FishEnemyBehavior
     // is, switch to attack mode. If the player is not, switch to wander mode.
     private void CheckAttackRange()
     {
-        if (mode != "attack" && Vector2.Distance(transform.position, player.transform.position) <= attackRange)
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        float distanceToHabitat = Vector2.Distance(transform.position, habitat.transform.position);
+
+        if (mode != "attack" && distanceToPlayer <= attackRange)
         {
             SwitchMode("attack");
         }
-        else if (mode == "attack" && Vector2.Distance(transform.position, player.transform.position) > attackRange)
+        else if (mode == "attack")
         {
-            SwitchMode("wander");
+            // If activeChase is true, this wanderer will chase the player until the distance from this
+            // wanderer to the player exceeds the attack range. If activeChase is false, this wanderer
+            // will chase the player until the distance from this wanderer to the habitat exceeds the
+            // chase range.
+            if (activeChase && distanceToPlayer > attackRange)
+            {
+                aiPath.SearchPath();
+                SwitchMode("wander");
+            }
+            else if (!activeChase && distanceToHabitat > chaseRange)
+            {
+                aiPath.SearchPath();
+                SwitchMode("wander");
+            }
         }
     }
 
