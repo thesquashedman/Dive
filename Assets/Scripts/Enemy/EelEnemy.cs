@@ -15,8 +15,11 @@ public class EelEnemy : Enemy
         eelBehavior = GetComponent<EelBehavior>();
     }
 
-    protected override void Die()
+    protected override void Die(int objectID)
     {
-        eelBehavior.SwitchMode("dead");
+        if (objectID == gameObject.GetInstanceID())
+        {
+            eelBehavior.SwitchMode("dead");
+        }
     }
 }

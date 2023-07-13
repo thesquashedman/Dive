@@ -15,8 +15,11 @@ public class WormEnemy : Enemy
         wormBehavior = GetComponent<WormBehavior>();
     }
 
-    protected override void Die()
+    protected override void Die(int objectID)
     {
-        wormBehavior.SwitchMode("dead");
+        if (objectID == gameObject.GetInstanceID())
+        {
+            wormBehavior.SwitchMode("dead");
+        }
     }
 }

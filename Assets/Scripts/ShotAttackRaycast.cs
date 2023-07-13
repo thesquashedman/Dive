@@ -99,7 +99,7 @@ public class ShotAttackRaycast : AttackSystem
             // When there is a hit, issue an event based on the tag of the hit object.
             if (hit.collider.tag == "Enemie")
             {
-                hit.collider.GetComponent<EnemyEventManager>().DealDamageEnemy(damageSystem.GetDamage());
+                EventManager.current.DealDamageEnemy(hit.collider.gameObject.GetInstanceID(), damageSystem.GetDamage());
             }
             else if (hit.collider.tag == "Player")
             {

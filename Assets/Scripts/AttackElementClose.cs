@@ -40,7 +40,7 @@ public class AttackElementClose : AttackElement
             {
                 if (other.gameObject.tag == "Enemie")
                 {
-                    other.gameObject.GetComponent<EnemyEventManager>().DealDamageEnemy(attackSystem.damageSystem.GetDamage());
+                    EventManager.current.DealDamageEnemy(other.gameObject.GetInstanceID(), attackSystem.damageSystem.GetDamage());
                     attackPeriodTimer = attackPeriod;
                 }
                 else if (other.gameObject.tag == "Player")

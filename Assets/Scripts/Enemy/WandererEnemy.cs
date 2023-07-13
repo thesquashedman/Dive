@@ -15,8 +15,11 @@ public class WandererEnemy : Enemy
         wandererBehavior = GetComponent<WandererBehavior>();
     }
 
-    protected override void Die()
+    protected override void Die(int objectID)
     {
-        wandererBehavior.SwitchMode("dead");
+        if (objectID == gameObject.GetInstanceID())
+        {
+            wandererBehavior.SwitchMode("dead");
+        }
     }
 }

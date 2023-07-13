@@ -36,7 +36,7 @@ public class AttackElementShoot : AttackElement
         {
             if (other.gameObject.tag == "Enemie")
             {
-                other.gameObject.GetComponent<EnemyEventManager>().DealDamageEnemy(attackSystem.damageSystem.GetDamage());
+                EventManager.current.DealDamageEnemy(other.gameObject.GetInstanceID(), attackSystem.damageSystem.GetDamage());
             }
             else if (other.gameObject.tag == "Player")
             {
