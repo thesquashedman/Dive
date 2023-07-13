@@ -238,7 +238,7 @@ Transform:
   - {fileID: 3335815481520940302}
   - {fileID: 7437888550566996421}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5183990091117518168
 MonoBehaviour:
@@ -283,7 +283,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2176
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -410,9 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 20
-  rotationSpeed: 200
-  runAwaySpeed: 40
   habitat: {fileID: 0}
   wanderingAreaWidth: 10
   wanderingAreaHeight: 10

@@ -17,13 +17,15 @@ public class FishEnemyBehavior : MonoBehaviour
     // 4. wander: This enemy will wander around a certain area of the map.
     //
     // 5. idle: This enemy will stay at a certain position and do nothing.
+    //
+    // 6. dead: This enemy is dead and will not do anything.
     protected string mode = "attack";
 
     // Variables for the path and movement.
     protected Rigidbody2D rigidbody;
     protected EnemyAIPath aiPath;
-    public float speed = 5f;
-    public float rotationSpeed = 250f;
+    protected float speed = 5f;
+    protected float rotationSpeed = 250f;
 
     // Variables for stuck detection and struggling.
     /*
@@ -36,7 +38,7 @@ public class FishEnemyBehavior : MonoBehaviour
     */
 
     // Variables for running away.
-    public float runAwaySpeed = 10f;
+    protected float runAwaySpeed = 10f;
 
     // Variables for wandering. These variables are used to compute the area that the
     // enemy can wander around and set the speed.
@@ -44,6 +46,9 @@ public class FishEnemyBehavior : MonoBehaviour
     public float wanderingAreaWidth = 10f;
     public float wanderingAreaHeight = 10f;
     public float wanderingSpeed = 5f;
+
+    // Variables for the death state.
+    protected float gravityScale = 2f;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -56,67 +61,87 @@ public class FishEnemyBehavior : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (mode == "attack")
+        if (mode != "dead")
         {
-            Attack();
-        }
-        else if (mode == "coolDown")
-        {
-            CoolDown();
-        }
-        else if (mode == "runAway")
-        {
-            RunAway();
-        }
-        else if (mode == "wander")
-        {
-            Wander();
-        }
-        else if (mode == "idle")
-        {
-            Idle();
+            if (mode == "attack")
+            {
+                Attack();
+            }
+            else if (mode == "coolDown")
+            {
+                CoolDown();
+            }
+            else if (mode == "runAway")
+            {
+                RunAway();
+            }
+            else if (mode == "wander")
+            {
+                Wander();
+            }
+            else if (mode == "idle")
+            {
+                Idle();
+            }
         }
     }
 
     // This function acts as the common interface for switching the action mode
     // of the enemy.
-    protected virtual void SwitchMode(string newMode)
+    public virtual void SwitchMode(string newMode)
     {
-        if (newMode == "attack")
+        if (mode != "dead")
         {
-            mode = "attack";
-            aiPath.speed = speed;
-            aiPath.target = player.transform;
-            aiPath.enableRotation = true;
+            if (newMode == "attack")
+            {
+                mode = "attack";
+                aiPath.speed = speed;
+                aiPath.target = player.transform;
+                aiPath.enableRotation = true;
+            }
+            else if (newMode == "coolDown")
+            {
+                mode = "coolDown";
+                aiPath.speed = 0f;
+                aiPath.target = null;
+                aiPath.enableRotation = false;
+            }
+            else if (newMode == "runAway")
+            {
+                mode = "runAway";
+                aiPath.speed = 0f;
+                aiPath.target = null;
+                aiPath.enableRotation = false;
+            }
+            else if (newMode == "wander")
+            {
+                mode = "wander";
+                aiPath.speed = wanderingSpeed;
+                aiPath.target = null;
+                aiPath.enableRotation = true;
+            }
+            else if (newMode == "idle")
+            {
+                mode = "idle";
+                aiPath.speed = 0f;
+                aiPath.target = null;
+                aiPath.enableRotation = false;
+            }
+            else if (newMode == "dead")
+            {
+                mode = "dead";
+                aiPath.speed = 0f;
+                aiPath.target = null;
+                aiPath.enableRotation = false;
+
+                rigidbody.gravityScale = gravityScale;
+            }
         }
-        else if (newMode == "coolDown")
-        {
-            mode = "coolDown";
-            aiPath.speed = 0f;
-            aiPath.target = null;
-            aiPath.enableRotation = false;
-        }
-        else if (newMode == "runAway")
-        {
-            mode = "runAway";
-            aiPath.speed = 0f;
-            aiPath.target = null;
-            aiPath.enableRotation = false;
-        }
-        else if (newMode == "wander")
-        {
-            mode = "wander";
-            aiPath.speed = wanderingSpeed;
-            aiPath.target = null;
-            aiPath.enableRotation = true;
-        }
-        else if (newMode == "idle")
-        {
-            mode = "idle";
-            aiPath.speed = 0f;
-            aiPath.target = null;
-            aiPath.enableRotation = false;
-        }
+    }
+
+    public string GetMode()
+    {
+        return mode;
     }
 
     // This function verifies whether this enemy is stuck and needs to struggle.

@@ -5,7 +5,7 @@ using UnityEngine;
 public class WandererEnemy : Enemy
 {
     private WandererBehavior wandererBehavior;
-    private float maxHealth = 10f;
+    public float maxHealth = 30f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -15,9 +15,8 @@ public class WandererEnemy : Enemy
         wandererBehavior = GetComponent<WandererBehavior>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Die()
     {
-        
+        wandererBehavior.SwitchMode("dead");
     }
 }

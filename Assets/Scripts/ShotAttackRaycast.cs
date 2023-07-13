@@ -1,4 +1,3 @@
-using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
@@ -17,7 +16,7 @@ public class ShotAttackRaycast : AttackSystem
     public float forceAmount = 10.0f; // Amount of force to add to the object
     public float attackRange = 50.0f;
 
-    private float timer;
+    private float timer = 0f;
 
     public Transform shotPos;
 
@@ -35,9 +34,11 @@ public class ShotAttackRaycast : AttackSystem
 
     private void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer > (spawnInterval / 4))
+        if (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+        }
+        if (timer <= (spawnInterval * 3f / 4f))
         {
             bulletTrail.SetActive(false);
         }
@@ -45,25 +46,22 @@ public class ShotAttackRaycast : AttackSystem
 
     public override void Attack(string tragetTag)
     {
-
         if (OneBulletPerPress)
         {
             RaycastAttack();
         }
         else
         {
-
-            if (timer > spawnInterval)
+            if (timer <= 0f)
             {
                 bulletTrail.SetActive(true);
-                Debug.Log("Raycast");
+                // Debug.Log("Raycast");
                 RaycastAttack();
-                timer = 0f;
+                timer = spawnInterval;
             }
         }
         //atackElement.GetComponent<AttackElement>().SetAttackTargetTag(tragetTag);
         //this.CloseAttackStart();
-
     }
 
     void RaycastAttack()
@@ -87,31 +85,32 @@ public class ShotAttackRaycast : AttackSystem
         //    }
         //}
 
-        Debug.Log("Raycast2");
+        // Debug.Log("Raycast2");
 
         RaycastHit2D hit = Physics2D.Raycast(shotPos.position, shotPos.right, attackRange);
         Debug.DrawRay(shotPos.position, shotPos.right * attackRange, Color.red, 10.0f);
 
-        
-
         // Check if the ray hit something
         if (hit.collider != null)
         {
-            Debug.Log("Raycast3");
+            // Debug.Log("Raycast3");
 
-            Debug.Log(hit.transform.name);
-            // Check if the object hit has the tag "Enemy"
+            // Debug.Log(hit.transform.name);
+            // When there is a hit, issue an event based on the tag of the hit object.
             if (hit.collider.tag == "Enemie")
             {
-                // Get the Health component and call ChangeHealth
-                Health enemyHealth = hit.collider.GetComponent<Health>();
-                if (enemyHealth != null)
-                {
-                    Debug.Log("Raycast4");
-                    enemyHealth.ChangeHealth(-damageSystem.damage);
-                }
+                hit.collider.GetComponent<EnemyEventManager>().DealDamageEnemy(damageSystem.GetDamage());
+            }
+            else if (hit.collider.tag == "Player")
+            {
+                
+            }
+            else if (hit.collider.tag == "BodyPart")
+            {
+                hit.collider.GetComponent<BodyPart>().TakeDamage(damageSystem.GetDamage());
             }
         }
+    }
 
         //public override void StopAttack()
         //{
@@ -133,5 +132,4 @@ public class ShotAttackRaycast : AttackSystem
         //{
         //    atackElement.SetActive(false);
         //}
-    }
 }

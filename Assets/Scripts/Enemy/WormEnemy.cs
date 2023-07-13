@@ -5,7 +5,7 @@ using UnityEngine;
 public class WormEnemy : Enemy
 {
     private WormBehavior wormBehavior;
-    private float maxHealth = 100f;
+    public float maxHealth = 100f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -15,9 +15,8 @@ public class WormEnemy : Enemy
         wormBehavior = GetComponent<WormBehavior>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Die()
     {
-        
+        wormBehavior.SwitchMode("dead");
     }
 }

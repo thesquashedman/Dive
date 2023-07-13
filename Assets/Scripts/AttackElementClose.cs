@@ -7,13 +7,21 @@ public class AttackElementClose : AttackElement
 
     public float attackRange; // Example: range within which attack is effective
 
-    public float attackPeriod = 2;
-    public float attackPeriodTimer = 0;
+    public float attackPeriod = 2f;
+    private float attackPeriodTimer = 0f;
 
     // Optionally, create a constructor for the subclass
     public AttackElementClose(AttackSystem attackSystem, float attackRange) : base(attackSystem)
     {
         this.attackRange = attackRange;
+    }
+
+    void Update()
+    {
+        if (attackPeriodTimer > 0f)
+        {
+            attackPeriodTimer -= Time.deltaTime;
+        }
     }
 
 
@@ -23,21 +31,31 @@ public class AttackElementClose : AttackElement
         return Vector3.Distance(transform.position, targetPosition) <= attackRange;
     }
 
-
+    // When there is a collision, issue an event based on the tag of the collided object.
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(tragetTag))
+        if (attackPeriodTimer <= 0f)
         {
-            attackPeriodTimer += Time.deltaTime;
-            if (attackPeriodTimer > attackPeriod) {
-                int damage = attackSystem.damageSystem.GetDamage();
-                damage *= -1;
-                other.gameObject.GetComponent<Health>().ChangeHealth(damage);
-
-                attackPeriodTimer = 0;
+            if (other.gameObject.CompareTag(tragetTag))
+            {
+                if (other.gameObject.tag == "Enemie")
+                {
+                    other.gameObject.GetComponent<EnemyEventManager>().DealDamageEnemy(attackSystem.damageSystem.GetDamage());
+                    attackPeriodTimer = attackPeriod;
+                }
+                else if (other.gameObject.tag == "Player")
+                {
+                
+                }
             }
-
+            else
+            {
+                if (tragetTag == "Enemie" && other.gameObject.tag == "BodyPart")
+                {
+                    other.gameObject.GetComponent<BodyPart>().TakeDamage(attackSystem.damageSystem.GetDamage());
+                    attackPeriodTimer = attackPeriod;
+                }
+            }
         }
     }
-
 }

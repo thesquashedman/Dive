@@ -42,75 +42,91 @@ public class EelBehavior : FishEnemyBehavior
 
     protected override void FixedUpdate()
     {
-        if (mode == "attack")
+        if (mode != "dead")
         {
-            CheckAttackRange();
-            CheckShined();
-        }
-        else if (mode == "coolDown")
-        {
-            StayAround();
-            CheckShined();
-        }
-        else if (mode == "runAway")
-        {
-            RunAway();
-        }
-        else if (mode == "wander")
-        {
-            Wander();
-            CheckShined();
-        }
-        else if (mode == "idle")
-        {
-            Idle();
-            CheckAttackRange();
+            if (mode == "attack")
+            {
+                CheckAttackRange();
+                CheckShined();
+            }
+            else if (mode == "coolDown")
+            {
+                StayAround();
+                CheckShined();
+            }
+            else if (mode == "runAway")
+            {
+                RunAway();
+            }
+            else if (mode == "wander")
+            {
+                Wander();
+                CheckShined();
+            }
+            else if (mode == "idle")
+            {
+                Idle();
+                CheckAttackRange();
+            }
         }
     }
 
     // This function acts as the common interface for switching the action mode
     // of the eel.
-    protected override void SwitchMode(string newMode)
+    public override void SwitchMode(string newMode)
     {
-        if (newMode == "attack")
+        if (mode != "dead")
         {
-            mode = "attack";
-            aiPath.speed = speed;
-            aiPath.target = player.transform;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = rotationSpeed;
-        }
-        else if (newMode == "coolDown")
-        {
-            mode = "coolDown";
-            aiPath.speed = 0;
-            aiPath.target = player.transform;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = rotationSpeed;
-        }
-        else if (newMode == "runAway")
-        {
-            mode = "runAway";
-            aiPath.speed = runAwaySpeed;
-            aiPath.target = targetObject.transform;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = runAwayRotationSpeed;
-        }
-        else if (newMode == "wander")
-        {
-            mode = "wander";
-            aiPath.speed = wanderingSpeed;
-            aiPath.target = null;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = rotationSpeed;
-        }
-        else if (newMode == "idle")
-        {
-            mode = "idle";
-            aiPath.speed = returningSpeed;
-            aiPath.target = habitat.transform;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = rotationSpeed;
+            if (newMode == "attack")
+            {
+                mode = "attack";
+                aiPath.speed = speed;
+                aiPath.target = player.transform;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = rotationSpeed;
+            }
+            else if (newMode == "coolDown")
+            {
+                mode = "coolDown";
+                aiPath.speed = 0;
+                aiPath.target = player.transform;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = rotationSpeed;
+            }
+            else if (newMode == "runAway")
+            {
+                mode = "runAway";
+                aiPath.speed = runAwaySpeed;
+                aiPath.target = targetObject.transform;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = runAwayRotationSpeed;
+            }
+            else if (newMode == "wander")
+            {
+                mode = "wander";
+                aiPath.speed = wanderingSpeed;
+                aiPath.target = null;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = rotationSpeed;
+            }
+            else if (newMode == "idle")
+            {
+                mode = "idle";
+                aiPath.speed = returningSpeed;
+                aiPath.target = habitat.transform;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = rotationSpeed;
+            }
+            else if (newMode == "dead")
+            {
+                mode = "dead";
+                aiPath.speed = 0f;
+                aiPath.target = null;
+                aiPath.enableRotation = false;
+                aiPath.rotationSpeed = 0f;
+
+                rigidbody.gravityScale = gravityScale;
+            }
         }
     }
 

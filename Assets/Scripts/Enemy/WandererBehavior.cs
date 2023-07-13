@@ -13,40 +13,44 @@ public class WandererBehavior : FishEnemyBehavior
     // Variables for idling.
     private float idleTimer = 0f;
     private float idleTime = 0f;
+    public float idleIntervalLowerBound = 3f;
+    public float idleIntervalUpperBound = 5f;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        idleTime = Random.Range(3f, 5f);
+        idleTime = Random.Range(idleIntervalLowerBound, idleIntervalUpperBound);
         base.Start();
         SwitchMode("wander");
     }
 
     protected override void FixedUpdate()
     {
-        if (mode == "attack")
+        if (mode != "dead")
         {
-            CheckAttackRange();
+            if (mode == "attack")
+            {
+                CheckAttackRange();
+            }
+            else if (mode == "coolDown")
+            {
+                CoolDown();
+            }
+            else if (mode == "runAway")
+            {
+                RunAway();
+            }
+            else if (mode == "wander")
+            {
+                Wander();
+                CheckAttackRange();
+            }
+            else if (mode == "idle")
+            {
+                Idle();
+                CheckAttackRange();
+            }
         }
-        else if (mode == "coolDown")
-        {
-            CoolDown();
-        }
-        else if (mode == "runAway")
-        {
-            RunAway();
-        }
-        else if (mode == "wander")
-        {
-            Wander();
-            CheckAttackRange();
-        }
-        else if (mode == "idle")
-        {
-            Idle();
-            CheckAttackRange();
-        }
-        //Debug.Log(aiPath.reachedEndOfPath);
     }
 
     // This function checks whether the player is within this wanderer's attack range. If the player
@@ -88,7 +92,7 @@ public class WandererBehavior : FishEnemyBehavior
         idleTimer += Time.deltaTime;
         if (idleTimer >= idleTime)
         {
-            idleTime = Random.Range(3f, 5f);
+            idleTime = Random.Range(idleIntervalLowerBound, idleIntervalUpperBound);
             SwitchMode("wander");
         }
     }
