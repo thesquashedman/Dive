@@ -7,19 +7,17 @@ public class CloseAttack : AttackSystem
     public bool attackOnce;
     public float damagePeriods;
 
-    public GameObject atackElement;
-
+    public GameObject attackElement;
     //private AttackElement attackElement;
 
     private void Start()
     {
-        atackElement.SetActive(false);
+        attackElement.SetActive(false);
     }
 
     public override void Attack(string tragetTag) {
-        atackElement.GetComponent<AttackElement>().SetAttackTargetTag(tragetTag);
+        attackElement.GetComponent<AttackElement>().SetAttackTargetTag(tragetTag);
         this.CloseAttackStart();
-        
     }
 
     public override void StopAttack()
@@ -30,16 +28,16 @@ public class CloseAttack : AttackSystem
     public void CloseAttackStart()
     {
         // Debug.Log("AAAAAAAAA");
-        atackElement.SetActive(true);
+        attackElement.SetActive(true);
     }
 
     public void CloseAttackEnd()
     {
-        atackElement.SetActive(false);
+        attackElement.SetActive(false);
     }
 
     public void CloseAttackFinsih()
     {
-        atackElement.SetActive(false);
+        attackElement.SetActive(false);
     }
 }

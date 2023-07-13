@@ -65,11 +65,19 @@ public class PavelPlayerController : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
+                EventManager.current.PlayerSwitchWeapon("Unequipped");
+            }
+            else if(Input.GetKeyDown(KeyCode.Alpha2))
+            {
                 EventManager.current.PlayerSwitchWeapon("Saw");
             }
-            if(Input.GetKeyDown(KeyCode.Alpha2))
+            else if(Input.GetKeyDown(KeyCode.Alpha3))
             {
-                EventManager.current.PlayerSwitchWeapon("Unequip");
+                EventManager.current.PlayerSwitchWeapon("ProjectileGun");
+            }
+            else if(Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                EventManager.current.PlayerSwitchWeapon("RaycastGun");
             }
         }
         
@@ -131,13 +139,13 @@ public class PavelPlayerController : MonoBehaviour
         
 
         
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             
             PavelPlayerSettingStates.current.isMoving = true;
             EventManager.current.PlayerStartMove();
         }
-        if(Input.GetKeyUp(KeyCode.Space))
+        if(Input.GetKeyUp(KeyCode.Mouse0))
         {
             PavelPlayerSettingStates.current.isMoving = false;
             EventManager.current.PlayerStopMove();

@@ -9,7 +9,7 @@ public class ElectricSaw : Weapon
     public override void Attack()
     {
         // Logic specific to the sword attack
-        Debug.Log(weaponName + " slashes with " + damage + " damage!");
+        // Debug.Log(weaponName + " slashes with " + damage + " damage!");
     }
 
     // Override the SpecialAttack method for Sword
