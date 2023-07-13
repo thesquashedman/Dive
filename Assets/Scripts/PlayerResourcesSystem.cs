@@ -19,6 +19,24 @@ public class PlayerResourcesSystem : MonoBehaviour
 
     public int[] weapons; // This can represent slots for weapons, number of slots depends on the length of the array
 
+    //Singleton instance
+    public static PlayerResourcesSystem current;
+
+    private void Awake()
+    {
+        Debug.Log("PlayerResourcesSystem Active.");
+        //Singleton pattern
+        if (current != null && current != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            current = this;
+            //Debug.Log("EventManager Active.");
+        }
+    }
+
     // You can add a constructor to initialize your variables if needed
     public PlayerResourcesSystem(int staminaMax, int staminaCur, int bullets1, int bullets2, int bullets3, int bombs, int hpKit, int numWeaponSlots)
     {
