@@ -121,6 +121,17 @@ public class EventManager : MonoBehaviour
     }
 
     ///<summary>
+    ///Triggers when a task is completed in the level.
+    ///Uses an name-based system to determine which systems should be alerted.
+    ///</summary>
+    public event Action<string> onTaskCompleted;
+
+    ///<summary>
+    ///Trigger to complete a task by name.
+    ///</summary>
+    public void taskCompleted(string id) {
+        onTaskCompleted?.Invoke(id);
+    }
     ///Add functions to trigger when the player attacks
     ///</summary>
     public event Action onPlayerAttack;
