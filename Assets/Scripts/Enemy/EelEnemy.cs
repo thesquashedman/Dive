@@ -19,6 +19,7 @@ public class EelEnemy : Enemy
     {
         if (objectID == gameObject.GetInstanceID())
         {
+            base.Die(objectID);
             eelBehavior.SwitchMode("dead");
         }
     }

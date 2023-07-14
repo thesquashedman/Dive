@@ -19,6 +19,7 @@ public class WandererEnemy : Enemy
     {
         if (objectID == gameObject.GetInstanceID())
         {
+            base.Die(objectID);
             wandererBehavior.SwitchMode("dead");
         }
     }

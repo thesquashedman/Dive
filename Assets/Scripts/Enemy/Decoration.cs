@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormEnemy : Enemy
+public class Decoration : Enemy
 {
-    private WormBehavior wormBehavior;
-    public float maxHealth = 100f;
+    public float maxHealth = 50f;
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected virtual void Start()
     {
         base.Start();
         health.SetMaxHealth(maxHealth);
-        wormBehavior = GetComponent<WormBehavior>();
     }
 
     protected override void Die(int objectID)
@@ -20,7 +18,7 @@ public class WormEnemy : Enemy
         if (objectID == gameObject.GetInstanceID())
         {
             base.Die(objectID);
-            wormBehavior.SwitchMode("dead");
+            Destroy(gameObject);
         }
     }
 }

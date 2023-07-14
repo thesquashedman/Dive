@@ -34,5 +34,11 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Die(int objectID)
     {
+        if (objectID == gameObject.GetInstanceID())
+        {
+            // Unsubscribe to events.
+            EventManager.current.onDealDamageEnemy -= DecreaseHealth;
+            EventManager.current.onEnemyDeath -= Die;
+        }
     }
 }

@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 169019182294113301}
   - component: {fileID: 5147130219471257163}
   - component: {fileID: 2397187381683885368}
-  - component: {fileID: 3054873359383670768}
-  - component: {fileID: 2737596926848325688}
-  - component: {fileID: 8922939287889767504}
+  - component: {fileID: 2328518619668564446}
+  - component: {fileID: 19576886194655552}
   m_Layer: 7
   m_Name: Seaweed (Destroyable)
   m_TagString: Enemie
@@ -163,19 +162,7 @@ PolygonCollider2D:
       - {x: 0.42, y: -0.22999999}
       - {x: 0.42, y: -0.049999997}
   m_UseDelaunayMesh: 0
---- !u!114 &3054873359383670768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6783910462168157684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363dd178af5149148aadbc068d839848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2737596926848325688
+--- !u!114 &2328518619668564446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
---- !u!114 &8922939287889767504
+--- !u!114 &19576886194655552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,6 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6783910462168157684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7587fbac78cb6644b81db46b37cc682b, type: 3}
+  m_Script: {fileID: 11500000, guid: 03dccde0f1320a34793820a76d3fb609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
