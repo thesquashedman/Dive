@@ -17,7 +17,6 @@ public class Decoration : Enemy
     {
         if (objectID == gameObject.GetInstanceID())
         {
-            base.Die(objectID);
             Destroy(gameObject);
         }
     }
