@@ -20,7 +20,11 @@ public class WandererAnimationController : MonoBehaviour
         string mode = wandererBehavior.GetMode();
 
         // Set the animator's parameters based on the current mode of this wanderer.
-        if (isMoving && mode == "idle")
+        if (mode == "dead" && animator.speed != 0f)
+        {
+            animator.speed = 0f;
+        }
+        else if (isMoving && mode == "idle")
         {
             animator.SetBool("isMoving", false);
         }

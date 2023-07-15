@@ -7,6 +7,10 @@ public class WandererBehavior : FishEnemyBehavior
     // The radius within which this wanderer will attack the player.
     public float attackRange = 10f;
 
+    // Public variables for pathfinding.
+    public float attackSpeed = 5f;
+    public float pathfindingRotationSpeed = 250f;
+
     // Variables for attacking.
     public bool hostile = true;
     public bool activeChase = true;
@@ -21,6 +25,8 @@ public class WandererBehavior : FishEnemyBehavior
     // Start is called before the first frame update
     protected override void Start()
     {
+        speed = attackSpeed;
+        rotationSpeed = pathfindingRotationSpeed;
         idleTime = Random.Range(idleIntervalLowerBound, idleIntervalUpperBound);
         base.Start();
         SwitchMode("wander");

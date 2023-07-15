@@ -9269,8 +9269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67defcab66ff844ca4bfe2773d50165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowerAngle: 90
-  upperAngle: 270
+  lowerAngle: 180
+  upperAngle: 360
 --- !u!1 &933927392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7383663903049251154, guid: 78c61b6bac0a7c949a62f44edea3a72c, type: 3}
@@ -22595,6 +22595,8 @@ MonoBehaviour:
   wanderingAreaHeight: 2
   wanderingSpeed: 5
   attackRange: 10
+  attackSpeed: 30
+  pathfindingRotationSpeed: 250
   hostile: 1
   activeChase: 1
   chaseRange: 60

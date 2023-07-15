@@ -30,7 +30,7 @@ public class FlipX : MonoBehaviour
             else
                 transform.localScale = new Vector3(1, 1, 1);
         }
-        Debug.Log(transform.eulerAngles.z);
+        // Debug.Log(transform.eulerAngles);
         
     }
 }
