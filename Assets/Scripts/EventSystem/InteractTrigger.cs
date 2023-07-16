@@ -18,7 +18,7 @@ the entity should have both a RigidBody and a collider.
 public class ObjTrigger : MonoBehaviour
 {
     //If another object is within the area
-    private bool withinArea = false;
+    protected bool withinArea = false;
     
     //Object id
     public int id;
