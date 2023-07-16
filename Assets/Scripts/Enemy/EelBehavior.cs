@@ -30,6 +30,12 @@ public class EelBehavior : FishEnemyBehavior
     // Variables for returning to this eel's habitat and staying idle.
     private float returningSpeed = 5f;
 
+    // Variables related to blood particles.
+    public GameObject bloodParticlesPrefab;
+    private ParticleSystem bloodParticles = null;
+    private float bloodExistTimer = 0f;
+    public float bloodExistTime = 60f;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -71,6 +77,10 @@ public class EelBehavior : FishEnemyBehavior
                 Idle();
                 CheckAttackRange();
             }
+        }
+        else
+        {
+            BloodParticlesUpdate();
         }
     }
 
@@ -130,6 +140,12 @@ public class EelBehavior : FishEnemyBehavior
 
                 rigidbody.gravityScale = gravityScale;
                 tail.enableWiggle = false;
+
+                // Set up the blood particles.
+                GameObject temp = Instantiate(bloodParticlesPrefab);
+                temp.transform.position = transform.position;
+                temp.transform.parent = transform;
+                bloodParticles = temp.GetComponent<ParticleSystem>();
             }
         }
     }
@@ -245,6 +261,20 @@ public class EelBehavior : FishEnemyBehavior
             if (hit.collider != null)
             {
                 SwitchMode("attack");
+            }
+        }
+    }
+
+    // This function stops the blood particles after a certain amount of time.
+    protected void BloodParticlesUpdate()
+    {
+        if (bloodParticles != null && bloodParticles.isEmitting)
+        {
+            bloodExistTimer += Time.deltaTime;
+            if (bloodExistTimer >= bloodExistTime)
+            {
+                bloodParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                bloodParticles = null;
             }
         }
     }
