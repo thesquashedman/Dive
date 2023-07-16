@@ -406,6 +406,8 @@ MonoBehaviour:
   tail: {fileID: 1357748615949235868}
   attackRange: 30
   targetPrefab: {fileID: 469781921645605433, guid: 6cd08efff24528b42a70fc9a827f881b, type: 3}
+  bloodParticlesPrefab: {fileID: 6906312204478914072, guid: f370e76661d06d043bca57f1cdb606e1, type: 3}
+  bloodExistTime: 60
 --- !u!1 &3144665877113590191
 GameObject:
   m_ObjectHideFlags: 0
