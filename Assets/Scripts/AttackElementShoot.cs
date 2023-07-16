@@ -7,8 +7,8 @@ public class AttackElementShoot : AttackElement
 
     public float attackRange; // Example: range within which attack is effective
 
-    public float attackPeriod = 2;
-    public float attackPeriodTimer = 0;
+    public float attackPeriod = 2f;
+    private float attackPeriodTimer = 0f;
 
     private void Start()
     {
@@ -29,17 +29,30 @@ public class AttackElementShoot : AttackElement
         return Vector3.Distance(transform.position, targetPosition) <= attackRange;
     }
 
-
+    // When there is a collision, issue an event based on the tag of the collided object.
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag(tragetTag))
         {
-            Debug.Log("Attack");
-            int damage = attackSystem.damageSystem.GetDamage();
-            damage *= -1;
-            other.gameObject.GetComponent<Health>().ChangeHealth(damage);
+            if (other.gameObject.tag == "Enemie")
+            {
+                EventManager.current.DealDamageEnemy(other.gameObject.GetInstanceID(), attackSystem.damageSystem.GetDamage());
+            }
+            else if (other.gameObject.tag == "Player")
+            {
+                
+            }
         }
-        if ((other.gameObject.tag != "Player") && (other.gameObject.tag  != "Bullet")) {
+        else
+        {
+            if (tragetTag == "Enemie" && other.gameObject.tag == "BodyPart")
+            {
+                other.gameObject.GetComponent<BodyPart>().TakeDamage(attackSystem.damageSystem.GetDamage());
+            }
+        }
+
+        if ((other.gameObject.tag != "Bullet"))
+        {
             Destroy(this.gameObject);
         }
     }

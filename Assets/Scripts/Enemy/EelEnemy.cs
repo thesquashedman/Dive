@@ -5,7 +5,7 @@ using UnityEngine;
 public class EelEnemy : Enemy
 {
     private EelBehavior eelBehavior;
-    private float maxHealth = 10f;
+    private float maxHealth = 20f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -15,9 +15,12 @@ public class EelEnemy : Enemy
         eelBehavior = GetComponent<EelBehavior>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Die(int objectID)
     {
-        
+        if (objectID == gameObject.GetInstanceID())
+        {
+            base.Die(objectID);
+            eelBehavior.SwitchMode("dead");
+        }
     }
 }
