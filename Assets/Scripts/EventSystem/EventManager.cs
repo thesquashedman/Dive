@@ -192,6 +192,7 @@ public class EventManager : MonoBehaviour
         onPlayerStopAiming?.Invoke();
     }
 
+
     ///<summary>
     ///Add functions to trigger when the player stops moving
     ///</summary>
