@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: aafd897eac5464a77a5d7cc53d6d27e6
+  - enabled: 1
+    path: Assets/Scenes/LoadingScreen.unity
+    guid: 5ab0601f97891b24db30f33af1c79240
+  - enabled: 1
+    path: Assets/Scenes/Prot5(Mikhail) 3.unity
+    guid: e7fd29509a4ede14787a1e22fa6d85d0
   m_configObjects: {}
