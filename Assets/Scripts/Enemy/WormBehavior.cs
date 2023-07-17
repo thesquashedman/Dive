@@ -11,6 +11,14 @@ public class WormBehavior : FishEnemyBehavior
     // The estimated length of this worm.
     public float wormLength = 30f;
 
+    // The bones of this worm.
+    public List<GameObject> bodyBones = new List<GameObject>();
+    public List<GameObject> jawBones = new List<GameObject>();
+
+    // The prefabs for the colliders of this worm.
+    public GameObject bodyColliderPrefab;
+    public GameObject jawColliderPrefab;
+
     // Variables for attacking.
     public float attackSpeed = 25f;
 
@@ -33,6 +41,24 @@ public class WormBehavior : FishEnemyBehavior
         initialPosition = transform.parent.transform.position;
         transform.position = habitat.transform.position;
         SwitchMode("idle");
+
+        // Set up the colliders for this worm.
+        int wormID = gameObject.GetInstanceID();
+        for (int i = 0; i < bodyBones.Count; i++)
+        {
+            GameObject temp = Instantiate(bodyColliderPrefab);
+            temp.transform.position = bodyBones[i].transform.position;
+            temp.transform.parent = bodyBones[i].transform;
+            temp.GetComponent<BodyPart>().enemyID = wormID;
+        }
+
+        for (int i = 0; i < jawBones.Count; i++)
+        {
+            GameObject temp = Instantiate(jawColliderPrefab);
+            temp.transform.position = jawBones[i].transform.position;
+            temp.transform.parent = jawBones[i].transform;
+            temp.GetComponent<BodyPart>().enemyID = wormID;
+        }
     }
 
     protected override void FixedUpdate()

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2599112681779694958
+--- !u!1 &8137621382065665780
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4304516847875399882}
-  - component: {fileID: 2794011281761335518}
-  - component: {fileID: 1875588630882846734}
+  - component: {fileID: 1757642736230797802}
+  - component: {fileID: 6918750412488334729}
+  - component: {fileID: 8254284972560919782}
   m_Layer: 11
-  m_Name: WormBodyCollider
+  m_Name: WormJawCollider
   m_TagString: BodyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4304516847875399882
+--- !u!4 &1757642736230797802
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2599112681779694958}
+  m_GameObject: {fileID: 8137621382065665780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &2794011281761335518
-CircleCollider2D:
+--- !u!60 &6918750412488334729
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2599112681779694958}
+  m_GameObject: {fileID: 8137621382065665780}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -66,15 +66,30 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.5
---- !u!114 &1875588630882846734
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.2139502, y: 0.5639267}
+      - {x: -3.2991858, y: -0.059978694}
+      - {x: -2.3488822, y: -0.7587012}
+      - {x: 0.6213299, y: -0.80901694}
+      - {x: 0.66592693, y: 0.44319528}
+  m_UseDelaunayMesh: 0
+--- !u!114 &8254284972560919782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2599112681779694958}
+  m_GameObject: {fileID: 8137621382065665780}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59e33711f85d9a44e828ccceaea33f09, type: 3}
