@@ -121,6 +121,17 @@ public class EventManager : MonoBehaviour
     }
 
     ///<summary>
+    ///Triggers when a task is completed in the level.
+    ///Uses an name-based system to determine which systems should be alerted.
+    ///</summary>
+    public event Action<string> onTaskCompleted;
+
+    ///<summary>
+    ///Trigger to complete a task by name.
+    ///</summary>
+    public void taskCompleted(string id) {
+        onTaskCompleted?.Invoke(id);
+    }
     ///Add functions to trigger when the player attacks
     ///</summary>
     public event Action onPlayerAttack;
@@ -169,46 +180,87 @@ public class EventManager : MonoBehaviour
     }
 
     ///<summary>
-    ///Add functions to trigger when the player moves
+    ///Add functions to trigger when the player aims
     ///</summary>
     public event Action onPlayerStartAiming;
 
     ///<summary>
-    ///Trigger player's movement
+    ///Trigger player's aiming
     ///</summary>
     public void PlayerStartAiming() {
         onPlayerStartAiming?.Invoke();
     }
 
     ///<summary>
-    ///Add functions to trigger when the player stops moving
+    ///Add functions to trigger when the player stops aiming
     ///</summary>
     public event Action onPlayerStopAiming;
 
     ///<summary>
-    ///Trigger player to stop moving
+    ///Trigger player to stop aiming
     ///</summary>
     public void PlayerStopAiming() {
         onPlayerStopAiming?.Invoke();
     }
 
+
     ///<summary>
-    ///Add functions to trigger when the player stops moving
+    ///Add functions to trigger when the player switches weapons
     ///</summary>
     public event Action<string> onPlayerSwitchWeapon;
 
     ///<summary>
-    ///Trigger player to stop moving
+    ///Trigger player to switch weapons
     ///</summary>
     public void PlayerSwitchWeapon(string weaponName) {
         onPlayerSwitchWeapon?.Invoke(weaponName);
     }
 
 
+    ///<summary>
+    ///Add functions to trigger when the player switches weapons
+    ///</summary>
+    public event Action onPlayerinteract;
 
-    
-    
-    
+    ///<summary>
+    ///Trigger player to switch weapons
+    ///</summary>
+    public void PlayerInteract() {
+        onPlayerinteract?.Invoke();
+    }
 
-    
+    // Add functions to trigger when the enemy receives damage.
+    public event Action<int, float> onDealDamageEnemy;
+
+    ///<summary>
+    /// This function invokes an event to deal with the situation
+    /// in which the enemy takes damage.
+    ///</summary>
+    public void DealDamageEnemy(int objectID, float damage)
+    {
+        onDealDamageEnemy?.Invoke(objectID, damage);
+    }
+
+    // Add functions to trigger when the enemy dies.
+    public event Action<int> onEnemyDeath;
+
+    ///<summary>
+    /// This functions invokes an event to deal with the death of the enemy.
+    ///</summary>
+    public void EnemyDeath(int objectID)
+    {
+        onEnemyDeath?.Invoke(objectID);
+    }
+
+    // Add functions to trigger when the enemy starts attacking.
+    public event Action<int> onEnemyAttack;
+
+    ///<summary>
+    /// This functions invokes an event to indicate that the enemy starts attacking.
+    /// This event should only be triggered once for each attack attempt.
+    ///</summary>
+    public void EnemyAttack(int objectID)
+    {
+        onEnemyAttack?.Invoke(objectID);
+    }
 }

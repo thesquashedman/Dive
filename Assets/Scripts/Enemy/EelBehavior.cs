@@ -5,6 +5,9 @@ using UnityEngine;
 public class EelBehavior : FishEnemyBehavior
 {
     public GameObject playerHeadlight;
+
+    // References to other components.
+    public Tail tail;
     
     // Variables that define the range of the player's headlight.
     private float headlightAngle;
@@ -27,6 +30,12 @@ public class EelBehavior : FishEnemyBehavior
     // Variables for returning to this eel's habitat and staying idle.
     private float returningSpeed = 5f;
 
+    // Variables related to blood particles.
+    public GameObject bloodParticlesPrefab;
+    private ParticleSystem bloodParticles = null;
+    private float bloodExistTimer = 0f;
+    public float bloodExistTime = 60f;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -42,75 +51,102 @@ public class EelBehavior : FishEnemyBehavior
 
     protected override void FixedUpdate()
     {
-        if (mode == "attack")
+        if (mode != "dead")
         {
-            CheckAttackRange();
-            CheckShined();
+            if (mode == "attack")
+            {
+                CheckAttackRange();
+                CheckShined();
+            }
+            else if (mode == "coolDown")
+            {
+                StayAround();
+                CheckShined();
+            }
+            else if (mode == "runAway")
+            {
+                RunAway();
+            }
+            else if (mode == "wander")
+            {
+                Wander();
+                CheckShined();
+            }
+            else if (mode == "idle")
+            {
+                Idle();
+                CheckAttackRange();
+            }
         }
-        else if (mode == "coolDown")
+        else
         {
-            StayAround();
-            CheckShined();
-        }
-        else if (mode == "runAway")
-        {
-            RunAway();
-        }
-        else if (mode == "wander")
-        {
-            Wander();
-            CheckShined();
-        }
-        else if (mode == "idle")
-        {
-            Idle();
-            CheckAttackRange();
+            BloodParticlesUpdate();
         }
     }
 
     // This function acts as the common interface for switching the action mode
     // of the eel.
-    protected override void SwitchMode(string newMode)
+    public override void SwitchMode(string newMode)
     {
-        if (newMode == "attack")
+        if (mode != "dead")
         {
-            mode = "attack";
-            aiPath.speed = speed;
-            aiPath.target = player.transform;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = rotationSpeed;
-        }
-        else if (newMode == "coolDown")
-        {
-            mode = "coolDown";
-            aiPath.speed = 0;
-            aiPath.target = player.transform;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = rotationSpeed;
-        }
-        else if (newMode == "runAway")
-        {
-            mode = "runAway";
-            aiPath.speed = runAwaySpeed;
-            aiPath.target = targetObject.transform;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = runAwayRotationSpeed;
-        }
-        else if (newMode == "wander")
-        {
-            mode = "wander";
-            aiPath.speed = wanderingSpeed;
-            aiPath.target = null;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = rotationSpeed;
-        }
-        else if (newMode == "idle")
-        {
-            mode = "idle";
-            aiPath.speed = returningSpeed;
-            aiPath.target = habitat.transform;
-            aiPath.enableRotation = true;
-            aiPath.rotationSpeed = rotationSpeed;
+            if (newMode == "attack")
+            {
+                mode = "attack";
+                aiPath.speed = speed;
+                aiPath.target = player.transform;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = rotationSpeed;
+            }
+            else if (newMode == "coolDown")
+            {
+                mode = "coolDown";
+                aiPath.speed = 0;
+                aiPath.target = player.transform;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = rotationSpeed;
+            }
+            else if (newMode == "runAway")
+            {
+                mode = "runAway";
+                aiPath.speed = runAwaySpeed;
+                aiPath.target = targetObject.transform;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = runAwayRotationSpeed;
+            }
+            else if (newMode == "wander")
+            {
+                mode = "wander";
+                aiPath.speed = wanderingSpeed;
+                aiPath.target = null;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = rotationSpeed;
+            }
+            else if (newMode == "idle")
+            {
+                mode = "idle";
+                aiPath.speed = returningSpeed;
+                aiPath.target = habitat.transform;
+                aiPath.enableRotation = true;
+                aiPath.rotationSpeed = rotationSpeed;
+            }
+            else if (newMode == "dead")
+            {
+                mode = "dead";
+                aiPath.speed = 0f;
+                aiPath.target = null;
+                aiPath.enableRotation = false;
+                aiPath.rotationSpeed = 0f;
+
+                rigidbody.gravityScale = gravityScale;
+                tail.enableWiggle = false;
+
+                // Set up the blood particles.
+                GameObject temp = Instantiate(bloodParticlesPrefab);
+                temp.transform.position = transform.position;
+                temp.transform.parent = transform;
+                bloodParticles = temp.GetComponent<ParticleSystem>();
+            }
         }
     }
 
@@ -225,6 +261,20 @@ public class EelBehavior : FishEnemyBehavior
             if (hit.collider != null)
             {
                 SwitchMode("attack");
+            }
+        }
+    }
+
+    // This function stops the blood particles after a certain amount of time.
+    protected void BloodParticlesUpdate()
+    {
+        if (bloodParticles != null && bloodParticles.isEmitting)
+        {
+            bloodExistTimer += Time.deltaTime;
+            if (bloodExistTimer >= bloodExistTime)
+            {
+                bloodParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                bloodParticles = null;
             }
         }
     }

@@ -18,7 +18,7 @@ MonoBehaviour:
   useJsonPrettyPrint: 1
   maxSaveSlotCount: 300
   trackTimePlayed: 1
-  autoSaveOnExit: 1
+  autoSaveOnExit: 0
   autoSaveOnSlotSwitch: 1
   saveOnInterval: 0
   saveIntervalTime: 1
