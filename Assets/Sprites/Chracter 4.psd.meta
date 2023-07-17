@@ -114,10 +114,10 @@ ScriptedImporter:
     spriteBone:
     - name: bone_3
       guid: 842a54cf86426ae4884ec9a7196cdfb3
-      position: {x: 129.69814, y: 102.67361, z: 0}
-      rotation: {x: 0, y: 0, z: -0.6547536, w: 0.7558423}
-      length: 192.85406
-      parentId: 1
+      position: {x: 153.9544, y: 57.7323, z: 0}
+      rotation: {x: 0, y: 0, z: 0.005493461, w: 0.9999849}
+      length: 115.6483
+      parentId: -1
       color:
         serializedVersion: 2
         rgba: 4278255360
@@ -3871,10 +3871,10 @@ ScriptedImporter:
         rgba: 4278255615
     - name: bone_3
       guid: 842a54cf86426ae4884ec9a7196cdfb3
-      position: {x: 129.69788, y: 102.673546, z: 0}
-      rotation: {x: 0, y: 0, z: -0.6547536, w: 0.7558424}
-      length: 192.85406
-      parentId: 1
+      position: {x: 444.5772, y: -6.812765, z: 0}
+      rotation: {x: 0, y: 0, z: -0.68683714, w: 0.7268114}
+      length: 115.64828
+      parentId: 0
       color:
         serializedVersion: 2
         rgba: 4278255360
@@ -4127,6 +4127,18 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Windows Store Apps
     overridden: 0
     ignorePlatformSupport: 0
     maxTextureSize: 2048
