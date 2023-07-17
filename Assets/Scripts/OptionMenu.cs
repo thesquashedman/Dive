@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI; 
 
-public class OptionMenu : MonoBehaviour
-{
+public class OptionMenu : MonoBehaviour {
 
-    public AudioMixer musicAudioMixer;
-    public AudioMixer effectAudioMixer;
+    public AudioMixer audioMixer;
+
     public TMPro.TMP_Dropdown resolutionDropdown;
     
     Resolution[] resolutions; 
@@ -29,10 +28,13 @@ public class OptionMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue(); 
     }
-    
-    public void SetMainVolumn(float volumn) {
-        Debug.Log(volumn);
-        // audioMixer.setFloat("mainMixer", volumn);
+
+    public void SetMusicVolumn(float volumn) {
+        audioMixer.SetFloat("Music", volumn);
+    }
+
+    public void SetEffectsVolumn(float volumn) {
+        audioMixer.SetFloat("Effects", volumn);
     }
 
     public void SetFullscreen(bool isFullscreen) {
