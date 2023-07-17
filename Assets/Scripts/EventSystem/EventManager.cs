@@ -180,39 +180,53 @@ public class EventManager : MonoBehaviour
     }
 
     ///<summary>
-    ///Add functions to trigger when the player moves
+    ///Add functions to trigger when the player aims
     ///</summary>
     public event Action onPlayerStartAiming;
 
     ///<summary>
-    ///Trigger player's movement
+    ///Trigger player's aiming
     ///</summary>
     public void PlayerStartAiming() {
         onPlayerStartAiming?.Invoke();
     }
 
     ///<summary>
-    ///Add functions to trigger when the player stops moving
+    ///Add functions to trigger when the player stops aiming
     ///</summary>
     public event Action onPlayerStopAiming;
 
     ///<summary>
-    ///Trigger player to stop moving
+    ///Trigger player to stop aiming
     ///</summary>
     public void PlayerStopAiming() {
         onPlayerStopAiming?.Invoke();
     }
 
+
     ///<summary>
-    ///Add functions to trigger when the player stops moving
+    ///Add functions to trigger when the player switches weapons
     ///</summary>
     public event Action<string> onPlayerSwitchWeapon;
 
     ///<summary>
-    ///Trigger player to stop moving
+    ///Trigger player to switch weapons
     ///</summary>
     public void PlayerSwitchWeapon(string weaponName) {
         onPlayerSwitchWeapon?.Invoke(weaponName);
+    }
+
+
+    ///<summary>
+    ///Add functions to trigger when the player switches weapons
+    ///</summary>
+    public event Action onPlayerinteract;
+
+    ///<summary>
+    ///Trigger player to switch weapons
+    ///</summary>
+    public void PlayerInteract() {
+        onPlayerinteract?.Invoke();
     }
 
     // Add functions to trigger when the enemy receives damage.

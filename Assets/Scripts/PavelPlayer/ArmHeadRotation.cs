@@ -54,18 +54,28 @@ public class ArmHeadRotation : MonoBehaviour
             
             Vector2 direction = PavelPlayerSettingStates.current.aimDirection;
 
-            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             if(!isFlipped)
             {
-                targetAngle += 180;
+                //targetAngle += 180;
             }
             float angle = Mathf.MoveTowardsAngle(head.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
             head.eulerAngles = new Vector3(0, 0, angle);
-            shoulders.eulerAngles = new Vector3(0, 0, angle);
+            float offset = 90;
+            if(isFlipped)
+            {
+                offset *= -1;
+            }
+            shoulders.eulerAngles = new Vector3(0, 0, angle + offset);
         }
         else
         {
-            float targetAngle = 100;
+            float targetAngle = 0;
+
+            if(isFlipped)
+            {
+                targetAngle *= -1;
+            }
             /*
             if(!isFlipped)
             {
@@ -74,8 +84,8 @@ public class ArmHeadRotation : MonoBehaviour
             */
             float angle = Mathf.MoveTowardsAngle(head.localEulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
             head.localEulerAngles = new Vector3(0, 0, angle);
-            float angle2 = Mathf.MoveTowardsAngle(shoulders.localEulerAngles.z, targetAngle - 80, rotationSpeed * Time.deltaTime);
-            shoulders.localEulerAngles = new Vector3(0, 0, angle);
+            float angle2 = Mathf.MoveTowardsAngle(shoulders.localEulerAngles.z, targetAngle + 90, rotationSpeed * Time.deltaTime);
+            shoulders.localEulerAngles = new Vector3(0, 0, angle2);
         }
     }
 }
