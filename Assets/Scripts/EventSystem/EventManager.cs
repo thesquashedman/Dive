@@ -216,6 +216,7 @@ public class EventManager : MonoBehaviour
         onPlayerSwitchWeapon?.Invoke(weaponName);
     }
 
+
     ///<summary>
     ///Add functions to trigger when the player switches weapons
     ///</summary>
