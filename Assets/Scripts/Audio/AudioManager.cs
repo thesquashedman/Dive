@@ -45,14 +45,15 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+
+            bool isLoop = (s.id % 2 == 0);
+            s.source.loop = isLoop;
             
             //Set AudioSource default settings here
-            if(s.id == 0) {
+            if(s.id == 0 || s.id == 1) {
                 s.source.outputAudioMixerGroup = musicGroup;
-                s.source.loop = true;
             } else {
                 s.source.outputAudioMixerGroup = effectGroup;
-                s.source.loop = false;
             }
         }
     }
@@ -67,6 +68,7 @@ public class AudioManager : MonoBehaviour
     {
         //Delete before updating github!!!
         //For demo purposes only
+        /*
         if(Input.GetKeyDown(KeyCode.I)) {
             Play("Explosion");
         } else if(Input.GetKeyDown(KeyCode.O)) {
@@ -78,6 +80,7 @@ public class AudioManager : MonoBehaviour
         } else if(Input.GetKeyDown(KeyCode.L)) {
             Play("Crunch");
         }
+        */
     }
 
     //Given the name of a Sound in the stored list
@@ -91,7 +94,7 @@ public class AudioManager : MonoBehaviour
         }
 
         //Ensures only one music clip can play at once
-        if(s.id == 0) {
+        if(s.id == 0 || s.id == 1) {
             Stop(curr);
 
             curr = name;

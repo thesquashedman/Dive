@@ -13,7 +13,7 @@ public class EntitySound : MonoBehaviour
 {
     //Channels for audio
     //If multiple sounds are to be played, should have multiple channels
-    public List<AudioSource> audios;
+    protected List<AudioSource> audios = new List<AudioSource>();
 
     //Names of sounds to get
     public List<string> audioNames;

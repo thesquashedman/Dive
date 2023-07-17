@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 /*
-Written by Justin.
+Written by Justin. Added to by Pavel, and Po-Lin.
 Class is meant to hold and notify subscribers when events happen 
 for the game. 
 
@@ -263,4 +263,17 @@ public class EventManager : MonoBehaviour
     {
         onEnemyAttack?.Invoke(objectID);
     }
+
+    ///<summary>
+    ///An event to indicate that the enemy has dealt damage to the player
+    ///</summary> 
+    public event Action<int> onEnemyAtkDealt;
+
+    ///<summary>
+    ///Invokes an event to indicate that the enemy has dealt damage to the player
+    ///</summary> 
+    public void EnemyAtkDealt(int objectID) {
+        onEnemyAtkDealt?.Invoke(objectID);
+    }
+
 }
