@@ -16,6 +16,6 @@ public class ElectricSaw : Weapon
     public override void SpecialAttack()
     {
         // Logic specific to the sword's special attack
-        Debug.Log(weaponName + " performs a spinning slash!");
+        // Debug.Log(weaponName + " performs a spinning slash!");
     }
 }
