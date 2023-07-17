@@ -62,12 +62,14 @@ public class Tail : MonoBehaviour
 
         // Instantiate the rigidbodies for the tail. The first rigidbody will be the rigidbody
         // of the head, so there is no need to instantiate it.
+        int objectID = transform.parent.gameObject.GetInstanceID();
         rigidbodies[0] = new GameObject();
         rigidbodies[0].transform.position = transform.position;
         for (int i = 1; i < length; i++)
         {
             rigidbodies[i] = Instantiate(rigidbodyPrefab);
             rigidbodies[i].transform.position = transform.position;
+            rigidbodies[i].GetComponent<BodyPart>().enemyID = objectID;
         }
     }
 

@@ -13,7 +13,7 @@ public class ShotAttack : AttackSystem
     public float spawnInterval = 2.0f; // Time interval in seconds between spawns
     public float forceAmount = 10.0f; // Amount of force to add to the object
 
-    private float timer;
+    private float timer = 0f;
 
     public Transform shotPos;
 
@@ -28,27 +28,25 @@ public class ShotAttack : AttackSystem
 
     private void Update()
     {
-        timer += Time.deltaTime;
+        if (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     public override void Attack(string tragetTag)
     {
-
         if (OneBulletPerPress)
         {
             SpawnObject();
         }
-        else {
-
-            if (timer > spawnInterval)
-            {
-                SpawnObject();
-                timer = 0f;
-            }
+        else if (timer <= 0f)
+        {
+            SpawnObject();
+            timer = spawnInterval;
         }
         //atackElement.GetComponent<AttackElement>().SetAttackTargetTag(tragetTag);
         //this.CloseAttackStart();
-
     }
 
     void SpawnObject()
@@ -60,10 +58,10 @@ public class ShotAttack : AttackSystem
         // Add force to the spawned object
         Rigidbody2D rb = spawnedObject.GetComponent<Rigidbody2D>();
 
-        Debug.Log("BBBBBBBBBBBBBBBBBBBB");
+        // Debug.Log("BBBBBBBBBBBBBBBBBBBB");
         if (rb != null)
         {
-            Debug.Log("CCCCCCCCCCCCCCCCC");
+            // Debug.Log("CCCCCCCCCCCCCCCCC");
             rb.AddForce(transform.right * forceAmount, ForceMode2D.Impulse);
         }
     }

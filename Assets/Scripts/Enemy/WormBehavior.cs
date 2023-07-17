@@ -37,27 +37,30 @@ public class WormBehavior : FishEnemyBehavior
 
     protected override void FixedUpdate()
     {
-        if (mode == "attack")
+        if (mode != "dead")
         {
-            Attack();
-            CheckAttackRange();
-        }
-        else if (mode == "coolDown")
-        {
-            CoolDown();
-        }
-        else if (mode == "runAway")
-        {
-            RunAway();
-        }
-        else if (mode == "wander")
-        {
-            Wander();
-        }
-        else if (mode == "idle")
-        {
-            Idle();
-            CheckAttackRange();
+            if (mode == "attack")
+            {
+                Attack();
+                CheckAttackRange();
+            }
+            else if (mode == "coolDown")
+            {
+                CoolDown();
+            }
+            else if (mode == "runAway")
+            {
+                RunAway();
+            }
+            else if (mode == "wander")
+            {
+                Wander();
+            }
+            else if (mode == "idle")
+            {
+                Idle();
+                CheckAttackRange();
+            }
         }
     }
 

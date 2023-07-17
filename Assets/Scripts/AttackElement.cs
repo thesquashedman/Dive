@@ -36,19 +36,31 @@ public class AttackElement : MonoBehaviour
         // Implement the attack destroy effect logic.
     }
 
-
+    // When there is a collision, issue an event based on the tag of the collided object.
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag(tragetTag))
         {
-            //Debug.Log(other.gameObject.name);
-            attackSystem.ApplyDamage(other.gameObject.GetComponent<Health>());
+            if (other.gameObject.tag == "Enemie")
+            {
+                EventManager.current.DealDamageEnemy(other.gameObject.GetInstanceID(), attackSystem.damageSystem.GetDamage());
+            }
+            else if (other.gameObject.tag == "Player")
+            {
+                
+            }
+        }
+        else
+        {
+            if (tragetTag == "Enemie" && other.gameObject.tag == "BodyPart")
+            {
+                other.gameObject.GetComponent<BodyPart>().TakeDamage(attackSystem.damageSystem.GetDamage());
+            }
         }
     }
 
-    public void SetAttackTargetTag(string tragetTag) {
+    public void SetAttackTargetTag(string tragetTag)
+    {
         this.tragetTag = tragetTag;
     }
-
-
 }
