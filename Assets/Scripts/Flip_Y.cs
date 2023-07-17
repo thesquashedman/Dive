@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flip : MonoBehaviour
+public class FlipY : MonoBehaviour
 {
     //Flip the scale of the object when the players rotation is changed
     // Start is called before the first frame update
