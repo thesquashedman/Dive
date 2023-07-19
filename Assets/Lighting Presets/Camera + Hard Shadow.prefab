@@ -188,7 +188,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 1064960
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8600000, guid: a19ecd34bfc3a0a4484f00ebd6effdbb, type: 2}
   m_TargetDisplay: 0
@@ -294,6 +294,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalLighting: {fileID: 8600000, guid: a19ecd34bfc3a0a4484f00ebd6effdbb, type: 2}
   globalLight: {fileID: 2389968995319604571}
+  lightMax: 1
+  lightMin: 0
+  valueShift: 0.2
   lerpspeed: 0.05
 --- !u!1 &6074144786248671757
 GameObject:
