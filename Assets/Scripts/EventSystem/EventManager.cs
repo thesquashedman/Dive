@@ -231,7 +231,7 @@ public class EventManager : MonoBehaviour
     public event Action<int> onEnemyDeath;
 
     ///<summary>
-    /// This functions invokes an event to deal with the death of the enemy.
+    /// This function invokes an event to deal with the death of the enemy.
     ///</summary>
     public void EnemyDeath(int objectID)
     {
@@ -242,7 +242,7 @@ public class EventManager : MonoBehaviour
     public event Action<int> onEnemyAttack;
 
     ///<summary>
-    /// This functions invokes an event to indicate that the enemy starts attacking.
+    /// This function invokes an event to indicate that the enemy starts attacking.
     /// This event should only be triggered once for each attack attempt.
     ///</summary>
     public void EnemyAttack(int objectID)
