@@ -40,7 +40,6 @@ public class EnemyAttackSystem : MonoBehaviour
     // collided object.
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Player is attacked.");
         if (attackPeriodTimer <= 0f)
         {
             if (other.gameObject.CompareTag(targetTag))
