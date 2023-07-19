@@ -52,7 +52,7 @@ public class AttackElementClose : AttackElement
             {
                 if (tragetTag == "Enemie" && other.gameObject.tag == "BodyPart")
                 {
-                    other.gameObject.GetComponent<BodyPart>().TakeDamage(attackSystem.damageSystem.GetDamage());
+                    EventManager.current.DealDamageEnemy(other.gameObject.GetInstanceID(), attackSystem.damageSystem.GetDamage());
                     attackPeriodTimer = attackPeriod;
                 }
             }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8254284972560919782}
   m_Layer: 11
   m_Name: WormJawCollider
-  m_TagString: BodyPart
+  m_TagString: Enemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

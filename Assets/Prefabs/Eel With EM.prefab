@@ -122,7 +122,7 @@ Transform:
   - {fileID: 9184257257150319756}
   - {fileID: 5624200950840927516}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2671266494522078043
 MonoBehaviour:
@@ -587,9 +587,10 @@ GameObject:
   - component: {fileID: 3872780256207039435}
   - component: {fileID: 8038939230397801736}
   - component: {fileID: 910997974069289528}
+  - component: {fileID: 6499463898432986947}
   m_Layer: 11
   m_Name: Teeth
-  m_TagString: Untagged
+  m_TagString: Enemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -672,6 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPeriod: 2
+  enemyID: 0
   damageSystem: {fileID: 910997974069289528}
 --- !u!114 &910997974069289528
 MonoBehaviour:
@@ -686,3 +688,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+--- !u!114 &6499463898432986947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490850373237316209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e33711f85d9a44e828ccceaea33f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyID: 0

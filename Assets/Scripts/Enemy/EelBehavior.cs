@@ -43,6 +43,7 @@ public class EelBehavior : FishEnemyBehavior
         runAwaySpeed = 40f;
         rotationSpeed = 200f;
         base.Start();
+        attackSystem.GetComponent<BodyPart>().enemyID = gameObject.GetInstanceID();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
         targetObject = Instantiate(targetPrefab, transform.position, Quaternion.identity);
         SetHeadlightRange(30f, 15f);

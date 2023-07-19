@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3078852823021224967}
   m_Layer: 11
   m_Name: TailRigid
-  m_TagString: BodyPart
+  m_TagString: Enemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
