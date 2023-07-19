@@ -13,6 +13,9 @@ public class EnemyAttackSystem : MonoBehaviour
     // The tag of the target object.
     private string targetTag = "Player";
 
+    // The ID of the enemy that this system belongs to.
+    public int enemyID = 0;
+
     // The damage system of the enemy.
     public DamageSystem damageSystem;
 
@@ -47,6 +50,12 @@ public class EnemyAttackSystem : MonoBehaviour
                 if (other.gameObject.tag == "Player")
                 {
                     EventManager.current.dealDamagePlayer(damageSystem.GetDamage());
+
+                    if (enemyID != 0)
+                    {
+                        EventManager.current.EnemyAttackSuccess(enemyID);
+                    }
+                    
                     attackPeriodTimer = attackPeriod;
                 }
             }

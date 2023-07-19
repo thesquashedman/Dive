@@ -62,6 +62,7 @@ public class FishEnemyBehavior : MonoBehaviour
         aiPath.rotationSpeed = rotationSpeed;
         aiPath.target = player.transform;
         aiPath.enableRotation = true;
+        attackSystem.GetComponent<EnemyAttackSystem>().enemyID = gameObject.GetInstanceID();
     }
 
     protected virtual void FixedUpdate()

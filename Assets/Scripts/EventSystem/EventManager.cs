@@ -249,4 +249,16 @@ public class EventManager : MonoBehaviour
     {
         onEnemyAttack?.Invoke(objectID);
     }
+
+    // Add functions to trigger when the enemy successfully attacks the player.
+    public event Action<int> onEnemyAttackSuccess;
+
+    ///<summary>
+    /// This function invokes an event to indicate that the enemy successfully
+    /// attacked the player.
+    ///</summary>
+    public void EnemyAttackSuccess(int objectID)
+    {
+        onEnemyAttackSuccess?.Invoke(objectID);
+    }
 }
