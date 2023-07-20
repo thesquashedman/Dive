@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WandererAnimationController : MonoBehaviour
+public class EelAnimationController : MonoBehaviour
 {
     // References to other components.
     private Animator animator;
-    public WandererBehavior wandererBehavior;
-    private int wandererID;
+    public EelBehavior eelBehavior;
+    private int eelID;
 
     // Start is called before the first frame update
     private void Start()
     {
         animator = GetComponent<Animator>();
-        wandererID = wandererBehavior.gameObject.GetInstanceID();
+        eelID = eelBehavior.gameObject.GetInstanceID();
         EventManager.current.onEnemyAttackSuccess += SwitchToBiteAnimation;
     }
 
@@ -24,33 +24,24 @@ public class WandererAnimationController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool isMoving = animator.GetBool("isMoving");
         bool isBiting = animator.GetBool("isBiting");
-        string mode = wandererBehavior.GetMode();
+        string mode = eelBehavior.GetMode();
 
-        // Set the animator's parameters based on the current mode of this wanderer.
+        // Set the animator's parameters based on the current mode of this eel.
         if (mode == "dead" && animator.speed != 0f)
         {
             animator.speed = 0f;
         }
-        else if (isBiting && animator.GetCurrentAnimatorStateInfo(0).IsName("Small Fish Bite"))
+        else if (isBiting && animator.GetCurrentAnimatorStateInfo(0).IsName("Eel Bite"))
         {
             animator.SetBool("isBiting", false);
-        }
-        else if (isMoving && mode == "idle")
-        {
-            animator.SetBool("isMoving", false);
-        }
-        else if (!isMoving && mode != "idle")
-        {
-            animator.SetBool("isMoving", true);
-        }        
+        }   
     }
     
     // This function plays the biting animation.
     private void SwitchToBiteAnimation(int objectID)
     {
-        if (objectID == wandererID)
+        if (objectID == eelID)
         {
             animator.SetBool("isBiting", true);
         }

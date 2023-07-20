@@ -39,10 +39,11 @@ public class EelBehavior : FishEnemyBehavior
     // Start is called before the first frame update
     protected override void Start()
     {
-        speed = 20f;
+        speed = 25f;
         runAwaySpeed = 40f;
         rotationSpeed = 200f;
         base.Start();
+        attackSystem.GetComponent<BodyPart>().enemyID = gameObject.GetInstanceID();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
         targetObject = Instantiate(targetPrefab, transform.position, Quaternion.identity);
         SetHeadlightRange(30f, 15f);
@@ -97,6 +98,11 @@ public class EelBehavior : FishEnemyBehavior
                 aiPath.target = player.transform;
                 aiPath.enableRotation = true;
                 aiPath.rotationSpeed = rotationSpeed;
+                attackSystem.SetActive(true);
+                tail.enableWiggle = false;
+
+                // Issue the enemy attack event.
+                EventManager.current.EnemyAttack(gameObject.GetInstanceID());
             }
             else if (newMode == "coolDown")
             {
@@ -105,6 +111,8 @@ public class EelBehavior : FishEnemyBehavior
                 aiPath.target = player.transform;
                 aiPath.enableRotation = true;
                 aiPath.rotationSpeed = rotationSpeed;
+                attackSystem.SetActive(false);
+                tail.enableWiggle = true;
             }
             else if (newMode == "runAway")
             {
@@ -113,6 +121,8 @@ public class EelBehavior : FishEnemyBehavior
                 aiPath.target = targetObject.transform;
                 aiPath.enableRotation = true;
                 aiPath.rotationSpeed = runAwayRotationSpeed;
+                attackSystem.SetActive(false);
+                tail.enableWiggle = false;
             }
             else if (newMode == "wander")
             {
@@ -121,6 +131,8 @@ public class EelBehavior : FishEnemyBehavior
                 aiPath.target = null;
                 aiPath.enableRotation = true;
                 aiPath.rotationSpeed = rotationSpeed;
+                attackSystem.SetActive(false);
+                tail.enableWiggle = true;
             }
             else if (newMode == "idle")
             {
@@ -129,6 +141,8 @@ public class EelBehavior : FishEnemyBehavior
                 aiPath.target = habitat.transform;
                 aiPath.enableRotation = true;
                 aiPath.rotationSpeed = rotationSpeed;
+                attackSystem.SetActive(false);
+                tail.enableWiggle = true;
             }
             else if (newMode == "dead")
             {
@@ -137,7 +151,7 @@ public class EelBehavior : FishEnemyBehavior
                 aiPath.target = null;
                 aiPath.enableRotation = false;
                 aiPath.rotationSpeed = 0f;
-
+                attackSystem.SetActive(false);
                 rigidbody.gravityScale = gravityScale;
                 tail.enableWiggle = false;
 
@@ -212,7 +226,7 @@ public class EelBehavior : FishEnemyBehavior
         runAwayTimer += Time.deltaTime;
         if (runAwayTimer < runAwayTime)
         {
-            targetObject.GetComponent<Rigidbody2D>().AddForce(runAwayDirection * 200f);
+            targetObject.GetComponent<Rigidbody2D>().AddForce(runAwayDirection * 50f);
         }
         else
         {
