@@ -286,6 +286,7 @@ public class EventManager : MonoBehaviour
     {
         onEnemyAttackSuccess?.Invoke(objectID);
     }
+    
     ///<summary>
     ///An event to indicate that the enemy has dealt damage to the player
     ///</summary> 
