@@ -6,7 +6,9 @@ TagManager:
   tags:
   - Enemie
   - Bullet
+  - CableBreak
   - BodyPart
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - GlobalLighting
   - 
   - 
   - 

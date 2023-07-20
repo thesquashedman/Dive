@@ -35,6 +35,8 @@ public class PavelPlayerSettingStates : MonoBehaviour
     public Vector2 moveDirection = Vector2.zero;
     [Tooltip("Direction to aim if aiming")]
     public Vector2 aimDirection = Vector2.zero;
+    [Tooltip("Is the player interacting?")]
+    public bool isInteracting = false;
 
     /*
     [Tooltip("Current Weapon of player, null mean's unequipped")]

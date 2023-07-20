@@ -79,6 +79,15 @@ public class PavelPlayerController : MonoBehaviour
             {
                 EventManager.current.PlayerSwitchWeapon("RaycastGun");
             }
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                PavelPlayerSettingStates.current.isInteracting = true;
+                EventManager.current.PlayerInteract();
+            }
+            else if(Input.GetKeyUp(KeyCode.E))
+            {
+                PavelPlayerSettingStates.current.isInteracting = false;
+            }
         }
         
         

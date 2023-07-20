@@ -29,7 +29,9 @@ public class Sound
     [HideInInspector]
     public AudioSource source;
 
+
     //The id for what kind of sound this is
-    //0 = music, 1 = effect
+    //0 = music with loop, 1 = music with no loop
+    //2 = effect with loop, 3 = effect with no loop
     public int id;
 }

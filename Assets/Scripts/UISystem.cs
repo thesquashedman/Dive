@@ -11,10 +11,13 @@ public class UISystem : MonoBehaviour
     // Reference to the player's OxygenSystem script
     public OxygenSystem playerOxygenSystem;
     public Health playeHealth;
+    public PlayerResourcesSystem playerResourceSys;
 
     // Reference to the Text UI component
     public Text oxygenText;
     public Text healthText;
+
+    public Text recouceOneText;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +27,7 @@ public class UISystem : MonoBehaviour
         {
             oxygenText.text = "Oxygen: " + playerOxygenSystem.oxygenLevel.ToString("F1");
             healthText.text = "Health: " + playeHealth.GetHealth().ToString("F1");
+            recouceOneText.text = "Resouce: " + playerResourceSys.GetResourceOne().ToString("F1");
         }
     }
 }
