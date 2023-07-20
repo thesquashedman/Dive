@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
-public class TextInteractable : MonoBehaviour
+public class WeaponPickup : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float interactDistance = 1;
-    public TextAsset textFile;
-    public GameObject UIPanel;
-    public TextMeshProUGUI text;
+    public string weaponName = "Default";
+    public float interactDistance = 1f;
     void Start()
     {
         EventManager.current.onPlayerinteract += Interact;
@@ -27,16 +23,11 @@ public class TextInteractable : MonoBehaviour
         {
             return;
         }
-        UIPanel.SetActive(true);
-        text.SetText(textFile.text);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(text.rectTransform);
+        EventManager.current.PlayerPickupWeapon(weaponName);
+        EventManager.current.PlayerSwitchWeapon(weaponName);
     }
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, interactDistance);
-    }
-    void DisplayText()
-    {
-        
     }
 }
