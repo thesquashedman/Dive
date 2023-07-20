@@ -50,6 +50,9 @@ public class FishEnemyBehavior : MonoBehaviour
     // Variables for the death state.
     protected float gravityScale = 1f;
 
+    // The object that has the attack system and can collide with the player.
+    public GameObject attackSystem;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -57,6 +60,9 @@ public class FishEnemyBehavior : MonoBehaviour
         aiPath = GetComponent<EnemyAIPath>();
         aiPath.speed = speed;
         aiPath.rotationSpeed = rotationSpeed;
+        aiPath.target = player.transform;
+        aiPath.enableRotation = true;
+        attackSystem.GetComponent<EnemyAttackSystem>().enemyID = gameObject.GetInstanceID();
     }
 
     protected virtual void FixedUpdate()
@@ -98,6 +104,10 @@ public class FishEnemyBehavior : MonoBehaviour
                 aiPath.speed = speed;
                 aiPath.target = player.transform;
                 aiPath.enableRotation = true;
+                attackSystem.SetActive(true);
+
+                // Issue the enemy attack event.
+                EventManager.current.EnemyAttack(gameObject.GetInstanceID());
             }
             else if (newMode == "coolDown")
             {
@@ -105,6 +115,7 @@ public class FishEnemyBehavior : MonoBehaviour
                 aiPath.speed = 0f;
                 aiPath.target = null;
                 aiPath.enableRotation = false;
+                attackSystem.SetActive(false);
             }
             else if (newMode == "runAway")
             {
@@ -112,6 +123,7 @@ public class FishEnemyBehavior : MonoBehaviour
                 aiPath.speed = 0f;
                 aiPath.target = null;
                 aiPath.enableRotation = false;
+                attackSystem.SetActive(false);
             }
             else if (newMode == "wander")
             {
@@ -119,6 +131,7 @@ public class FishEnemyBehavior : MonoBehaviour
                 aiPath.speed = wanderingSpeed;
                 aiPath.target = null;
                 aiPath.enableRotation = true;
+                attackSystem.SetActive(false);
             }
             else if (newMode == "idle")
             {
@@ -126,6 +139,7 @@ public class FishEnemyBehavior : MonoBehaviour
                 aiPath.speed = 0f;
                 aiPath.target = null;
                 aiPath.enableRotation = false;
+                attackSystem.SetActive(false);
             }
             else if (newMode == "dead")
             {
@@ -133,7 +147,7 @@ public class FishEnemyBehavior : MonoBehaviour
                 aiPath.speed = 0f;
                 aiPath.target = null;
                 aiPath.enableRotation = false;
-
+                attackSystem.SetActive(false);
                 rigidbody.gravityScale = gravityScale;
             }
         }
