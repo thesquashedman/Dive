@@ -25,6 +25,7 @@ public class EnemySound : EntitySound
 
     private void Update() {
         //For demo purposes only
+        /*
         if(Input.GetKeyDown(KeyCode.I)) {
             EventManager.current.EnemyAttack(myID);
         } else if(Input.GetKeyDown(KeyCode.O)) {
@@ -34,6 +35,7 @@ public class EnemySound : EntitySound
         } else if(Input.GetKeyDown(KeyCode.L)) {
             EventManager.current.EnemyDeath(myID);
         }
+        */
     }
 
     //When onEnemyAttack event is triggered, plays the sound in position 0
