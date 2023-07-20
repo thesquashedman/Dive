@@ -6,7 +6,15 @@ using UnityEngine;
 public class MobileController : MonoBehaviour
 {
     public Weapon curentWeapon;
-    public Button attack;
+    public GameObject mobileAttack;
+
+    public GameObject mobileSwitchWeapon;
+    public GameObject mobileInteraction;
+    public GameObject weaponList;
+
+
+
+
     public float curTime;
     public float maxTime;
     public bool timerOn = false;
@@ -14,7 +22,7 @@ public class MobileController : MonoBehaviour
     void Start()
     {
         maxTime = 0.5f;
-        Button btn = attack.GetComponent<Button>();
+        Button btn = mobileAttack.GetComponent<Button>();
 		btn.onClick.AddListener(Attack);
     }
 
@@ -30,7 +38,13 @@ public class MobileController : MonoBehaviour
         }
     }
 
-    
+    public void OpenWeaponList() {
+        weaponList.SetActive(true);
+    }
+
+    public void CloseWeaponList() {
+        weaponList.SetActive(false);
+    }
 
     void Attack() {
         if (!timerOn) {
@@ -48,5 +62,7 @@ public class MobileController : MonoBehaviour
             timerOn = false;
         // }
     }
+
+
     
 }
