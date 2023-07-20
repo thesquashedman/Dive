@@ -21,9 +21,10 @@ public class MobileController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxTime = 0.5f;
-        Button btn = mobileAttack.GetComponent<Button>();
-		btn.onClick.AddListener(Attack);
+        // maxTime = 0.5f;
+        // Button btn = mobileAttack.GetComponent<Button>();
+		// btn.onClick.AddListener(Attack);
+        
     }
 
     // Update is called once per frame
@@ -46,7 +47,18 @@ public class MobileController : MonoBehaviour
         weaponList.SetActive(false);
     }
 
-    void Attack() {
+    public void SwitchWeapon() {
+        Debug.Log(weaponList.activeSelf);
+        if (weaponList.activeSelf == false) {
+            OpenWeaponList();
+        }  
+        else {
+            CloseWeaponList();
+        }
+        // EventManager.current.PlayerSwitchWeapon("Saw");
+    }
+
+    public void Attack() {
         if (!timerOn) {
             Debug.Log("Attack!!!!!");
             curentWeapon.Attack();

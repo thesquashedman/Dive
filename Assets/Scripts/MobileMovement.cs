@@ -14,6 +14,7 @@ public class MobileMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         direction = Vector3.zero;
+        //GetComponent<MovementSystem>().enabled = false;
     }
 
     // Update is called once per frame
