@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PavelWeapon : MonoBehaviour
+public class PavelPlayerTalk : MonoBehaviour
 {
     // Start is called before the first frame update
-    public string weaponName = "Default";
-    public bool isAquired = false;
-    
     void Start()
     {
         
@@ -18,5 +15,4 @@ public class PavelWeapon : MonoBehaviour
     {
         
     }
-    
 }

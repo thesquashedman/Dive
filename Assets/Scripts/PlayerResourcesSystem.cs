@@ -49,7 +49,38 @@ public class PlayerResourcesSystem : MonoBehaviour
         this.hpKit = hpKit;
         this.weapons = new int[numWeaponSlots]; // Initialize weapon slots with given number
     }
+    void Start()
+    {
+        EventManager.current.onPlayerPickupResource += PickupResource;
 
+    }
+    void PickupResource(string resourceName, int amount)
+    {
+        if(resourceName == "ResourceOne")
+        {
+            resouceOne += amount;
+        }
+        if(resourceName == "Bullet1")
+        {
+            bullets1 += (int)amount;
+        }
+        if(resourceName == "Bullet2")
+        {
+            bullets2 += (int)amount;
+        }
+        if(resourceName == "Bullet3")
+        {
+            bullets3 += (int)amount;
+        }
+        if(resourceName == "Bomb")
+        {
+            bombs += (int)amount;
+        }
+        if(resourceName == "HPKit")
+        {
+            hpKit += (int)amount;
+        }
+    }
     public void ChangeResourceOne(float chage)
     {
         resouceOne += chage;

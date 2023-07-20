@@ -25,7 +25,15 @@ public class PavelWeaponRaycast : PavelWeapon
             
             if(attackReady)
             {
-                FireProjectile();
+                if(PlayerResourcesSystem.current.bullets1 > 0)
+                {
+                    FireProjectile();
+                }
+                else
+                {
+                    EmptyClip();
+                }
+                
             }
             
         }
@@ -47,7 +55,7 @@ public class PavelWeaponRaycast : PavelWeapon
         LayerMask mask = LayerMask.GetMask("Player");
         mask = ~mask;
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right, attackRange, mask);
-        Debug.DrawRay(firePoint.position, firePoint.right * attackRange, Color.red, 50.0f);
+        //Debug.DrawRay(firePoint.position, firePoint.right * attackRange, Color.red, 50.0f);
 
         
 
@@ -63,13 +71,7 @@ public class PavelWeaponRaycast : PavelWeapon
                 {
                     if (hit.collider.CompareTag(tag))
                     {
-                        // Get the Health component and call ChangeHealth
-                        Health enemyHealth = hit.collider.GetComponent<Health>();
-                        if (enemyHealth != null)
-                        {
-                            
-                            enemyHealth.ChangeHealth(-damage);
-                        }
+                        EventManager.current.DealDamageEnemy(hit.transform.gameObject.GetInstanceID(), damage);
                     }
                 }
             }
@@ -77,6 +79,12 @@ public class PavelWeaponRaycast : PavelWeapon
         }
         attackPeriodTimer = 0;
         attackReady = false;
+        PlayerResourcesSystem.current.bullets1 -= 1;
 
+    }
+    void EmptyClip()
+    {
+        attackPeriodTimer = 0;
+        attackReady = false;
     }
 }

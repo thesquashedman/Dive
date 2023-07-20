@@ -24,12 +24,21 @@ public class PavelWeaponProjectile : PavelWeapon
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Hello");
         if(PavelPlayerSettingStates.current.isAttacking)
         {
             
             if(attackReady)
             {
-                FireProjectile();
+                if(PlayerResourcesSystem.current.bullets1 > 0)
+                {
+                    FireProjectile();
+                }
+                else
+                {
+                    EmptyClip();
+                }
+                
             }
             
         }
@@ -46,6 +55,7 @@ public class PavelWeaponProjectile : PavelWeapon
     }
     void FireProjectile()
     {
+        Debug.Log("fire");
         GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
 
         projectile.transform.position = firePoint.position;
@@ -55,6 +65,12 @@ public class PavelWeaponProjectile : PavelWeapon
         rb.AddForce(transform.right * projectileSpeed, ForceMode2D.Impulse);
         attackPeriodTimer = 0;
         attackReady = false;
+        PlayerResourcesSystem.current.bullets1 -= 1;
 
+    }
+    void EmptyClip()
+    {
+        attackPeriodTimer = 0;
+        attackReady = false;
     }
 }

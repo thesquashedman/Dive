@@ -215,6 +215,17 @@ public class EventManager : MonoBehaviour
     public void PlayerSwitchWeapon(string weaponName) {
         onPlayerSwitchWeapon?.Invoke(weaponName);
     }
+    ///<summary>
+    ///Add functions to trigger when the player picks up a weapon
+    ///</summary>
+    public event Action<string> onPlayerPickupWeapon;
+
+    ///<summary>
+    ///Trigger player to switch weapons
+    ///</summary>
+    public void PlayerPickupWeapon(string weaponName) {
+        onPlayerPickupWeapon?.Invoke(weaponName);
+    }
 
 
     ///<summary>

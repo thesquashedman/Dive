@@ -61,7 +61,6 @@ public class GlobalLightHandler : MonoBehaviour
             float H, S, V;
             Color.RGBToHSV(sprite.startingColor.linear, out H, out S, out V);
             V *= 1 - (colorDarkenMaxPercentage * 1 - intensity);
-            Debug.Log(V);
             sprite.renderer.color = Color.Lerp(sprite.renderer.color, Color.HSVToRGB(H, S, V).gamma, colorLerpSpeed);
             /*
             Color newColor = (sprite.startingColor * (1 - darkenPercent * (1 - lerp))).gamma;
