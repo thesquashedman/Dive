@@ -35,6 +35,7 @@ public class WandererBehavior : FishEnemyBehavior
         rotationSpeed = pathfindingRotationSpeed;
         idleTime = Random.Range(idleIntervalLowerBound, idleIntervalUpperBound);
         base.Start();
+        attackSystem.GetComponent<BodyPart>().enemyID = gameObject.GetInstanceID();
         SwitchMode("wander");
     }
 
@@ -89,6 +90,10 @@ public class WandererBehavior : FishEnemyBehavior
                 aiPath.speed = speed;
                 aiPath.target = player.transform;
                 aiPath.enableRotation = true;
+                attackSystem.SetActive(true);
+
+                // Issue the enemy attack event.
+                EventManager.current.EnemyAttack(gameObject.GetInstanceID());
             }
             else if (newMode == "coolDown")
             {
@@ -96,6 +101,7 @@ public class WandererBehavior : FishEnemyBehavior
                 aiPath.speed = 0f;
                 aiPath.target = null;
                 aiPath.enableRotation = false;
+                attackSystem.SetActive(false);
             }
             else if (newMode == "runAway")
             {
@@ -103,6 +109,7 @@ public class WandererBehavior : FishEnemyBehavior
                 aiPath.speed = 0f;
                 aiPath.target = null;
                 aiPath.enableRotation = false;
+                attackSystem.SetActive(false);
             }
             else if (newMode == "wander")
             {
@@ -110,6 +117,7 @@ public class WandererBehavior : FishEnemyBehavior
                 aiPath.speed = wanderingSpeed;
                 aiPath.target = null;
                 aiPath.enableRotation = true;
+                attackSystem.SetActive(false);
             }
             else if (newMode == "idle")
             {
@@ -117,6 +125,7 @@ public class WandererBehavior : FishEnemyBehavior
                 aiPath.speed = 0f;
                 aiPath.target = null;
                 aiPath.enableRotation = false;
+                attackSystem.SetActive(false);
             }
             else if (newMode == "dead")
             {
@@ -124,7 +133,7 @@ public class WandererBehavior : FishEnemyBehavior
                 aiPath.speed = 0f;
                 aiPath.target = null;
                 aiPath.enableRotation = false;
-
+                attackSystem.SetActive(false);
                 rigidbody.gravityScale = gravityScale;
 
                 // Set up the blood particles.

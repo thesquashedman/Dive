@@ -107,7 +107,7 @@ public class ShotAttackRaycast : AttackSystem
             }
             else if (hit.collider.tag == "BodyPart")
             {
-                hit.collider.GetComponent<BodyPart>().TakeDamage(damageSystem.GetDamage());
+                EventManager.current.DealDamageEnemy(hit.collider.gameObject.GetInstanceID(), damageSystem.GetDamage());
             }
         }
     }

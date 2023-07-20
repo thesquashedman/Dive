@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4304516847875399882}
   - component: {fileID: 2794011281761335518}
-  - component: {fileID: 6395992875857977085}
+  - component: {fileID: 1875588630882846734}
   m_Layer: 11
   m_Name: WormBodyCollider
-  m_TagString: Untagged
+  m_TagString: Enemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,8 +67,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &6395992875857977085
+  m_Radius: 1.5
+--- !u!114 &1875588630882846734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,6 +77,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2599112681779694958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7587fbac78cb6644b81db46b37cc682b, type: 3}
+  m_Script: {fileID: 11500000, guid: 59e33711f85d9a44e828ccceaea33f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 0
