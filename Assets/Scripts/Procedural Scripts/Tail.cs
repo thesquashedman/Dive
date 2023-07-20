@@ -110,4 +110,6 @@ public class Tail : MonoBehaviour
             wiggleTarget.localRotation = Quaternion.Euler(0f, 0f, Mathf.Sin(Time.time * wiggleSpeed) * wiggleMagnitude);
         }
     }
+
+    // Delete all the rigidbodies of the tail when the eel is deleted or dead.
 }
