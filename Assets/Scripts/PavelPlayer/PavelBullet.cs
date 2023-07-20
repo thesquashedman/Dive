@@ -18,6 +18,7 @@ public class PavelBullet : MonoBehaviour
         
     }
     private void OnCollisionEnter2D(Collision2D hit) {
+        Debug.Log("Bullet hit something");
         if (hit.collider != null)
         {
 
