@@ -18,6 +18,7 @@ public class PavelBullet : MonoBehaviour
         
     }
     private void OnCollisionEnter2D(Collision2D hit) {
+        Debug.Log("Bullet hit something");
         if (hit.collider != null)
         {
 
@@ -29,13 +30,7 @@ public class PavelBullet : MonoBehaviour
                 {
                     if (hit.collider.CompareTag(tag))
                     {
-                        // Get the Health component and call ChangeHealth
-                        Health enemyHealth = hit.collider.GetComponent<Health>();
-                        if (enemyHealth != null)
-                        {
-                            
-                            enemyHealth.ChangeHealth(-damage);
-                        }
+                        EventManager.current.DealDamageEnemy(hit.gameObject.GetInstanceID(), damage);
                     }
                 }
             }

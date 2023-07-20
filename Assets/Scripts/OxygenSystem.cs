@@ -74,4 +74,8 @@ public class OxygenSystem : MonoBehaviour
             oxygenLevel = newOxygenLevel;
         }
     }
+
+    public float GetOxygenLevel() { 
+        return oxygenLevel;
+    }
 }

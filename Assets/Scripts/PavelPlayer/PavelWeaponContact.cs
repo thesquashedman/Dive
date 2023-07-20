@@ -58,16 +58,11 @@ public class PavelWeaponContact : PavelWeapon
                 {
                     if (hit.gameObject.CompareTag(tag))
                     {
-                        // Get the Health component and call ChangeHealth
-                        Health enemyHealth = hit.gameObject.GetComponent<Health>();
-                        if (enemyHealth != null)
-                        {
-                            
-                            enemyHealth.ChangeHealth(-damage);
-                        }
+                        EventManager.current.DealDamageEnemy(hit.gameObject.GetInstanceID(), damage);
                     }
                 }
             }
+            attackReady = false;
 
             
         }

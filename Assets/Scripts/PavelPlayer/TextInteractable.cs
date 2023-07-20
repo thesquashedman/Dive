@@ -23,6 +23,10 @@ public class TextInteractable : MonoBehaviour
     }
     void Interact()
     {
+        if(Vector2.Distance(transform.position, PavelPlayerSettingStates.current.transform.position) > interactDistance)
+        {
+            return;
+        }
         UIPanel.SetActive(true);
         text.SetText(textFile.text);
         LayoutRebuilder.ForceRebuildLayoutImmediate(text.rectTransform);

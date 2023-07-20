@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3078852823021224967}
   m_Layer: 11
   m_Name: TailRigid
-  m_TagString: BodyPart
+  m_TagString: Enemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ CircleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3263
   m_ForceReceiveLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -108,4 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e33711f85d9a44e828ccceaea33f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyEventManager: {fileID: 0}
+  enemyID: 0

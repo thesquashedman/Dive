@@ -6,6 +6,7 @@ public class PavelWeapon : MonoBehaviour
 {
     // Start is called before the first frame update
     public string weaponName = "Default";
+    public bool isAquired = false;
     
     void Start()
     {

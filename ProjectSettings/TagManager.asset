@@ -6,7 +6,9 @@ TagManager:
   tags:
   - Enemie
   - Bullet
+  - CableBreak
   - BodyPart
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -22,13 +24,13 @@ TagManager:
   - Ignore Internal Collision
   - 
   - 
-  - GlobalLightStrength
   - 
   - 
   - 
   - 
   - 
   - 
+  - GlobalLighting
   - 
   - 
   - 

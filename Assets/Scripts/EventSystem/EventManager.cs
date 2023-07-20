@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 /*
-Written by Justin.
+Written by Justin. Added to by Pavel, and Po-Lin.
 Class is meant to hold and notify subscribers when events happen 
 for the game. 
 
@@ -215,6 +215,18 @@ public class EventManager : MonoBehaviour
     public void PlayerSwitchWeapon(string weaponName) {
         onPlayerSwitchWeapon?.Invoke(weaponName);
     }
+    ///<summary>
+    ///Add functions to trigger when the player picks up a weapon
+    ///</summary>
+    public event Action<string> onPlayerPickupWeapon;
+
+    ///<summary>
+    ///Trigger player to switch weapons
+    ///</summary>
+    public void PlayerPickupWeapon(string weaponName) {
+        onPlayerPickupWeapon?.Invoke(weaponName);
+    }
+
 
     ///<summary>
     ///Add functions to trigger when the player switches weapons
@@ -244,7 +256,7 @@ public class EventManager : MonoBehaviour
     public event Action<int> onEnemyDeath;
 
     ///<summary>
-    /// This functions invokes an event to deal with the death of the enemy.
+    /// This function invokes an event to deal with the death of the enemy.
     ///</summary>
     public void EnemyDeath(int objectID)
     {
@@ -255,11 +267,35 @@ public class EventManager : MonoBehaviour
     public event Action<int> onEnemyAttack;
 
     ///<summary>
-    /// This functions invokes an event to indicate that the enemy starts attacking.
+    /// This function invokes an event to indicate that the enemy starts attacking.
     /// This event should only be triggered once for each attack attempt.
     ///</summary>
     public void EnemyAttack(int objectID)
     {
         onEnemyAttack?.Invoke(objectID);
     }
+
+    // Add functions to trigger when the enemy successfully attacks the player.
+    public event Action<int> onEnemyAttackSuccess;
+
+    ///<summary>
+    /// This function invokes an event to indicate that the enemy successfully
+    /// attacked the player.
+    ///</summary>
+    public void EnemyAttackSuccess(int objectID)
+    {
+        onEnemyAttackSuccess?.Invoke(objectID);
+    }
+    ///<summary>
+    ///An event to indicate that the enemy has dealt damage to the player
+    ///</summary> 
+    public event Action<int> onEnemyAtkDealt;
+
+    ///<summary>
+    ///Invokes an event to indicate that the enemy has dealt damage to the player
+    ///</summary> 
+    public void EnemyAtkDealt(int objectID) {
+        onEnemyAtkDealt?.Invoke(objectID);
+    }
+
 }
