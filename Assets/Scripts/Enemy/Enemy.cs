@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     {
         if (objectID == gameObject.GetInstanceID())
         {
+            Debug.Log("Enemy: " + gameObject.name + " took " + amount + " damage.");
             health.ChangeHealth(-amount);
         }
     }
