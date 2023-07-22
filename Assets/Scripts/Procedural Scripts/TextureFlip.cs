@@ -8,8 +8,8 @@ public class TextureFlip : MonoBehaviour
     public float lowerAngle = 90f;
     public float upperAngle = 270f;
 
-    // Reference to the material that contains the texture.
-    public Material material;
+    // Reference to the line renderer that contains the texture.
+    public LineRenderer lineRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,26 +24,26 @@ public class TextureFlip : MonoBehaviour
         {
             if (transform.eulerAngles.z > lowerAngle || transform.eulerAngles.z < upperAngle)
             {
-                material.mainTextureScale = new Vector2(1, -1);
-                material.mainTextureOffset = new Vector2(0, 1);
+                lineRenderer.material.mainTextureScale = new Vector2(1, -1);
+                lineRenderer.material.mainTextureOffset = new Vector2(0, 1);
             }
             else
             {
-                material.mainTextureScale = new Vector2(1, 1);
-                material.mainTextureOffset = new Vector2(0, 0);
+                lineRenderer.material.mainTextureScale = new Vector2(1, 1);
+                lineRenderer.material.mainTextureOffset = new Vector2(0, 0);
             }
         }
         else
         {
             if (transform.eulerAngles.z > lowerAngle && transform.eulerAngles.z < upperAngle)
             {
-                material.mainTextureScale = new Vector2(1, -1);
-                material.mainTextureOffset = new Vector2(0, 1);
+                lineRenderer.material.mainTextureScale = new Vector2(1, -1);
+                lineRenderer.material.mainTextureOffset = new Vector2(0, 1);
             }
             else
             {
-                material.mainTextureScale = new Vector2(1, 1);
-                material.mainTextureOffset = new Vector2(0, 0);
+                lineRenderer.material.mainTextureScale = new Vector2(1, 1);
+                lineRenderer.material.mainTextureOffset = new Vector2(0, 0);
             }
         }
     }

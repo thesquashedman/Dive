@@ -452,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowerAngle: 0
   upperAngle: 180
-  material: {fileID: 2100000, guid: 2a59a90a6adde154881abf451a066ea1, type: 2}
+  lineRenderer: {fileID: 253170337409981243}
 --- !u!1 &6257661320639848153
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ Transform:
   - {fileID: 5112017668137219612}
   - {fileID: 2093672335541760651}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6382619653829787089
 MonoBehaviour:
