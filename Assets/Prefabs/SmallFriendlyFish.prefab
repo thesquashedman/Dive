@@ -164,7 +164,7 @@ Transform:
   - {fileID: 1862351215781885159}
   - {fileID: 7661676977818985335}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2082053489916176648
 MonoBehaviour:
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6512a899392bc74cbc96664b8ebfb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 3
 --- !u!114 &5478862113743017385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,10 +329,10 @@ MonoBehaviour:
   hostile: 0
   activeChase: 1
   chaseRange: 60
-  idleIntervalLowerBound: 2
-  idleIntervalUpperBound: 4
+  idleIntervalLowerBound: 0
+  idleIntervalUpperBound: 0
   bloodParticlesPrefab: {fileID: 6906312204478914072, guid: f370e76661d06d043bca57f1cdb606e1, type: 3}
-  bloodExistTime: 30
+  bloodExistTime: 10
 --- !u!1 &6316062021214892332
 GameObject:
   m_ObjectHideFlags: 0
