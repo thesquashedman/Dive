@@ -16,8 +16,8 @@ public class OxygenResource : MonoBehaviour
     // Time passed since the player entered the trigger collider
     private float timePassed = 0.0f;
 
-    // Reference to the player's OxygenSystem script
-    private OxygenSystem playerOxygenSystem;
+    // Reference to the player's oxygen script
+    private PavelPlayerOxygen playerOxygenSystem;
 
     // Function called when an object enters the trigger collider
     void OnTriggerEnter2D(Collider2D other)
@@ -25,8 +25,8 @@ public class OxygenResource : MonoBehaviour
         // Check if the object that entered the trigger has the tag "Player"
         if (other.CompareTag("Player"))
         {
-            // Get the OxygenSystem script attached to the player
-            playerOxygenSystem = other.GetComponent<OxygenSystem>();
+            // Get the oxygen script attached to the player
+            playerOxygenSystem = other.GetComponent<PavelPlayerOxygen>();
 
             // If area is true, start increasing oxygen over time
             if (area)
@@ -65,11 +65,11 @@ public class OxygenResource : MonoBehaviour
         {
             timePassed += Time.deltaTime;
 
-            if (timePassed >= 1.0f) // 1 second interval
+            if (timePassed >= 1f) // 1 second interval
             {
                 float newOxygenLevel = playerOxygenSystem.oxygenLevel + oxygenIncreaseRate;
                 playerOxygenSystem.SetOxygenLevel(newOxygenLevel);
-                timePassed = 0.0f;
+                timePassed = 0f;
             }
         }
     }

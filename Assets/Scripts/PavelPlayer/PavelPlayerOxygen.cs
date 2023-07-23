@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PavelPlayerOxygen : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float lackOfOxygenDamage = 10f;
 
     private float timePassedDamage = 0.0f;
@@ -25,10 +24,7 @@ public class PavelPlayerOxygen : MonoBehaviour
 
     // Time passed since the last reduction
     private float timePassed = 0.0f;
-    void Start()
-    {
-        
-    }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,11 +45,37 @@ public class PavelPlayerOxygen : MonoBehaviour
 
         if (oxygenLevel <= 0) {
             timePassedDamage += Time.deltaTime;
+
             if (timePassedDamage > lackOfOxygenDamageInterval) {
                 EventManager.current.dealDamagePlayer(lackOfOxygenDamage);
                 EventManager.current.playerSuffocate();
                 timePassedDamage = 0;
             }
         }
+    }
+
+    // Function to set the oxygen level
+    public void SetOxygenLevel(float newOxygenLevel)
+    {
+        // If the new oxygen level is above the maximum level,
+        // set it to the maximum level.
+        if (newOxygenLevel > maxOxygenLevel)
+        {
+            oxygenLevel = maxOxygenLevel;
+        }
+        // If the new oxygen level is below 0, set it to 0.
+        else if (newOxygenLevel < 0f)
+        {
+            oxygenLevel = 0f;
+        }
+        // Otherwise, set the oxygen level to the new oxygen level.
+        else
+        {
+            oxygenLevel = newOxygenLevel;
+        }
+    }
+
+    public float GetOxygenLevel() { 
+        return oxygenLevel;
     }
 }
