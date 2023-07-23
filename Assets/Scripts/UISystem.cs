@@ -9,7 +9,7 @@ public class UISystem : MonoBehaviour
     GameObject player;
 
     // Reference to the player's OxygenSystem script
-    public OxygenSystem playerOxygenSystem;
+    public PavelPlayerOxygen playerOxygenSystem;
     public Health playeHealth;
     public PlayerResourcesSystem playerResourceSys;
 
