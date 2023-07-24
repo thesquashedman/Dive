@@ -61,6 +61,18 @@ public class EventManager : MonoBehaviour
     }
 
     ///<summary>
+    ///Event to heal the player
+    ///</summary>
+    public event Action<float> onHealPlayer;
+
+    ///<summary>
+    ///Trigger to heal the player
+    ///</summary>
+    public void healPlayer(float input) {
+        onHealPlayer?.Invoke(input);
+    }
+
+    ///<summary>
     ///FOR UI, add functions to trigger when the player changes health. Float is the new health.
     ///</summary>
     public event Action<float> onChangeHealth;
@@ -120,6 +132,7 @@ public class EventManager : MonoBehaviour
         onPlayerPickupResource?.Invoke(resourceName, amount);
     }
 
+
     ///<summary>
     ///Triggers when a task is completed in the level.
     ///Uses an name-based system to determine which systems should be alerted.
@@ -132,6 +145,19 @@ public class EventManager : MonoBehaviour
     public void taskCompleted(string id) {
         onTaskCompleted?.Invoke(id);
     }
+
+    ///<summary>
+    ///Triggers when a win condition is met.
+    ///</summary>
+    public event Action onLevelWin;
+
+    ///<summary>
+    ///Trigger to complete the level.
+    ///</summary>
+    public void levelWin() {
+        onLevelWin?.Invoke();
+    }
+
     ///Add functions to trigger when the player attacks
     ///</summary>
     public event Action onPlayerAttack;
