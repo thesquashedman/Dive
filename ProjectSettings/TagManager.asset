@@ -18,7 +18,7 @@ TagManager:
   - UI
   - Player
   - CollideWithPlayerOnly
-  - 
+  - CollideWithParticlesOnly
   - 
   - Obstacles
   - Ignore Internal Collision
@@ -28,8 +28,10 @@ TagManager:
   - 
   - 
   - 
-  - Background
+
   - 
+  - DistortionLayer
+
   - GlobalLighting
   - 
   - 
