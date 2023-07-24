@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 6116138264793747406}
   - component: {fileID: 4748030981062138919}
   - component: {fileID: 800745585072627473}
-  - component: {fileID: 3146067177161857410}
+  - component: {fileID: 4262593816815126356}
+  - component: {fileID: 979726101054740165}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c52e1413f30d4d9b12a9997331e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3146067177161857410
+--- !u!114 &4262593816815126356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,7 +366,41 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     id: 3
+  - name: EchoesofTime
+    clip: {fileID: 8300000, guid: b2f40aa31b4a7aa4484ebd24e2792ccc, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    id: 0
+  - name: Nightmare
+    clip: {fileID: 8300000, guid: 338c7de5c9529704ab903a1e5654bc24, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    id: 0
+  - name: TheFog
+    clip: {fileID: 8300000, guid: 4ce2d3b5dc890b240b6a7b8f76128d18, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    id: 0
   curr: 
+--- !u!114 &979726101054740165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3021356462559825896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558ae83d98734da488f8c95ddf9fa762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgNames:
+  - EchoesofTime
+  - TheFog
+  - Nightmare
 --- !u!1 &5921904404370914158
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +768,7 @@ Transform:
   - {fileID: 8281020504301668089}
   - {fileID: 650284066288234152}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7622128423720856191
 GameObject:
