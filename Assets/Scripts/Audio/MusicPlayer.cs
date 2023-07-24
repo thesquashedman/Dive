@@ -20,7 +20,7 @@ public class MusicPlayer : MonoBehaviour
     }
 
     private void playBG(int num) {
-        if(num < 0 || num > bgNames.length) {
+        if(num < 0 || num > bgNames.Length) {
             Debug.Log("playBG: Index Out of Bounds!");
             return;
         }
