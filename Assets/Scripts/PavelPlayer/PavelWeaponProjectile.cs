@@ -24,7 +24,7 @@ public class PavelWeaponProjectile : PavelWeapon
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Hello");
+
         if(PavelPlayerSettingStates.current.isAttacking)
         {
             

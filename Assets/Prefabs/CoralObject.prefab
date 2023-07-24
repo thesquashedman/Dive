@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 25570622665270411}
   - component: {fileID: 944273837110177778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Corals#1 (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ Transform:
   - {fileID: 4586509866654728560}
   - {fileID: 25570622665270411}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8533544015605563810
 GameObject:
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4586509866654728560}
   - component: {fileID: 247812235074427109}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Corals#1 (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
