@@ -19,8 +19,13 @@ public class MusicPlayer : MonoBehaviour
         
     }
 
-    private void playBG() {
-        AudioManager.instance.Play(bgNames[1]);
+    private void playBG(int num) {
+        if(num < 0 || num > bgNames.length) {
+            Debug.Log("playBG: Index Out of Bounds!");
+            return;
+        }
+        
+        AudioManager.instance.Play(bgNames[num]);
     }
 
     private void OnDisable() {
