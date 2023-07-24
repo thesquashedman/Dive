@@ -10,6 +10,9 @@ public class FixObject : MonoBehaviour
 
     float value = 0;
     float curent = 0;
+    
+    //Give this object a task name to trigger other events on completion with.
+    public string myName = "";
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,7 @@ public class FixObject : MonoBehaviour
     public void Fix(float fixAmount) {
         curent += fixAmount;
         if (curent >= 100) {
+            EventManager.current.taskCompleted(myName);
             initial.SetActive(false);
             afterFix.SetActive(true);
         }

@@ -45,6 +45,7 @@ public class CharacterSound : EntitySound
     // Update is called once per frame
     void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.I)) {
             EventManager.current.dealDamagePlayer(0f);
         } else if(Input.GetKeyDown(KeyCode.O)) {
@@ -58,6 +59,7 @@ public class CharacterSound : EntitySound
         } else if(Input.GetKeyDown(KeyCode.M)) {
             EventManager.current.playerSuffocate();
         }
+        */
     }
 
     //Plays audio[0] when player is damaged
