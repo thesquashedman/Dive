@@ -15,7 +15,14 @@ public class PlayerResourcesSystem : MonoBehaviour
 
     public int bombs;
 
-    public int hpKit;
+    //Number of healing kits
+    public int HPKit;
+
+    //Keycode to use a HPKit
+    public KeyCode healKey;
+
+    //Amount that using a HPKit should heal
+    private float healAmount;
 
     public int[] weapons; // This can represent slots for weapons, number of slots depends on the length of the array
 
@@ -38,7 +45,7 @@ public class PlayerResourcesSystem : MonoBehaviour
     }
 
     // You can add a constructor to initialize your variables if needed
-    public PlayerResourcesSystem(int staminaMax, int staminaCur, int bullets1, int bullets2, int bullets3, int bombs, int hpKit, int numWeaponSlots)
+    public PlayerResourcesSystem(int staminaMax, int staminaCur, int bullets1, int bullets2, int bullets3, int bombs, int HPKit, int numWeaponSlots)
     {
         this.staminaMax = staminaMax;
         this.staminaCur = staminaCur;
@@ -46,15 +53,25 @@ public class PlayerResourcesSystem : MonoBehaviour
         this.bullets2 = bullets2;
         this.bullets3 = bullets3;
         this.bombs = bombs;
-        this.hpKit = hpKit;
+        this.HPKit = HPKit;
         this.weapons = new int[numWeaponSlots]; // Initialize weapon slots with given number
     }
+
     void Start()
     {
         EventManager.current.onPlayerPickupResource += PickupResource;
 
+        this.healKey = KeyCode.F;
+        this.healAmount = 20f;
     }
-    void PickupResource(string resourceName, int amount)
+
+    private void Update() {
+        if(Input.GetKeyDown(healKey)) {
+            UseHPKit();
+        }
+    }
+
+    public void PickupResource(string resourceName, int amount)
     {
         if(resourceName == "ResourceOne")
         {
@@ -78,9 +95,29 @@ public class PlayerResourcesSystem : MonoBehaviour
         }
         if(resourceName == "HPKit")
         {
-            hpKit += (int)amount;
+            HPKit += (int)amount;
+        } else {
+            Debug.Log("Resource " + resourceName + " not found!");
         }
     }
+
+    //Change the number of HPKits by the input
+    public void ChangeHPKit(int change) {
+        HPKit += change;
+    }
+
+    //If there is 1 or more HPKits, triggers the healPlayer event
+    //Using the healAmount set in Start()
+    public void UseHPKit() {
+        bool output = (HPKit > 0);
+
+        if(output) {
+            HPKit--;
+            //Debug.Log(this.healAmount);
+            EventManager.current.healPlayer(this.healAmount);
+        }
+    }
+
     public void ChangeResourceOne(float chage)
     {
         resouceOne += chage;
@@ -88,5 +125,9 @@ public class PlayerResourcesSystem : MonoBehaviour
 
     public float GetResourceOne() { 
         return resouceOne;
+    }
+
+    private void OnDisable() {
+        EventManager.current.onPlayerPickupResource -= PickupResource;
     }
 }

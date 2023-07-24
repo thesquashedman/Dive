@@ -7,6 +7,10 @@ public class Health : MonoBehaviour
     public float maxHealth = 100;
     public float currentHealth = 100;
 
+    private void Start() {
+        EventManager.current.onHealPlayer += playerHeal;
+    }
+
     void Update()
     {
         Die();
@@ -49,6 +53,16 @@ public class Health : MonoBehaviour
         {
             currentHealth = 0f;
         }
+
+        Debug.Log(currentHealth);
+    }
+
+    private void playerHeal(float amount) {
+        //Debug.Log("Healing");
+        if(gameObject.tag == "Player") {
+            //Debug.Log("isPLayer");
+            ChangeHealth(amount);
+        }
     }
 
     public virtual void Die()
@@ -57,5 +71,9 @@ public class Health : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDisable() {
+        EventManager.current.onHealPlayer -= playerHeal;
     }
 }
