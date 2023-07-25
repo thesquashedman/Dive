@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class OxygenSliderController : MonoBehaviour
 {
-    public OxygenSystem oxSys;
+    public PavelPlayerOxygen oxSys;
     float maxOxyScale = 10;
     public float oxLevel;
     // Start is called before the first frame update

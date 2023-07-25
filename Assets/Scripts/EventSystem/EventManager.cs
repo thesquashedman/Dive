@@ -37,6 +37,17 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public void SetUp()
+    {
+        //Singleton pattern
+        if(current != null && current != this) {
+            Destroy(this);
+        } else {
+            current = this;
+            //Debug.Log("EventManager Active.");
+        }
+    }
+
     
     //Events
 
@@ -58,6 +69,18 @@ public class EventManager : MonoBehaviour
     ///</summary>
     public void dealDamagePlayer(float damage) {
         onDealDamagePlayer?.Invoke(damage);
+    }
+
+    ///<summary>
+    ///Event to heal the player
+    ///</summary>
+    public event Action<float> onHealPlayer;
+
+    ///<summary>
+    ///Trigger to heal the player
+    ///</summary>
+    public void healPlayer(float input) {
+        onHealPlayer?.Invoke(input);
     }
 
     ///<summary>
@@ -120,6 +143,7 @@ public class EventManager : MonoBehaviour
         onPlayerPickupResource?.Invoke(resourceName, amount);
     }
 
+
     ///<summary>
     ///Triggers when a task is completed in the level.
     ///Uses an name-based system to determine which systems should be alerted.
@@ -132,6 +156,19 @@ public class EventManager : MonoBehaviour
     public void taskCompleted(string id) {
         onTaskCompleted?.Invoke(id);
     }
+
+    ///<summary>
+    ///Triggers when a win condition is met.
+    ///</summary>
+    public event Action onLevelWin;
+
+    ///<summary>
+    ///Trigger to complete the level.
+    ///</summary>
+    public void levelWin() {
+        onLevelWin?.Invoke();
+    }
+
     ///Add functions to trigger when the player attacks
     ///</summary>
     public event Action onPlayerAttack;
@@ -286,6 +323,7 @@ public class EventManager : MonoBehaviour
     {
         onEnemyAttackSuccess?.Invoke(objectID);
     }
+    
     ///<summary>
     ///An event to indicate that the enemy has dealt damage to the player
     ///</summary> 

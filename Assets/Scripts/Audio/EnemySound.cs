@@ -13,14 +13,23 @@ public class EnemySound : EntitySound
     {
         base.Start();
 
-        //Subscribe to events
-        EventManager.current.onEnemyAttack += attack;
-        EventManager.current.onEnemyAtkDealt += atkDealt;
-        EventManager.current.onDealDamageEnemy += takeDamage;
-        EventManager.current.onEnemyDeath += die;
+        //Subscribe to events.
+        // EventManager.current.onEnemyAttack += attack;
+        // EventManager.current.onEnemyAttackSuccess += atkDealt;
+        // EventManager.current.onDealDamageEnemy += takeDamage;
+        // EventManager.current.onEnemyDeath += die;
 
         //Set own id
         myID = gameObject.GetInstanceID();
+    }
+
+    private void OnEnable()
+    {
+        //Subscribe to events
+        EventManager.current.onEnemyAttack += attack;
+        EventManager.current.onEnemyAttackSuccess += atkDealt;
+        EventManager.current.onDealDamageEnemy += takeDamage;
+        EventManager.current.onEnemyDeath += die;
     }
 
     private void Update() {
@@ -45,7 +54,7 @@ public class EnemySound : EntitySound
         }
     }
 
-    //When onEnemyAtkDealt event is triggered, plays the sound in position 1
+    //When onEnemyAttackSuccess event is triggered, plays the sound in position 1
     private void atkDealt(int objectID) {
         if(objectID == myID) {
             audios[1].Play();
@@ -60,17 +69,22 @@ public class EnemySound : EntitySound
         }
     }
 
-    //When onEnemyDeath event is triggered, plays the sound in position 3
+    //When onEnemyDeath event is triggered, plays the sound in position 3 and
+    // unsubscribes from events.
     private void die(int objectID) {
         if(objectID == myID) {
             audios[3].Play();
+            EventManager.current.onEnemyAttack -= attack;
+            EventManager.current.onEnemyAttackSuccess -= atkDealt;
+            EventManager.current.onDealDamageEnemy -= takeDamage;
+            EventManager.current.onEnemyDeath -= die;
         }
     }
 
     //Remove subscriptions when disabled
     private void OnDisable() {
         EventManager.current.onEnemyAttack -= attack;
-        EventManager.current.onEnemyAtkDealt -= atkDealt;
+        EventManager.current.onEnemyAttackSuccess -= atkDealt;
         EventManager.current.onDealDamageEnemy -= takeDamage;
         EventManager.current.onEnemyDeath -= die;
     }

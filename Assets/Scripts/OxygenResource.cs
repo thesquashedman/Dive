@@ -8,16 +8,22 @@ public class OxygenResource : MonoBehaviour
     public bool area = false;
 
     // Amount of oxygen to add if the area is set to false
-    public float oxygenToAdd = 20.0f;
+    public float oxygenToAdd = 20f;
 
     // Rate at which oxygen should be increased if the area is set to true
-    public float oxygenIncreaseRate = 1.0f;
+    public float oxygenIncreaseRate = 1f;
 
     // Time passed since the player entered the trigger collider
-    private float timePassed = 0.0f;
+    private float timePassed = 0f;
 
-    // Reference to the player's OxygenSystem script
-    private OxygenSystem playerOxygenSystem;
+    // Whether the player is in the trigger collider
+    private bool playerInTrigger = false;
+
+    // Reference to the player's oxygen script
+    public PavelPlayerOxygen playerOxygenSystem;
+
+    // Reference to the player's bubble system
+    public ParticleSystem bubbleParticles;
 
     // Function called when an object enters the trigger collider
     void OnTriggerEnter2D(Collider2D other)
@@ -25,23 +31,19 @@ public class OxygenResource : MonoBehaviour
         // Check if the object that entered the trigger has the tag "Player"
         if (other.CompareTag("Player"))
         {
-            // Get the OxygenSystem script attached to the player
-            playerOxygenSystem = other.GetComponent<OxygenSystem>();
-
             // If area is true, start increasing oxygen over time
             if (area)
             {
-                // This is handled in the Update method
+                bubbleParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                playerInTrigger = true;
+                // The rest of the logic is handled in the Update method
             }
             // If area is false, add a fixed amount of oxygen immediately
             else
             {
-                if (playerOxygenSystem != null)
-                {
-                    float newOxygenLevel = playerOxygenSystem.oxygenLevel + oxygenToAdd;
-                    playerOxygenSystem.SetOxygenLevel(newOxygenLevel);
-                    Destroy(this.gameObject);
-                }
+                float newOxygenLevel = playerOxygenSystem.oxygenLevel + oxygenToAdd;
+                playerOxygenSystem.SetOxygenLevel(newOxygenLevel);
+                Destroy(this.gameObject);
             }
         }
     }
@@ -52,8 +54,9 @@ public class OxygenResource : MonoBehaviour
         // If the player exits the trigger and area is true, reset timePassed
         if (area && other.CompareTag("Player"))
         {
-            timePassed = 0.0f;
-            playerOxygenSystem = null;
+            timePassed = 0f;
+            playerInTrigger = false;
+            bubbleParticles.Play(true);
         }
     }
 
@@ -61,15 +64,15 @@ public class OxygenResource : MonoBehaviour
     void Update()
     {
         // If area is true and the player is in the trigger, increase oxygen over time
-        if (area && playerOxygenSystem != null)
+        if (area && playerInTrigger)
         {
             timePassed += Time.deltaTime;
 
-            if (timePassed >= 1.0f) // 1 second interval
+            if (timePassed >= 1f) // 1 second interval
             {
                 float newOxygenLevel = playerOxygenSystem.oxygenLevel + oxygenIncreaseRate;
                 playerOxygenSystem.SetOxygenLevel(newOxygenLevel);
-                timePassed = 0.0f;
+                timePassed = 0f;
             }
         }
     }

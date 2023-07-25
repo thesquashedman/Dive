@@ -9,12 +9,20 @@ public class BodyPart : MonoBehaviour
 
     private void Start()
     {
+        // EventManager.current.onDealDamageEnemy += TakeDamage;
+        // EventManager.current.onEnemyDeath += Die;
+    }
+
+    private void OnEnable()
+    {
         EventManager.current.onDealDamageEnemy += TakeDamage;
+        EventManager.current.onEnemyDeath += Die;
     }
 
     private void OnDisable()
     {
         EventManager.current.onDealDamageEnemy -= TakeDamage;
+        EventManager.current.onEnemyDeath -= Die;
     }
 
     // This function issues a damage event through the event manager.
@@ -23,6 +31,16 @@ public class BodyPart : MonoBehaviour
         if (objectID == gameObject.GetInstanceID())
         {
             EventManager.current.DealDamageEnemy(enemyID, amount);
+        }
+    }
+
+    // This function unsubscribes from events when the enemy dies.
+    private void Die(int objectID)
+    {
+        if (objectID == enemyID)
+        {
+            EventManager.current.onDealDamageEnemy -= TakeDamage;
+            EventManager.current.onEnemyDeath -= Die;
         }
     }
 }

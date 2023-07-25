@@ -5,7 +5,7 @@ using UnityEngine;
 public class EelEnemy : Enemy
 {
     private EelBehavior eelBehavior;
-    private float maxHealth = 20f;
+    private float maxHealth = 40f;
 
     // Start is called before the first frame update
     protected override void Start()

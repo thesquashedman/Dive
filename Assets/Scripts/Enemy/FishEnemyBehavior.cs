@@ -6,6 +6,9 @@ public class FishEnemyBehavior : MonoBehaviour
 {
     public GameObject player;
 
+    // The distance from this enemy to the player.
+    protected float distanceToPlayer;
+
     // The behavior mode of this enemy. The possible modes are the following ones:
     // 1. attack: This enemy will chase and attack the player.
     //
@@ -156,6 +159,12 @@ public class FishEnemyBehavior : MonoBehaviour
     public string GetMode()
     {
         return mode;
+    }
+
+    public float GetDistanceToPlayer()
+    {
+        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        return distanceToPlayer;
     }
 
     // This function verifies whether this enemy is stuck and needs to struggle.

@@ -149,7 +149,7 @@ public class WandererBehavior : FishEnemyBehavior
     // is, switch to attack mode. If the player is not, switch to wander mode.
     private void CheckAttackRange()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        distanceToPlayer = GetDistanceToPlayer();
         float distanceToHabitat = Vector2.Distance(transform.position, habitat.transform.position);
 
         if (mode != "attack" && distanceToPlayer <= attackRange)
