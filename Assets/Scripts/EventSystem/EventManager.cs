@@ -37,6 +37,17 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public void SetUp()
+    {
+        //Singleton pattern
+        if(current != null && current != this) {
+            Destroy(this);
+        } else {
+            current = this;
+            //Debug.Log("EventManager Active.");
+        }
+    }
+
     
     //Events
 

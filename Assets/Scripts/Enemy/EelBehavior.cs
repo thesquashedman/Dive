@@ -174,11 +174,12 @@ public class EelBehavior : FishEnemyBehavior
     // is, switch to attack mode. If the player is not, switch to idle mode.
     private void CheckAttackRange()
     {
-        if (mode != "attack" && Vector2.Distance(transform.position, player.transform.position) <= attackRange)
+        distanceToPlayer = GetDistanceToPlayer();
+        if (mode != "attack" && distanceToPlayer <= attackRange)
         {
             SwitchMode("attack");
         }
-        else if (mode == "attack" && Vector2.Distance(transform.position, player.transform.position) > attackRange)
+        else if (mode == "attack" && distanceToPlayer > attackRange)
         {
             SwitchMode("idle");
         }

@@ -13,14 +13,23 @@ public class EnemySound : EntitySound
     {
         base.Start();
 
+        //Subscribe to events.
+        // EventManager.current.onEnemyAttack += attack;
+        // EventManager.current.onEnemyAttackSuccess += atkDealt;
+        // EventManager.current.onDealDamageEnemy += takeDamage;
+        // EventManager.current.onEnemyDeath += die;
+
+        //Set own id
+        myID = gameObject.GetInstanceID();
+    }
+
+    private void OnEnable()
+    {
         //Subscribe to events
         EventManager.current.onEnemyAttack += attack;
         EventManager.current.onEnemyAttackSuccess += atkDealt;
         EventManager.current.onDealDamageEnemy += takeDamage;
         EventManager.current.onEnemyDeath += die;
-
-        //Set own id
-        myID = gameObject.GetInstanceID();
     }
 
     private void Update() {
