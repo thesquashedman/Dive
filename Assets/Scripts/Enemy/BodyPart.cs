@@ -9,6 +9,12 @@ public class BodyPart : MonoBehaviour
 
     private void Start()
     {
+        // EventManager.current.onDealDamageEnemy += TakeDamage;
+        // EventManager.current.onEnemyDeath += Die;
+    }
+
+    private void OnEnable()
+    {
         EventManager.current.onDealDamageEnemy += TakeDamage;
         EventManager.current.onEnemyDeath += Die;
     }

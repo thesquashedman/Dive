@@ -95,18 +95,19 @@ public class WormBehavior : FishEnemyBehavior
     // is, switch to attack mode. If the player is not, switch to idle mode.
     private void CheckAttackRange()
     {
+        float habitatToPlayer = Vector2.Distance(habitat.transform.position, player.transform.position);
         if (isAwaken)
         {
-            if (mode != "attack" && Vector2.Distance(habitat.transform.position, player.transform.position) <= initialAttackRange)
+            if (mode != "attack" && habitatToPlayer <= initialAttackRange)
             {
                 SwitchMode("attack");
             }
-            else if (mode == "attack" && Vector2.Distance(habitat.transform.position, player.transform.position) > subsequentAttackRange)
+            else if (mode == "attack" && habitatToPlayer > subsequentAttackRange)
             {
                 SwitchMode("idle");
             }
         }
-        else if (Vector2.Distance(habitat.transform.position, player.transform.position) <= initialAttackRange)
+        else if (habitatToPlayer <= initialAttackRange)
         {
             isAwaken = true;
             SwitchMode("attack");
