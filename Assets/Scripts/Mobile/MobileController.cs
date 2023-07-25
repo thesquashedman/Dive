@@ -66,12 +66,12 @@ public class MobileController : MonoBehaviour
     void Update()
     {
         // Update Joystick
-        if (Mathf.Abs(joystickLeft.Vertical) >= 0.05 && Mathf.Abs(joystickLeft.Horizontal) >= 0.05)
+        if (Mathf.Abs(joystickLeft.Vertical) >= 0.05 || Mathf.Abs(joystickLeft.Horizontal) >= 0.05)
             directionLeft = Vector3.up * joystickLeft.Vertical + Vector3.right * joystickLeft.Horizontal;
         else
             directionLeft = Vector3.zero;
 
-        if (Mathf.Abs(joystickRight.Vertical) >= 0.05 && Mathf.Abs(joystickRight.Horizontal) >= 0.05)
+        if (Mathf.Abs(joystickRight.Vertical) >= 0.05 || Mathf.Abs(joystickRight.Horizontal) >= 0.05)
             directionRight = Vector3.up * joystickRight.Vertical + Vector3.right * joystickRight.Horizontal;
         
         UpdateAmmo();
