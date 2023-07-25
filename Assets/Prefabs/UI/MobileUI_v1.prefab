@@ -569,12 +569,12 @@ RectTransform:
   m_Children:
   - {fileID: 2441602086436484705}
   - {fileID: 6042018317815437265}
-  m_Father: {fileID: 6944924791012131622}
+  m_Father: {fileID: 7025536574358131122}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 219, y: -321}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -245.50006, y: -7}
   m_SizeDelta: {x: 190.5297, y: 281.0593}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2905906560958013187
@@ -1281,6 +1281,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7378427327695036081}
+  - {fileID: 6854683610294925784}
   m_Father: {fileID: 6944924791012131622}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1491,9 +1492,6 @@ PrefabInstance:
       addedObject: {fileID: 7025536574358131122}
     - targetCorrespondingSourceObject: {fileID: 7082042838605772228, guid: 8a6c1a29049eb45fa8ae72041dc662b3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6854683610294925784}
-    - targetCorrespondingSourceObject: {fileID: 7082042838605772228, guid: 8a6c1a29049eb45fa8ae72041dc662b3, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2694777035750209128}
     - targetCorrespondingSourceObject: {fileID: 7082042838605772228, guid: 8a6c1a29049eb45fa8ae72041dc662b3, type: 3}
       insertIndex: -1
@@ -1539,8 +1537,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5944e934249e7445090f9a89b5418d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curentWeapon: {fileID: 0}
-  attack: {fileID: 4006168061612080978}
+  isMobileActive: 0
+  joystickLeft: {fileID: 0}
+  joystickRight: {fileID: 0}
+  directionLeft: {x: 0, y: 0, z: 0}
+  directionRight: {x: 0, y: 0, z: 0}
+  mobileUI: {fileID: 0}
+  mobileAttack: {fileID: 0}
+  mobileSwitchWeapon: {fileID: 0}
+  mobileInteraction: {fileID: 0}
+  weaponList: {fileID: 0}
+  ammoText: {fileID: 0}
+  currentWeaponAmmo: 0
+  isAttacking: 0
+  isInteracting: 0
+  weaponIndex: 0
+  weaponName: Unequipped
   curTime: 0
   maxTime: 0
   timerOn: 0
