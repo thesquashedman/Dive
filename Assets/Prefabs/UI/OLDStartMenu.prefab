@@ -21948,7 +21948,7 @@ GameObject:
   - component: {fileID: 2486167289323595772}
   - component: {fileID: 2490294695728664472}
   m_Layer: 5
-  m_Name: StartMenu
+  m_Name: OLDStartMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
