@@ -10,6 +10,7 @@ public class FixObject : MonoBehaviour
 
     float value = 0;
     float curent = 0;
+    public float fixSpeed = 10;
     
     //Give this object a task name to trigger other events on completion with.
     public string myName = "";
@@ -19,12 +20,21 @@ public class FixObject : MonoBehaviour
     {
         initial.SetActive(true);
         afterFix.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(PavelPlayerSettingStates.current.isInteracting)
+        {
+            Fix(fixSpeed * Time.deltaTime);
+            
+        }
+    }
+    void StartFixing()
+    {
+
     }
 
     public void Fix(float fixAmount) {
