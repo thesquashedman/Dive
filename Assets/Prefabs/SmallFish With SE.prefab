@@ -446,7 +446,7 @@ Transform:
   - {fileID: 8654498615788733701}
   - {fileID: 6012620869361341499}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6026119306091504993
 MonoBehaviour:
@@ -535,8 +535,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.61286294}
-  m_Size: {x: 0.5, y: 1.3216553}
+  m_Offset: {x: 0.08760611, y: -0.68819594}
+  m_Size: {x: 0.83569646, y: 1.4723206}
   m_Direction: 0
 --- !u!114 &6362132298675095657
 MonoBehaviour:
