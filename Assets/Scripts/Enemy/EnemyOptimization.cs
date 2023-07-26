@@ -57,4 +57,11 @@ public class EnemyOptimization : MonoBehaviour
             }
         }
     }
+
+    /*
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, activationDistance);
+    }
+    */
 }
