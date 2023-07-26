@@ -7,6 +7,7 @@ public class WeaponPickup : MonoBehaviour
     // Start is called before the first frame update
     public string weaponName = "Default";
     public float interactDistance = 1f;
+    
     void Start()
     {
         EventManager.current.onPlayerinteract += Interact;
@@ -25,6 +26,7 @@ public class WeaponPickup : MonoBehaviour
         }
         EventManager.current.PlayerPickupWeapon(weaponName);
         EventManager.current.PlayerSwitchWeapon(weaponName);
+        Destroy(gameObject);
     }
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;
