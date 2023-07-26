@@ -21,6 +21,7 @@ public class EntitySound : MonoBehaviour
     public virtual void Start() {
         for(int i = 0; i < audioNames.Count; i++) {
             audios.Add(gameObject.AddComponent<AudioSource>());
+            audios[i].playOnAwake = false;
 
             //Find which audio to use here
             AudioManager.instance.SetSource(audioNames[i], audios[i]);

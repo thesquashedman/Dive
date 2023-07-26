@@ -14,6 +14,11 @@ public class EelAnimationController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         eelID = eelBehavior.gameObject.GetInstanceID();
+        // EventManager.current.onEnemyAttackSuccess += SwitchToBiteAnimation;
+    }
+
+    private void OnEnable()
+    {
         EventManager.current.onEnemyAttackSuccess += SwitchToBiteAnimation;
     }
 

@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Procedural Scripts/Tail.cs.meta
 guid: 1d8c52e1413f30d4d9b12a9997331e25
-========
-guid: 2c60609d8a7bfd74cafd8546e6f1a802
->>>>>>>> main:Assets/Scripts/EventSystem/EventManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
-  executionOrder: 0
+  executionOrder: -20
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

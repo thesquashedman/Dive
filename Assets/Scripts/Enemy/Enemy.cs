@@ -13,6 +13,13 @@ public class Enemy : MonoBehaviour
         health = GetComponent<EnemyHealth>();
 
         // Subscribe to events.
+        // EventManager.current.onDealDamageEnemy += DecreaseHealth;
+        // EventManager.current.onEnemyDeath += Die;
+    }
+
+    protected virtual void OnEnable()
+    {
+        // Subscribe to events.
         EventManager.current.onDealDamageEnemy += DecreaseHealth;
         EventManager.current.onEnemyDeath += Die;
     }

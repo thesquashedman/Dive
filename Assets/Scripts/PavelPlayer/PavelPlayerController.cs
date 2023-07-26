@@ -95,6 +95,47 @@ public class PavelPlayerController : MonoBehaviour
     }
     void MobileMovementInput()
     {
+        // Mobile Aiming
+        PavelPlayerSettingStates.current.aimDirection = MobileController.current.directionRight;
+        if (PavelPlayerSettingStates.current.aimDirection != Vector2.zero) {
+            PavelPlayerSettingStates.current.isAiming = true;
+            EventManager.current.PlayerStartAiming();
+        }
+        else {
+            PavelPlayerSettingStates.current.isAiming = false;
+            EventManager.current.PlayerStopAiming();
+        }
+
+        // Mobile Moving
+        PavelPlayerSettingStates.current.moveDirection = MobileController.current.directionLeft;
+        if (PavelPlayerSettingStates.current.moveDirection != Vector2.zero) {
+            PavelPlayerSettingStates.current.isMoving = true;
+            EventManager.current.PlayerStartMove();
+        }
+        else {
+            PavelPlayerSettingStates.current.isMoving = false;
+            EventManager.current.PlayerStopMove();
+        }
+
+        // Mobile Attacking
+        PavelPlayerSettingStates.current.isAttacking = MobileController.current.isAttacking;
+        if (PavelPlayerSettingStates.current.isAttacking) {
+            EventManager.current.PlayerAttack();
+        }
+        else {
+            EventManager.current.PlayerStopAttack();
+        }
+
+        // Mobile Interacting
+        PavelPlayerSettingStates.current.isInteracting = MobileController.current.isInteracting;
+        if (PavelPlayerSettingStates.current.isInteracting) {
+            EventManager.current.PlayerInteract();
+        }
+
+        // Mobile Switching Weapon
+        // private string[] weapons = {"Unequipped", "Saw", "ProjectileGun", "RaycastGun"};
+        // private weaponIndex = MobileController.current.weaponIndex;
+        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
 
     }
     void WASDMovementInput()

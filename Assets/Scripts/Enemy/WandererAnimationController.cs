@@ -14,6 +14,11 @@ public class WandererAnimationController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         wandererID = wandererBehavior.gameObject.GetInstanceID();
+        // EventManager.current.onEnemyAttackSuccess += SwitchToBiteAnimation;
+    }
+
+    private void OnEnable()
+    {
         EventManager.current.onEnemyAttackSuccess += SwitchToBiteAnimation;
     }
 
