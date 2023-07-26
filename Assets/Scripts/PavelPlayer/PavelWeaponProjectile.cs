@@ -57,7 +57,7 @@ public class PavelWeaponProjectile : PavelWeapon
     {
         Debug.Log("fire");
         GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-
+        projectile.transform.rotation = firePoint.transform.rotation;
         projectile.transform.position = firePoint.position;
         projectile.GetComponent<PavelBullet>().damage = damage;
         projectile.GetComponent<PavelBullet>().enemyTags = enemyTags;
