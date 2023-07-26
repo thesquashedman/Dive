@@ -23258,7 +23258,7 @@ MonoBehaviour:
   - {fileID: 490379668}
   - {fileID: 1456990652}
   - {fileID: 1046214501}
-  activationDistance: 100
+  activationDistance: 60
   interval: 0.5
 --- !u!4 &512510749
 Transform:
@@ -77988,7 +77988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3714479083895637316, guid: 71ed5a4f9d6ec4842959b685a5e5aa0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 212.8
+      value: 64.8
       objectReference: {fileID: 0}
     - target: {fileID: 3714479083895637316, guid: 71ed5a4f9d6ec4842959b685a5e5aa0e, type: 3}
       propertyPath: m_LocalPosition.y
