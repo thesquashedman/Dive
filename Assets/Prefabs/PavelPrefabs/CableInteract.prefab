@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light2D: {fileID: 4416172267874902230}
   FixedColor: {r: 0.012459949, g: 0.5283019, b: 0.08528469, a: 0.50980395}
+  text: {fileID: 8699503138736466041}
   curent: 0
   fixSpeed: 50
   isFixed: 0
@@ -240,5 +241,10 @@ PrefabInstance:
 --- !u!4 &8161545809990446638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7359206386520156100, guid: bc90e21aa0f311a46bdaaf446d1e9d85, type: 3}
+  m_PrefabInstance: {fileID: 1685056115246565866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8699503138736466041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8059294443365687699, guid: bc90e21aa0f311a46bdaaf446d1e9d85, type: 3}
   m_PrefabInstance: {fileID: 1685056115246565866}
   m_PrefabAsset: {fileID: 0}

@@ -9,6 +9,7 @@ public class FixObject : MonoBehaviour
     
     public Light2D light2D;
     public Color FixedColor;
+    public GameObject text;
 
     float value = 0;
     public float curent = 0;
@@ -70,6 +71,7 @@ public class FixObject : MonoBehaviour
             EventManager.current.taskCompleted(myName);
             light2D.color = FixedColor;
             isFixed = true;
+            text.SetActive(false);
         }
     }
 }
