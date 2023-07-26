@@ -808,7 +808,7 @@ MonoBehaviour:
   attackSystem: {fileID: 393716479757435557}
   attackRange: 10
   attackSpeed: 30
-  pathfindingRotationSpeed: 250
+  pathfindingRotationSpeed: 200
   hostile: 0
   activeChase: 1
   chaseRange: 60
