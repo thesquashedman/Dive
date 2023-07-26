@@ -13,7 +13,7 @@ public class FadeTextIn : MonoBehaviour
     
     void Start()
     {
-        
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
     }
 
     // Update is called once per frame

@@ -8284,6 +8284,20 @@ MonoBehaviour:
     monoBehaviour: {fileID: 7426293000575751075}
   - identifier: PavelPlayerHealth-1e26a
     monoBehaviour: {fileID: 6792188105291267838}
+  - identifier: PlayerResourcesSystem-3ec63
+    monoBehaviour: {fileID: 5529590813061977901}
+  - identifier: PavelWeaponContact-97ce9
+    monoBehaviour: {fileID: 2947759285823441920}
+  - identifier: PavelWeaponProjectile-20331
+    monoBehaviour: {fileID: 323153991223081888}
+  - identifier: PavelWeaponRaycast-f5ede
+    monoBehaviour: {fileID: 1020859471214727351}
+  - identifier: PavelWeaponContact-2a420
+    monoBehaviour: {fileID: 8850728551072863632}
+  - identifier: PavelWeaponProjectile-772b9
+    monoBehaviour: {fileID: 2616181689401609063}
+  - identifier: PavelWeaponRaycast-cd563
+    monoBehaviour: {fileID: 8223208799299779841}
   saveIdentification: 
   sceneName: 
 --- !u!114 &1952793558351913850
