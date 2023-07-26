@@ -164,7 +164,7 @@ Transform:
   - {fileID: 1862351215781885159}
   - {fileID: 7661676977818985335}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2082053489916176648
 MonoBehaviour:
@@ -325,7 +325,7 @@ MonoBehaviour:
   attackSystem: {fileID: 4494275928638372881}
   attackRange: 10
   attackSpeed: 30
-  pathfindingRotationSpeed: 250
+  pathfindingRotationSpeed: 200
   hostile: 0
   activeChase: 1
   chaseRange: 60
