@@ -13,21 +13,11 @@ public class OneTimeSound : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         if (audioSource.clip == null)
         {
             AudioManager.instance.SetSource(audioName, audioSource);
-        }
-    }
-
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-        // Destroy this object if the sound has finished playing once.
-        if (triggered && !audioSource.isPlaying)
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -39,5 +29,10 @@ public class OneTimeSound : MonoBehaviour
             audioSource.Play();
             triggered = true;
         }
+    }
+
+    public void Reset()
+    {
+        triggered = false;
     }
 }
