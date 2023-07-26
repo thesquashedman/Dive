@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lowscope.Saving;
 
-public class PlayerResourcesSystem : MonoBehaviour
+public class PlayerResourcesSystem : MonoBehaviour, ISaveable
 {
     public int staminaMax;
     public int staminaCur;
@@ -28,6 +29,18 @@ public class PlayerResourcesSystem : MonoBehaviour
 
     //Singleton instance
     public static PlayerResourcesSystem current;
+
+    public struct SaveData
+    {
+        public float staminaMax;
+        public float staminaCur;
+        public float resourceOne;
+        public int bullets1;
+        public int bullets2;
+        public int bullets3;
+        public int bombs;
+        public int HPKit;
+    }
 
     private void Awake()
     {
@@ -129,5 +142,27 @@ public class PlayerResourcesSystem : MonoBehaviour
 
     private void OnDisable() {
         EventManager.current.onPlayerPickupResource -= PickupResource;
+    }
+
+    public string OnSave()
+    {
+        return JsonUtility.ToJson(new SaveData { staminaMax = staminaMax, staminaCur = staminaCur, resourceOne = resouceOne, bullets1 = bullets1, bullets2 = bullets2, bullets3 = bullets3, bombs = bombs, HPKit = HPKit });
+    }
+
+    public void OnLoad(string data)
+    {
+        staminaMax = (int)JsonUtility.FromJson<SaveData>(data).staminaMax;
+        staminaCur = (int)JsonUtility.FromJson<SaveData>(data).staminaCur;
+        resouceOne = JsonUtility.FromJson<SaveData>(data).resourceOne;
+        bullets1 = (int)JsonUtility.FromJson<SaveData>(data).bullets1;
+        bullets2 = (int)JsonUtility.FromJson<SaveData>(data).bullets2;
+        bullets3 = (int)JsonUtility.FromJson<SaveData>(data).bullets3;
+        bombs = (int)JsonUtility.FromJson<SaveData>(data).bombs;
+        HPKit = (int)JsonUtility.FromJson<SaveData>(data).HPKit;
+    }
+
+    public bool OnSaveCondition()
+    {
+        return true;
     }
 }

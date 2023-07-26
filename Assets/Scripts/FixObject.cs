@@ -11,6 +11,7 @@ public class FixObject : MonoBehaviour
     float value = 0;
     float curent = 0;
     public float fixSpeed = 10;
+    bool isFixed = false;
     
     //Give this object a task name to trigger other events on completion with.
     public string myName = "";
@@ -26,10 +27,26 @@ public class FixObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PavelPlayerSettingStates.current.isInteracting)
+        if(!isFixed)
         {
-            Fix(fixSpeed * Time.deltaTime);
-            
+
+        
+            if(PavelPlayerSettingStates.current.isInteracting)
+            {
+                Fix(fixSpeed * Time.deltaTime);
+                
+            }
+            else
+            {
+                if(curent <= 0)
+                {
+                    curent = 0;
+                }
+                else
+                {
+                    curent -= fixSpeed * Time.deltaTime;
+                }
+            }
         }
     }
     void StartFixing()
@@ -43,6 +60,7 @@ public class FixObject : MonoBehaviour
             EventManager.current.taskCompleted(myName);
             initial.SetActive(false);
             afterFix.SetActive(true);
+            isFixed = true;
         }
     }
 }

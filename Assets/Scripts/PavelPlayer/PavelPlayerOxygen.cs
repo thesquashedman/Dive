@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Lowscope.Saving;
 
-public class PavelPlayerOxygen : MonoBehaviour
+public class PavelPlayerOxygen :  MonoBehaviour, ISaveable
 {
     public float lackOfOxygenDamage = 10f;
 
@@ -24,6 +23,12 @@ public class PavelPlayerOxygen : MonoBehaviour
 
     // Time passed since the last reduction
     private float timePassed = 0.0f;
+
+    public struct SaveData
+    {
+        public float oxygenLevel;
+        public float maxOxygenLevel;
+    }
 
     // Update is called once per frame
     void Update()
@@ -77,5 +82,21 @@ public class PavelPlayerOxygen : MonoBehaviour
 
     public float GetOxygenLevel() { 
         return oxygenLevel;
+    }
+
+    public string OnSave()
+    {
+        return JsonUtility.ToJson(new SaveData { oxygenLevel = oxygenLevel, maxOxygenLevel = maxOxygenLevel  });
+    }
+
+    public void OnLoad(string data)
+    {
+       oxygenLevel = JsonUtility.FromJson<SaveData>(data).oxygenLevel;
+       maxOxygenLevel = JsonUtility.FromJson<SaveData>(data).maxOxygenLevel;
+    }
+
+    public bool OnSaveCondition()
+    {
+        return true;
     }
 }

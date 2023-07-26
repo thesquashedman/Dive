@@ -1,10 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class PavelPlayerHealth : Health
+using Lowscope.Saving;
+public class PavelPlayerHealth : Health, ISaveable
 {
     // Start is called before the first frame update
+    public struct SaveData
+    {
+        public float health;
+        public float maxHealth;
+    }
     void Start()
     {
         EventManager.current.onDealDamagePlayer += DealDamage;
@@ -31,5 +34,22 @@ public class PavelPlayerHealth : Health
     public override void Die()
     {
         EventManager.current.playerDeath();
+    }
+
+    public string OnSave()
+    {
+        return JsonUtility.ToJson(new SaveData { health = currentHealth, maxHealth = maxHealth  });
+    }
+
+    public void OnLoad(string data)
+    {
+       currentHealth = JsonUtility.FromJson<SaveData>(data).health;
+       maxHealth = JsonUtility.FromJson<SaveData>(data).maxHealth;
+    }
+
+
+    public bool OnSaveCondition()
+    {
+       return true;
     }
 }
