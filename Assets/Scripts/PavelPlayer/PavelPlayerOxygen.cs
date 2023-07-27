@@ -25,6 +25,19 @@ public class PavelPlayerOxygen : MonoBehaviour
     // Time passed since the last reduction
     private float timePassed = 0.0f;
 
+    //Stores reference to breathing sound
+    private Sound lightBreathing;
+
+    //Stores reference to heavyBreathing sound
+    private Sound heavyBreathing;
+
+    void Start() {
+        lightBreathing = AudioManager.instance.Find("Player_Breathing");
+        heavyBreathing = AudioManager.instance.Find("Player_HeavyBreathing");
+
+        EventManager.current.onPlayerSuffocate += suffocate;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -46,10 +59,20 @@ public class PavelPlayerOxygen : MonoBehaviour
         if (oxygenLevel <= 0) {
             timePassedDamage += Time.deltaTime;
 
+            if(!heavyBreathing.source.isPlaying) {
+                AudioManager.instance.Stop(lightBreathing.name);
+                AudioManager.instance.Play(heavyBreathing.name);
+            }
+
             if (timePassedDamage > lackOfOxygenDamageInterval) {
                 EventManager.current.dealDamagePlayer(lackOfOxygenDamage);
                 EventManager.current.playerSuffocate();
                 timePassedDamage = 0;
+            }
+        } else {
+            if(!lightBreathing.source.isPlaying) {
+                AudioManager.instance.Stop(heavyBreathing.name);
+                AudioManager.instance.Play(lightBreathing.name);
             }
         }
     }
@@ -77,5 +100,15 @@ public class PavelPlayerOxygen : MonoBehaviour
 
     public float GetOxygenLevel() { 
         return oxygenLevel;
+    }
+
+    private void suffocate() {
+        //Play suffocation noises 
+        AudioManager.instance.Stop(heavyBreathing.name);
+        //AudioManager.instance.Play(");
+    }
+
+    private void OnDisable() {
+        EventManager.current.onPlayerSuffocate -= suffocate;
     }
 }

@@ -46,12 +46,18 @@ public class OxygenSystem : MonoBehaviour
         }
 
         if (oxygenLevel <= 0) {
+
             timePassedDamage += Time.deltaTime;
             if (timePassedDamage > lackOfOxygenDamageInterval) {
                 this.GetComponent<Health>().ChangeHealth(-lackOfOxygenDamage);
                 timePassedDamage = 0;
+
+                if(this.GetComponent<Health>().GetHealth() == 0) {
+                    EventManager.current.playerSuffocate();
+                }
             }
-        }
+
+        } 
     }
 
     // Function to set the oxygen level

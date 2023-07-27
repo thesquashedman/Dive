@@ -8040,6 +8040,7 @@ GameObject:
   - component: {fileID: 5529590813061977901}
   - component: {fileID: 3041379189263165023}
   - component: {fileID: 7426293000575751075}
+  - component: {fileID: 4947657137961150844}
   m_Layer: 6
   m_Name: PavelPlayer
   m_TagString: Player
@@ -8257,6 +8258,26 @@ MonoBehaviour:
   maxOxygenLevel: 100
   oxygenReductionInterval: 1
   oxygenReductionAmount: 1
+--- !u!114 &4947657137961150844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7352801170325988917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7777eb273b4f81e41809ab6be76bbb0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioNames:
+  - Impact_Metallic3
+  - SpookyBreathing
+  - Player_HeavyBreathing
+  - Saw_RevUp
+  - Saw_MidLoop
+  - Saw_WindDown
+  - Gunshot
 --- !u!1 &7461149609864268435
 GameObject:
   m_ObjectHideFlags: 0
