@@ -18,9 +18,11 @@ public class PavelPlayerHealth : Health, ISaveable
     void Start()
     {
         EventManager.current.onDealDamagePlayer += DealDamage;
+        EventManager.current.onHealPlayer += ChangeHealth;
     }
     private void OnDisable() {
         EventManager.current.onDealDamagePlayer -= DealDamage;
+        EventManager.current.onHealPlayer -= ChangeHealth;
     }
 
     // Update is called once per frame
@@ -28,16 +30,19 @@ public class PavelPlayerHealth : Health, ISaveable
     {
         ChangeHealth(-damage);
     }
+
     public override void ChangeHealth(float amount)
     {
         base.ChangeHealth(amount);
         EventManager.current.ChangeHealth(currentHealth);
     }
+
     public override void SetHealth(float newCurrent)
     {
         base.SetHealth(newCurrent);
         EventManager.current.ChangeHealth(currentHealth);
     }
+
     public override void Die()
     {
         PavelPlayerSettingStates.current.isDead = true;
