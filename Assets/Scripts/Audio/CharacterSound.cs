@@ -39,7 +39,7 @@ public class CharacterSound : EntitySound
         //Player suffocates
         EventManager.current.onPlayerSuffocate += suffocating;
 
-        currWeapon = "Gun";
+        currWeapon = "";
     }
 
     // Update is called once per frame
@@ -71,9 +71,10 @@ public class CharacterSound : EntitySound
     //Saw uses audio[3,4,5]
     //Gun uses audio[6]
     void playerAttack() {
-        if(currWeapon == "Gun") {
+        Debug.Log(currWeapon);
+        if(currWeapon == "ProjectileGun") {
             audios[6].Play();
-        } else {
+        } else if (currWeapon == "Saw"){
             audios[3].Play();
             StartCoroutine(sawLoop());
         }

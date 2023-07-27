@@ -20,6 +20,7 @@ public class CamShake : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        EventManager.current.onDealDamagePlayer += playOnHit;
     }
 
     // Update is called once per frame
@@ -30,9 +31,17 @@ public class CamShake : MonoBehaviour
         }
     }
 
+    public void playOnHit(float input) {
+        shakeCamera();
+    }
+
     //Tells the animator to shake the camera.
     public void shakeCamera() {
-        AudioManager.instance.Play(mySound);
+        //AudioManager.instance.Play(mySound);
         anim.SetTrigger("shake");
+    }
+
+    private void OnDisable() {
+        EventManager.current.onDealDamagePlayer -= playOnHit;
     }
 }
