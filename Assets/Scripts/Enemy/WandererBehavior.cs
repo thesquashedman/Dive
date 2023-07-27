@@ -35,7 +35,6 @@ public class WandererBehavior : FishEnemyBehavior
         rotationSpeed = pathfindingRotationSpeed;
         idleTime = Random.Range(idleIntervalLowerBound, idleIntervalUpperBound);
         base.Start();
-        attackSystem.GetComponent<BodyPart>().enemyID = gameObject.GetInstanceID();
         SwitchMode("wander");
     }
 

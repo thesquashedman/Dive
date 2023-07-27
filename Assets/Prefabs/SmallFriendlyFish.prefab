@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5224592945250302686}
   - component: {fileID: 7820870652391144761}
   - component: {fileID: 6860825454685322096}
-  - component: {fileID: 3601326859129522766}
   m_Layer: 11
   m_Name: Teeth
   m_TagString: Enemie
@@ -113,19 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
---- !u!114 &3601326859129522766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494275928638372881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e33711f85d9a44e828ccceaea33f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyID: 0
 --- !u!1 &5524135520948067927
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +311,7 @@ MonoBehaviour:
   attackSystem: {fileID: 4494275928638372881}
   attackRange: 10
   attackSpeed: 30
-  pathfindingRotationSpeed: 250
+  pathfindingRotationSpeed: 200
   hostile: 0
   activeChase: 1
   chaseRange: 60
@@ -447,6 +433,18 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: c324d0e7b86a7a3429f2e2c41b1d5eef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 683650805199822136, guid: c324d0e7b86a7a3429f2e2c41b1d5eef, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 683650805199822136, guid: c324d0e7b86a7a3429f2e2c41b1d5eef, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 683650805199822136, guid: c324d0e7b86a7a3429f2e2c41b1d5eef, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4056604
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

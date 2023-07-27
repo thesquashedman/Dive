@@ -370,7 +370,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: -1542780168229502661, guid: a171916dea05aa84eb50317632a32d46, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -499,7 +499,6 @@ GameObject:
   - component: {fileID: 8802074691610564311}
   - component: {fileID: 2728793971702020800}
   - component: {fileID: 1622323692827401136}
-  - component: {fileID: 6197016913314867385}
   m_Layer: 11
   m_Name: Teeth
   m_TagString: Enemie
@@ -600,19 +599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
---- !u!114 &6197016913314867385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6397853459278042463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e33711f85d9a44e828ccceaea33f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyID: 0
 --- !u!1 &7304255892154969532
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,8 +698,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+      key1: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -737,7 +723,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0

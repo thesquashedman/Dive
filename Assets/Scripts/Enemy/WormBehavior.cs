@@ -38,7 +38,6 @@ public class WormBehavior : FishEnemyBehavior
         speed = 80f;
         rotationSpeed = 250f;
         base.Start();
-        // attackSystem.GetComponent<BodyPart>().enemyID = gameObject.GetInstanceID();
         initialPosition = transform.parent.transform.position;
         transform.position = habitat.transform.position;
         SwitchMode("idle");
