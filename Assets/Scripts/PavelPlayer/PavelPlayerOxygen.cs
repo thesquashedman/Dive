@@ -35,6 +35,9 @@ public class PavelPlayerOxygen :  MonoBehaviour, ISaveable
         heavyBreathing = AudioManager.instance.Find("Player_HeavyBreathing");
 
         EventManager.current.onPlayerSuffocate += suffocate;
+    }
+
+
     public struct SaveData
     {
         public float oxygenLevel;
@@ -113,6 +116,9 @@ public class PavelPlayerOxygen :  MonoBehaviour, ISaveable
 
     private void OnDisable() {
         EventManager.current.onPlayerSuffocate -= suffocate;
+    }
+
+
     public string OnSave()
     {
         return JsonUtility.ToJson(new SaveData { oxygenLevel = oxygenLevel, maxOxygenLevel = maxOxygenLevel  });
