@@ -446,7 +446,7 @@ Transform:
   - {fileID: 8654498615788733701}
   - {fileID: 6012620869361341499}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6026119306091504993
 MonoBehaviour:
@@ -934,7 +934,6 @@ GameObject:
   - component: {fileID: 1263765820209586884}
   - component: {fileID: 65204385856659544}
   - component: {fileID: 1973551366954493240}
-  - component: {fileID: 5664144436951924634}
   m_Layer: 11
   m_Name: Teeth
   m_TagString: Enemie
@@ -1035,19 +1034,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
---- !u!114 &5664144436951924634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923743310310508706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e33711f85d9a44e828ccceaea33f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyID: 0
 --- !u!1 &5975786517250993837
 GameObject:
   m_ObjectHideFlags: 0
