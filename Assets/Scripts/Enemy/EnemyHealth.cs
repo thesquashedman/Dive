@@ -7,7 +7,7 @@ public class EnemyHealth : Health
     private bool isDead = false;
 
     // This function invokes the enemyDeath event when the enemy's health reaches 0.
-    public override void Die()
+    private void Update() 
     {
         if (!isDead)
         {

@@ -6,11 +6,13 @@ public class PavelPlayerAnimation : MonoBehaviour
 {
     // Start is called before the first frame update
     public Animator lowerAnimator;
+    public Animator upperAnimator;
     void Start()
     {
         lowerAnimator.SetBool("Swimming", false);
         EventManager.current.onPlayerStartMove += isMoving;
         EventManager.current.onPlayerStopMove += isNotMoving;
+        EventManager.current.onPlayPlayerRecoil += Recoil;
     }
     void OnDisable()
     {
@@ -26,6 +28,10 @@ public class PavelPlayerAnimation : MonoBehaviour
     void isNotMoving()
     {
         lowerAnimator.SetBool("Swimming", false);
+    }
+    void Recoil()
+    {
+        upperAnimator.SetTrigger("Fire");
     }
     void Update()
     {

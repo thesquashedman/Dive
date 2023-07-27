@@ -8,6 +8,13 @@ public class PavelPlayerHealth : Health, ISaveable
         public float health;
         public float maxHealth;
     }
+    void Update()
+    {
+        if(currentHealth <= 0 && !PavelPlayerSettingStates.current.isDead)
+        {
+            Die();
+        }
+    }
     void Start()
     {
         EventManager.current.onDealDamagePlayer += DealDamage;
@@ -38,7 +45,10 @@ public class PavelPlayerHealth : Health, ISaveable
 
     public override void Die()
     {
+        PavelPlayerSettingStates.current.isDead = true;
         EventManager.current.playerDeath();
+        
+
     }
 
     public string OnSave()

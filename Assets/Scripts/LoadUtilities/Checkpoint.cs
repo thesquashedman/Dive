@@ -17,12 +17,15 @@ public class Checkpoint : MonoBehaviour
         
     }
     private void OnTriggerEnter2D(Collider2D other) {
-            
-        if(other.gameObject.CompareTag("Player"))
+        if(!PavelPlayerSettingStates.current.isDead)
         {
-            Debug.Log("Checkpoint reached");
-            SaveMaster.WriteActiveSaveToDisk();
-            
+            if(other.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("Checkpoint reached");
+                SaveMaster.WriteActiveSaveToDisk();
+                
+            }
         }
+        
     }
 }
