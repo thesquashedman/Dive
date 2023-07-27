@@ -132,8 +132,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    //Find method for the sound array
-    public Sound Find(string name) {
+    //Private find method for the sound array
+    private Sound Find(string name) {
         return Array.Find(sounds, sound => sound.name == name);
     }
 }
