@@ -91,7 +91,11 @@ public class MobileController : MonoBehaviour
 
     public void UpdateAmmo() {
         currentWeaponAmmo = PlayerResourcesSystem.current.bullets1;
-        ammoText.SetText(currentWeaponAmmo.ToString());
+        if (weaponIndex == 2)
+            ammoText.SetText(currentWeaponAmmo.ToString());
+        else {
+            ammoText.SetText("∞");
+        }
     }
 
     public void OpenWeaponList() {
@@ -105,19 +109,24 @@ public class MobileController : MonoBehaviour
     public void ChooseWeapon0() {
         weaponIndex = 0;
         weaponName = "Unequipped";
+        Sprite img = weapon0.GetComponent<Image>().sprite;
+        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
         CloseWeaponList();
     }
 
     public void ChooseWeapon1() {
         weaponIndex = 1;
         weaponName = "Saw";
-        
+        Sprite img = weapon1.GetComponent<Image>().sprite;
+        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
         CloseWeaponList();
     }
 
     public void ChooseWeapon2() {
         weaponIndex = 2;
         weaponName = "ProjectileGun";
+        Sprite img = weapon2.GetComponent<Image>().sprite;
+        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
         CloseWeaponList();
     }
 
