@@ -29,7 +29,7 @@ public class CharacterSound : EntitySound
         //Player takes damage
         EventManager.current.onDealDamagePlayer += damaged;
         //Player attacks 
-        EventManager.current.onPlayerAttack += playerAttack;
+        EventManager.current.onPlayPlayerRecoil += playerAttack;
         //Player stops attacking
         EventManager.current.onPlayerStopAttack += stopAttack;
         //Player switches their weapon
@@ -71,6 +71,7 @@ public class CharacterSound : EntitySound
     //Saw uses audio[3,4,5]
     //Gun uses audio[6]
     void playerAttack() {
+        Debug.Log("Player attack");
         Debug.Log(currWeapon);
         if(currWeapon == "ProjectileGun") {
             audios[6].Play();
@@ -122,7 +123,7 @@ public class CharacterSound : EntitySound
         //Player takes damage
         EventManager.current.onDealDamagePlayer -= damaged;
         //Player attacks 
-        EventManager.current.onPlayerAttack -= playerAttack;
+        EventManager.current.onPlayPlayerRecoil -= playerAttack;
         //Player stops attacking
         EventManager.current.onPlayerStopAttack -= stopAttack;
         //Player switches their weapon
