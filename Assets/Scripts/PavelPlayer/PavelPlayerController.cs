@@ -53,19 +53,19 @@ public class PavelPlayerController : MonoBehaviour
             {
                 MouseMovementInput();
             }
-            if(Input.GetKeyDown(KeyCode.X))
+            if(Input.GetKeyDown(KeyCode.Space))
             {
                 PavelPlayerSettingStates.current.isAttacking = true;
                 EventManager.current.PlayerAttack();
             }
-            if(Input.GetKeyUp(KeyCode.X))
+            if(Input.GetKeyUp(KeyCode.Space))
             {
                 PavelPlayerSettingStates.current.isAttacking = false;
                 EventManager.current.PlayerStopAttack();
             }
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
-                EventManager.current.PlayerSwitchWeapon("Unequipped");
+                EventManager.current.PlayerSwitchWeapon("ProjectileGun");
             }
             else if(Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -73,7 +73,7 @@ public class PavelPlayerController : MonoBehaviour
             }
             else if(Input.GetKeyDown(KeyCode.Alpha3))
             {
-                EventManager.current.PlayerSwitchWeapon("ProjectileGun");
+                EventManager.current.PlayerSwitchWeapon("Unarmed");
             }
             else if(Input.GetKeyDown(KeyCode.Alpha4))
             {
