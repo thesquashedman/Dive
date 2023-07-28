@@ -163,6 +163,6 @@ public class PlayerResourcesSystem : MonoBehaviour, ISaveable
 
     public bool OnSaveCondition()
     {
-        return true;
+        return !PavelPlayerSettingStates.current.isDead;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PavelPlayerSettingStates : MonoBehaviour
 {
     public static PavelPlayerSettingStates current;
@@ -38,6 +39,9 @@ public class PavelPlayerSettingStates : MonoBehaviour
     [Tooltip("Is the player interacting?")]
     public bool isInteracting = false;
 
+    [Tooltip("Is the player dead?")]
+    public bool isDead = false;
+
     /*
     [Tooltip("Current Weapon of player, null mean's unequipped")]
     public PavelWeapon equippedWeapon;
@@ -48,7 +52,7 @@ public class PavelPlayerSettingStates : MonoBehaviour
     private void Awake() {
         //Singleton pattern
         if(current != null && current != this) {
-            Destroy(this);
+            Destroy(current);
         } else {
             current = this;
         }

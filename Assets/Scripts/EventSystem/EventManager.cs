@@ -336,4 +336,14 @@ public class EventManager : MonoBehaviour
         onEnemyAtkDealt?.Invoke(objectID);
     }
 
+    ///<summary>
+    ///An event to trigger the player's recoil animation
+    ///</summary> 
+    public event Action onPlayPlayerRecoil;
+
+    public void PlayPlayerRecoil()
+    {
+        onPlayPlayerRecoil?.Invoke();
+    }
+
 }

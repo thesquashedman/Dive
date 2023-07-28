@@ -24,6 +24,10 @@ public class MobileController : MonoBehaviour
     public GameObject mobileInteraction;
     public GameObject weaponList;
 
+    public GameObject weapon0;
+    public GameObject weapon1;
+    public GameObject weapon2;
+
     public TextMeshProUGUI ammoText;
 
     public int currentWeaponAmmo;
@@ -107,6 +111,7 @@ public class MobileController : MonoBehaviour
     public void ChooseWeapon1() {
         weaponIndex = 1;
         weaponName = "Saw";
+        
         CloseWeaponList();
     }
 
@@ -134,6 +139,14 @@ public class MobileController : MonoBehaviour
             curTime = maxTime;
             timerOn = true;
         }
+    }
+
+    public void StartInteracting() {
+        isInteracting = true;
+    }
+
+    public void StopInteractiong() {
+        isInteracting = false;
     }
 
     void TimerEnded() {

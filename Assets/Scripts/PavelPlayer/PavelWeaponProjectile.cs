@@ -56,6 +56,7 @@ public class PavelWeaponProjectile : PavelWeapon
     void FireProjectile()
     {
         Debug.Log("fire");
+        EventManager.current.PlayPlayerRecoil();
         GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         projectile.transform.rotation = firePoint.transform.rotation;
         projectile.transform.position = firePoint.position;

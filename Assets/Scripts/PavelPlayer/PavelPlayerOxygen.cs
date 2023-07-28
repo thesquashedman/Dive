@@ -127,11 +127,15 @@ public class PavelPlayerOxygen :  MonoBehaviour, ISaveable
     public void OnLoad(string data)
     {
        oxygenLevel = JsonUtility.FromJson<SaveData>(data).oxygenLevel;
+       if(oxygenLevel < 50)
+       {
+            oxygenLevel = 50;
+       }
        maxOxygenLevel = JsonUtility.FromJson<SaveData>(data).maxOxygenLevel;
     }
 
     public bool OnSaveCondition()
     {
-        return true;
+        return !PavelPlayerSettingStates.current.isDead;
     }
 }

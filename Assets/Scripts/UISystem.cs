@@ -13,6 +13,8 @@ public class UISystem : MonoBehaviour
     public Health playeHealth;
     public PlayerResourcesSystem playerResourceSys;
 
+    public GameObject[] BloodObjects;
+
     // Reference to the Text UI component
     public Text oxygenText;
     public Text healthText;
@@ -29,5 +31,42 @@ public class UISystem : MonoBehaviour
             healthText.text = "Health: " + playeHealth.GetHealth().ToString("F1");
             recouceOneText.text = "Resouce: " + playerResourceSys.GetResourceOne().ToString("F1");
         }
+
+        BloodEffects();
+    }
+
+    void BloodEffects() {
+        if (playeHealth.GetHealth() <= 20)
+        {
+            TurnOffAllBloodEffect();
+            BloodObjects[3].SetActive(true);
+        }
+        else if (playeHealth.GetHealth() <= 40)
+        {
+            TurnOffAllBloodEffect();
+            BloodObjects[2].SetActive(true);
+        }
+        else if (playeHealth.GetHealth() <= 60)
+        {
+            TurnOffAllBloodEffect();
+            BloodObjects[1].SetActive(true);
+        }
+        else if (playeHealth.GetHealth() <= 80)
+        {
+            TurnOffAllBloodEffect();
+            BloodObjects[0].SetActive(true);
+        }
+        else if (playeHealth.GetHealth() > 80)
+        {
+            TurnOffAllBloodEffect();
+        }
+    }
+
+    void TurnOffAllBloodEffect()
+    {
+            BloodObjects[0].SetActive(false);
+            BloodObjects[1].SetActive(false);
+            BloodObjects[2].SetActive(false);
+            BloodObjects[3].SetActive(false);
     }
 }

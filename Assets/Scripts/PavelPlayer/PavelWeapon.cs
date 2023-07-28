@@ -24,7 +24,7 @@ public class PavelWeapon : MonoBehaviour, ISaveable
 
     public virtual bool OnSaveCondition()
     {
-        return true;
+        return !PavelPlayerSettingStates.current.isDead;
     }
 
     void Start()

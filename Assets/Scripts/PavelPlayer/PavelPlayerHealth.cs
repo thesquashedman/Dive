@@ -8,6 +8,13 @@ public class PavelPlayerHealth : Health, ISaveable
         public float health;
         public float maxHealth;
     }
+    void Update()
+    {
+        if(currentHealth <= 0 && !PavelPlayerSettingStates.current.isDead)
+        {
+            this.Die();
+        }
+    }
     void Start()
     {
         EventManager.current.onDealDamagePlayer += DealDamage;
@@ -38,7 +45,10 @@ public class PavelPlayerHealth : Health, ISaveable
 
     public override void Die()
     {
+        PavelPlayerSettingStates.current.isDead = true;
         EventManager.current.playerDeath();
+        
+
     }
 
     public string OnSave()
@@ -49,12 +59,16 @@ public class PavelPlayerHealth : Health, ISaveable
     public void OnLoad(string data)
     {
        currentHealth = JsonUtility.FromJson<SaveData>(data).health;
+       if(currentHealth < 50)
+       {
+           currentHealth = 50;
+       }
        maxHealth = JsonUtility.FromJson<SaveData>(data).maxHealth;
     }
 
 
     public bool OnSaveCondition()
     {
-       return true;
+       return !PavelPlayerSettingStates.current.isDead;
     }
 }

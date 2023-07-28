@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        Die();
+        
     }
 
     public float GetMaxHealth()
@@ -62,3 +62,4 @@ public class Health : MonoBehaviour
         }
     }
 }
+

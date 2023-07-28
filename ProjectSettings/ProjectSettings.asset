@@ -156,6 +156,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.DefaultCompany.BigTest
     Standalone: com.DefaultCompany.Big-Test
+    iPhone: com.DefaultCompany.Big-Test
   buildNumber:
     Standalone: 0
     iPhone: 0
