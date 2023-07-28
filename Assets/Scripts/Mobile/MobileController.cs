@@ -136,6 +136,14 @@ public class MobileController : MonoBehaviour
         }
     }
 
+    public void StartInteracting() {
+        isInteracting = true;
+    }
+
+    public void StopInteractiong() {
+        isInteracting = false;
+    }
+
     void TimerEnded() {
         // if (timerOn) {
             Debug.Log("Stop Attack!!!!!");

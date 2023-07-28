@@ -122,6 +122,10 @@ namespace SlimUI.ModernMenu{
 			if(extrasMenu) extrasMenu.SetActive(false);
 			playMenu.SetActive(true);
 		}
+
+		public void ResumeGame() {
+			
+		}
 		
 		public void PlayCampaignMobile(){
 			exitMenu.SetActive(false);
@@ -273,10 +277,15 @@ namespace SlimUI.ModernMenu{
 				loadingBar.value = progress;
 
 				if (operation.progress >= 0.9f && waitForInput){
-					loadPromptText.text = "Press " + userPromptKey.ToString().ToUpper() + " to continue";
+					// loadPromptText.text = "Press " + userPromptKey.ToString().ToUpper() + " to continue";
+					loadPromptText.text = "Press ANYKEY to continue";
 					loadingBar.value = 1;
 
-					if (Input.GetKeyDown(userPromptKey)){
+					// if (Input.GetKeyDown(userPromptKey)){
+					// 	operation.allowSceneActivation = true;
+					// }
+
+					if (Input.anyKey) {
 						operation.allowSceneActivation = true;
 					}
                 }else if(operation.progress >= 0.9f && !waitForInput){
