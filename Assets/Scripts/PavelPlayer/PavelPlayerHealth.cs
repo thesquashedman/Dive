@@ -1,12 +1,20 @@
 using UnityEngine;
 using Lowscope.Saving;
+using System.Collections;
 public class PavelPlayerHealth : Health, ISaveable
 {
+
+    public float healthRejenerations = 1;
+    public float regenerationPeriod = 5f;
+    public float timer = 0f;
+
     // Start is called before the first frame update
     public struct SaveData
     {
         public float health;
         public float maxHealth;
+
+
     }
     void Update()
     {
@@ -14,6 +22,7 @@ public class PavelPlayerHealth : Health, ISaveable
         {
             this.Die();
         }
+        HelthRegeneration();
     }
     void Start()
     {
@@ -70,5 +79,18 @@ public class PavelPlayerHealth : Health, ISaveable
     public bool OnSaveCondition()
     {
        return !PavelPlayerSettingStates.current.isDead;
+    }
+
+    void HelthRegeneration() {
+        timer += Time.deltaTime;
+
+        if (timer >= regenerationPeriod)
+        {
+            if (currentHealth < 100)
+            {
+                base.ChangeHealth(healthRejenerations);
+            }
+            timer = 0;
+        }
     }
 }
