@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 3099792681446948948}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2940790990447803358
 MonoBehaviour:
@@ -267,15 +267,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4691381383639723871, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_Color.b
-      value: 0.9433962
+      value: 0.11372549
       objectReference: {fileID: 0}
     - target: {fileID: -4691381383639723871, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_Color.g
-      value: 0.42185828
+      value: 0.11372549
       objectReference: {fileID: 0}
     - target: {fileID: -4691381383639723871, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_Color.r
-      value: 0.8990707
+      value: 0.20784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638863962959275187, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638863962959275187, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638863962959275187, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.20784314
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
