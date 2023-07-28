@@ -27,15 +27,16 @@ public class PavelPlayerDeath : MonoBehaviour
     {
         //deathMessage.SetActive(true);
         this.GetComponent<PavelMovement>().enabled = false;
+        this.GetComponent<PavelPlayerController>().enabled = false;
         this.GetComponent<Rigidbody2D>().gravityScale = 1;
         StartCoroutine(Reload());
     }
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(5);
-        LoadingData.sceneToLoad = SceneManager.GetActiveScene().name;
+        //LoadingData.sceneToLoad = ;
         
-        SceneManager.LoadScene("LoadingScreen");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //SceneManager.UnloadScene(SceneManager.GetActiveScene().name);
     }
 }
