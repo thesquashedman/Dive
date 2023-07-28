@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
@@ -55,8 +56,28 @@ namespace SlimUI.ModernMenu{
 		private float sliderValueYSensitivity = 0.0f;
 		private float sliderValueSmoothing = 0.0f;
 		
+		[Header("RESOLUTION SETTING")]
+		Resolution[] resolutions; 
+		public TMPro.TMP_Dropdown resolutionDropdown;
 
 		public void  Start (){
+
+			resolutions = Screen.resolutions;
+			resolutionDropdown.ClearOptions();
+			List<string> options = new List<string>();
+			int currentResolutionIndex = 0;
+			for (int i = 0; i < resolutions.Length; i++) {
+				string option = resolutions[i].width + "x" + resolutions[i].height;
+				options.Add(option);
+				if (resolutions[i].width == Screen.currentResolution.width &&
+					resolutions[i].height == Screen.currentResolution.height)
+					currentResolutionIndex = i;
+			}
+			resolutionDropdown.AddOptions(options);
+			resolutionDropdown.value = currentResolutionIndex;
+			resolutionDropdown.RefreshShownValue();
+			
+			// InitializeResolution();
 			// check difficulty
 			if(PlayerPrefs.GetInt("NormalDifficulty") == 1){
 				difficultynormaltextLINE.gameObject.SetActive(true);
@@ -81,6 +102,8 @@ namespace SlimUI.ModernMenu{
 			else if(Screen.fullScreen == false){
 				fullscreentext.GetComponent<TMP_Text>().text = "off";
 			}
+
+			 
 
 			// check hud value
 			if(PlayerPrefs.GetInt("ShowHUD")==0){
@@ -427,6 +450,33 @@ namespace SlimUI.ModernMenu{
 			texturelowtextLINE.gameObject.SetActive(false);
 			texturemedtextLINE.gameObject.SetActive(false);
 			texturehightextLINE.gameObject.SetActive(true);
+		}
+
+		public void SetFullscreen(bool isFullscreen) {
+			Debug.Log(isFullscreen);
+			Screen.fullScreen = isFullscreen;
+		}
+
+		public void InitializeResolution() {
+			resolutions = Screen.resolutions;
+			resolutionDropdown.ClearOptions();
+			List<string> options = new List<string>();
+			int currentResolutionIndex = 0;
+			for (int i = 0; i < resolutions.Length; i++) {
+				string option = resolutions[i].width + "x" + resolutions[i].height;
+				options.Add(option);
+				if (resolutions[i].width == Screen.currentResolution.width &&
+					resolutions[i].height == Screen.currentResolution.height)
+					currentResolutionIndex = i;
+			}
+			resolutionDropdown.AddOptions(options);
+			resolutionDropdown.value = currentResolutionIndex;
+			resolutionDropdown.RefreshShownValue();
+		}
+
+		public void SetResolution(int resolutionIndex) {
+			Resolution resolution = resolutions[resolutionIndex];
+			Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 		}
 	}
 }
