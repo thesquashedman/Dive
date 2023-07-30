@@ -604,6 +604,7 @@ MonoBehaviour:
   wanderingAreaWidth: 15
   wanderingAreaHeight: 2
   wanderingSpeed: 5
+  gravityScale: 0.5
   attackSystem: {fileID: 5923743310310508706}
   attackRange: 10
   attackSpeed: 30

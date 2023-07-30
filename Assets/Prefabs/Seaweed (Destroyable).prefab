@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2397187381683885368}
   - component: {fileID: 2328518619668564446}
   - component: {fileID: 19576886194655552}
-  m_Layer: 7
+  - component: {fileID: 81349547778093843}
+  m_Layer: 10
   m_Name: Seaweed (Destroyable)
   m_TagString: Enemie
   m_Icon: {fileID: 0}
@@ -189,3 +190,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+--- !u!114 &81349547778093843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783910462168157684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6165130914752046673
+  updateError: 1
+  checkTime: 0.2
