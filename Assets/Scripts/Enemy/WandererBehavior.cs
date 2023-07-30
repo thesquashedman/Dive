@@ -8,13 +8,16 @@ public class WandererBehavior : FishEnemyBehavior
     public float attackRange = 10f;
 
     // Public variables for pathfinding.
-    public float attackSpeed = 5f;
-    public float pathfindingRotationSpeed = 250f;
+    public float attackSpeed = 10f;
+    public float pathfindingRotationSpeed = 200f;
 
     // Variables for attacking.
     public bool hostile = true;
     public bool activeChase = true;
     public float chaseRange = 60f;
+
+    // Variables for returning to this wanderer's habitat.
+    public float returningSpeed = 10f;
 
     // Variables for idling.
     private float idleTimer = 0f;
@@ -90,6 +93,7 @@ public class WandererBehavior : FishEnemyBehavior
                 aiPath.target = player.transform;
                 aiPath.enableRotation = true;
                 attackSystem.SetActive(true);
+                idleTimer = 0f;
 
                 // Issue the enemy attack event.
                 EventManager.current.EnemyAttack(gameObject.GetInstanceID());
@@ -97,9 +101,9 @@ public class WandererBehavior : FishEnemyBehavior
             else if (newMode == "coolDown")
             {
                 mode = "coolDown";
-                aiPath.speed = 0f;
-                aiPath.target = null;
-                aiPath.enableRotation = false;
+                aiPath.speed = returningSpeed;
+                aiPath.target = habitat.transform;
+                aiPath.enableRotation = true;
                 attackSystem.SetActive(false);
             }
             else if (newMode == "runAway")
@@ -163,14 +167,20 @@ public class WandererBehavior : FishEnemyBehavior
             // chase range.
             if (activeChase && distanceToPlayer > attackRange)
             {
-                aiPath.SearchPath();
-                SwitchMode("wander");
+                SwitchMode("coolDown");
             }
             else if (!activeChase && distanceToHabitat > chaseRange)
             {
-                aiPath.SearchPath();
-                SwitchMode("wander");
+                SwitchMode("coolDown");
             }
+        }
+    }
+
+    protected override void CoolDown()
+    {
+        if (aiPath.reachedEndOfPath)
+        {
+            SwitchMode("wander");
         }
     }
 

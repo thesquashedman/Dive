@@ -489,8 +489,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
-  m_AngularDrag: 3
+  m_LinearDrag: 1
+  m_AngularDrag: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -535,8 +535,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08760611, y: -0.68819594}
-  m_Size: {x: 0.83569646, y: 1.4723206}
+  m_Offset: {x: -0.0056095123, y: -0.6260524}
+  m_Size: {x: 1.0221279, y: 1.5966076}
   m_Direction: 0
 --- !u!114 &6362132298675095657
 MonoBehaviour:
@@ -607,10 +607,11 @@ MonoBehaviour:
   attackSystem: {fileID: 5923743310310508706}
   attackRange: 10
   attackSpeed: 30
-  pathfindingRotationSpeed: 250
+  pathfindingRotationSpeed: 200
   hostile: 1
-  activeChase: 1
-  chaseRange: 60
+  activeChase: 0
+  chaseRange: 30
+  returningSpeed: 10
   idleIntervalLowerBound: 3
   idleIntervalUpperBound: 5
   bloodParticlesPrefab: {fileID: 6906312204478914072, guid: f370e76661d06d043bca57f1cdb606e1, type: 3}
@@ -1033,7 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a149d6620b87b6a4c8ab5531a139d609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 20
 --- !u!1 &5975786517250993837
 GameObject:
   m_ObjectHideFlags: 0
