@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7709841011397818425}
   - component: {fileID: 7110178803127621939}
   - component: {fileID: 3524000728307884514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sea Urchin
   m_TagString: Enemie
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 3099792681446948948}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2940790990447803358
 MonoBehaviour:
@@ -221,6 +221,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sea Urchin
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7595413430563298066, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -276,6 +284,10 @@ PrefabInstance:
     - target: {fileID: -4691381383639723871, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_Color.r
       value: 0.20784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 558580837604631819, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5638863962959275187, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_Color.b
