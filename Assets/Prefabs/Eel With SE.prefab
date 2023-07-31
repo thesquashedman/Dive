@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a149d6620b87b6a4c8ab5531a139d609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 35
 --- !u!1 &7304255892154969532
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,8 +905,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
-  m_AngularDrag: 3
+  m_LinearDrag: 1
+  m_AngularDrag: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1019,6 +1019,7 @@ MonoBehaviour:
   wanderingAreaWidth: 10
   wanderingAreaHeight: 10
   wanderingSpeed: 5
+  gravityScale: 0.5
   attackSystem: {fileID: 6397853459278042463}
   playerHeadlight: {fileID: 0}
   tail: {fileID: 2432670782204872951}
