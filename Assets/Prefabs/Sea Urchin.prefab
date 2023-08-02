@@ -9,13 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4051531921914170626}
-  - component: {fileID: 2940790990447803358}
-  - component: {fileID: 2299785993059372764}
   - component: {fileID: 865525742066354632}
   - component: {fileID: 7709841011397818425}
   - component: {fileID: 7110178803127621939}
   - component: {fileID: 3524000728307884514}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sea Urchin
   m_TagString: Enemie
   m_Icon: {fileID: 0}
@@ -36,35 +34,8 @@ Transform:
   m_Children:
   - {fileID: 3099792681446948948}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2940790990447803358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9081138203084656034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 258d716d6da4f3041b72ca229ea64b42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
---- !u!114 &2299785993059372764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9081138203084656034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03dccde0f1320a34793820a76d3fb609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 30
 --- !u!60 &865525742066354632
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -221,6 +192,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sea Urchin
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7595413430563298066, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -267,15 +246,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4691381383639723871, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_Color.b
-      value: 0.9433962
+      value: 0.11372549
       objectReference: {fileID: 0}
     - target: {fileID: -4691381383639723871, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_Color.g
-      value: 0.42185828
+      value: 0.11372549
       objectReference: {fileID: 0}
     - target: {fileID: -4691381383639723871, guid: afb543563eed1024db142f9e217c98c8, type: 3}
       propertyPath: m_Color.r
-      value: 0.8990707
+      value: 0.20784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 558580837604631819, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638863962959275187, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638863962959275187, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638863962959275187, guid: afb543563eed1024db142f9e217c98c8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.20784314
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -51,7 +51,7 @@ public class FishEnemyBehavior : MonoBehaviour
     public float wanderingSpeed = 5f;
 
     // Variables for the death state.
-    protected float gravityScale = 1f;
+    public float gravityScale = 1f;
 
     // The object that has the attack system and can collide with the player.
     public GameObject attackSystem;

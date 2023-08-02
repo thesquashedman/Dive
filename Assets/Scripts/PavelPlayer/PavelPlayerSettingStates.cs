@@ -56,6 +56,7 @@ public class PavelPlayerSettingStates : MonoBehaviour
         } else {
             current = this;
         }
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame

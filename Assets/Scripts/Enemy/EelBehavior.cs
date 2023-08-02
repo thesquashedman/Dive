@@ -26,6 +26,7 @@ public class EelBehavior : FishEnemyBehavior
     private float runAwayRotationSpeed = 300f;
     private GameObject targetObject;
     public GameObject targetPrefab;
+    private int shinedCount = 0;
 
     // Variables for returning to this eel's habitat and staying idle.
     private float returningSpeed = 5f;
@@ -44,6 +45,7 @@ public class EelBehavior : FishEnemyBehavior
         rotationSpeed = 200f;
         base.Start();
         obstacleLayerMask = LayerMask.GetMask("Obstacles");
+        shinedCount = Random.Range(2, 4);
         targetObject = Instantiate(targetPrefab, transform.position, Quaternion.identity);
         SetHeadlightRange(30f, 15f);
         SwitchMode("idle");
@@ -142,6 +144,7 @@ public class EelBehavior : FishEnemyBehavior
                 aiPath.rotationSpeed = rotationSpeed;
                 attackSystem.SetActive(false);
                 tail.enableWiggle = true;
+                shinedCount = Random.Range(2, 4);
             }
             else if (newMode == "dead")
             {
@@ -188,32 +191,36 @@ public class EelBehavior : FishEnemyBehavior
     // If this eel is shined on, it will run away from the player.
     private void CheckShined()
     {
-        // Compute the vector from the player's headlight.
-        float angle = playerHeadlight.transform.rotation.eulerAngles.z;
-        float radianAngle = angle * Mathf.Deg2Rad;
-        float sinAngle = Mathf.Sin(radianAngle);
-        float cosAngle = Mathf.Cos(radianAngle);
-        
-        Vector2 vector = Vector2.up;
-        float rotatedX = vector.x * cosAngle - vector.y * sinAngle;
-        float rotatedY = vector.x * sinAngle + vector.y * cosAngle;
-        Vector2 headlightDirection = new Vector2(rotatedX, rotatedY);
-        
-        // Compute the vector from the player's headlight to this eel.
-        Vector2 headlightToEel = ((Vector2)transform.position - (Vector2)playerHeadlight.transform.position);
-        
-        // If this eel is within the headlight's range, do a raycast to see if there 
-        // is an obstacle between the player's headlight and this eel.
-        if (Vector2.Angle(headlightDirection, headlightToEel) <= headlightAngle && Vector3.Magnitude(headlightToEel) <= headlightDistance)
+        if (shinedCount > 0)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -(headlightToEel.normalized), Vector3.Magnitude(headlightToEel), obstacleLayerMask);
-
-            // If there is not an obstacle, this eel is shined on.
-            if (hit.collider == null)
+            // Compute the vector from the player's headlight.
+            float angle = playerHeadlight.transform.rotation.eulerAngles.z;
+            float radianAngle = angle * Mathf.Deg2Rad;
+            float sinAngle = Mathf.Sin(radianAngle);
+            float cosAngle = Mathf.Cos(radianAngle);
+        
+            Vector2 vector = Vector2.up;
+            float rotatedX = vector.x * cosAngle - vector.y * sinAngle;
+            float rotatedY = vector.x * sinAngle + vector.y * cosAngle;
+            Vector2 headlightDirection = new Vector2(rotatedX, rotatedY);
+        
+            // Compute the vector from the player's headlight to this eel.
+            Vector2 headlightToEel = ((Vector2)transform.position - (Vector2)playerHeadlight.transform.position);
+        
+            // If this eel is within the headlight's range, do a raycast to see if there 
+            // is an obstacle between the player's headlight and this eel.
+            if (Vector2.Angle(headlightDirection, headlightToEel) <= headlightAngle && Vector3.Magnitude(headlightToEel) <= headlightDistance)
             {
-                runAwayDirection = headlightToEel.normalized;
-                targetObject.transform.position = transform.position;
-                SwitchMode("runAway");
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, -(headlightToEel.normalized), Vector3.Magnitude(headlightToEel), obstacleLayerMask);
+
+                // If there is not an obstacle, this eel is shined on.
+                if (hit.collider == null)
+                {
+                    runAwayDirection = headlightToEel.normalized;
+                    targetObject.transform.position = transform.position;
+                    shinedCount -= 1;
+                    SwitchMode("runAway");
+                }
             }
         }
     }

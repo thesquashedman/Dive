@@ -19,6 +19,7 @@ public class UISystem : MonoBehaviour
     public Text oxygenText;
     public Text healthText;
 
+    public Text bulletsForPistol;
     public Text recouceOneText;
 
     // Update is called once per frame
@@ -29,7 +30,8 @@ public class UISystem : MonoBehaviour
         {
             oxygenText.text = "Oxygen: " + playerOxygenSystem.oxygenLevel.ToString("F1");
             healthText.text = "Health: " + playeHealth.GetHealth().ToString("F1");
-            recouceOneText.text = "Resouce: " + playerResourceSys.GetResourceOne().ToString("F1");
+            bulletsForPistol.text = "Bullets: " + playerResourceSys.bullets1.ToString("F1");
+            recouceOneText.text = "Pearls: " + playerResourceSys.GetResourceOne().ToString("F1");
         }
 
         BloodEffects();
