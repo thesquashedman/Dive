@@ -19,6 +19,8 @@ public class EnemyAttackSystem : MonoBehaviour
     // The damage system of the enemy.
     public DamageSystem damageSystem;
 
+    public float knockbackForce = 500f;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -50,6 +52,7 @@ public class EnemyAttackSystem : MonoBehaviour
                 if (other.gameObject.tag == "Player")
                 {
                     EventManager.current.dealDamagePlayer(damageSystem.GetDamage());
+                    other.GetComponent<Rigidbody2D>().AddForce((other.transform.position - this.transform.position).normalized * knockbackForce);
 
                     if (enemyID != 0)
                     {
