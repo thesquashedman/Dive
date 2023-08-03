@@ -113,7 +113,7 @@ MonoBehaviour:
   damage: 10
   enemyTags:
   - Enemie
-  particle: {fileID: 6546928998537924385, guid: 7bbd276a836e9c8428cfc113498ec452, type: 3}
+  particle: {fileID: 3669029332534603131, guid: 43c41b77e22695f45a42de9b42474ac8, type: 3}
 --- !u!212 &5393802029467844401
 SpriteRenderer:
   m_ObjectHideFlags: 0

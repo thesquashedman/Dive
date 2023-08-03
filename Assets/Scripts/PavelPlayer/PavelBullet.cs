@@ -40,6 +40,7 @@ public class PavelBullet : MonoBehaviour
                         EventManager.current.DealDamageEnemy(hit.gameObject.GetInstanceID(), damage);
                         GameObject temp = Instantiate(particle, hit.GetContact(0).point, Quaternion.identity);
                         temp.GetComponent<ParticleSystem>().Play();
+                        temp.transform.parent = hit.transform;
 
                     }
                 }
