@@ -8,6 +8,9 @@ public class PavelBullet : MonoBehaviour
     public float damage = 10f;
     private bool hasEntered = false;
     public string[] enemyTags;
+    public GameObject particle;
+
+
 
     void Start()
     {
@@ -35,6 +38,9 @@ public class PavelBullet : MonoBehaviour
                     if (hit.collider.CompareTag(tag))
                     {
                         EventManager.current.DealDamageEnemy(hit.gameObject.GetInstanceID(), damage);
+                        GameObject temp = Instantiate(particle, hit.GetContact(0).point, Quaternion.identity);
+                        temp.GetComponent<ParticleSystem>().Play();
+
                     }
                 }
             }

@@ -42,26 +42,49 @@ public class PavelMovement : MonoBehaviour
     
     void FixedUpdate()
     {
-        bool shouldMove = PavelPlayerSettingStates.current.isMoving;
-        if(shouldMove)
+        if(PavelPlayerSettingStates.current.ForwardMove)
         {
-            Vector2 direction = PavelPlayerSettingStates.current.moveDirection;
-            
+            bool shouldMove = PavelPlayerSettingStates.current.isMoving;
+            if(shouldMove)
+            {
+                Vector2 direction = PavelPlayerSettingStates.current.moveDirection;
+                
 
-            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
-            transform.eulerAngles = new Vector3(0, 0, angle);
-            rb.AddForce(transform.up * speed);
+                float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+                float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+                transform.eulerAngles = new Vector3(0, 0, angle);
+                rb.AddForce(transform.up * speed);
+            }
+            else
+            {
+                if(PavelPlayerSettingStates.current.selfRighting)
+                {
+                    float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, 0, rotationSpeed * Time.deltaTime);
+                    transform.eulerAngles = new Vector3(0, 0, angle);
+                }
+                
+            }
         }
         else
         {
-            if(PavelPlayerSettingStates.current.selfRighting)
+            Vector2 direction = PavelPlayerSettingStates.current.moveDirection;
+                
+
+            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+            
+            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+            
+
+            bool shouldMove = PavelPlayerSettingStates.current.isMoving;
+            if(shouldMove)
             {
-                float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, 0, rotationSpeed * Time.deltaTime);
                 transform.eulerAngles = new Vector3(0, 0, angle);
+                
+                rb.AddForce(direction * speed);
             }
             
         }
+        
     }
 
 }
