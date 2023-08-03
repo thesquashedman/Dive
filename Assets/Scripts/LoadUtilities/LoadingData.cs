@@ -5,7 +5,7 @@ using System.IO;
 
 public class LoadingData : MonoBehaviour
 {
-    public static string sceneToLoad = "Default";
+    public static string sceneToLoad = "";
     private void Awake() {
         DontDestroyOnLoad(this);
     }
