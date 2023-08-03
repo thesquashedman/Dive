@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Lowscope.Saving;
 
 namespace SlimUI.ModernMenu{
 	public class UIMenuManager : MonoBehaviour {
@@ -141,9 +142,18 @@ namespace SlimUI.ModernMenu{
 			mainMenu.SetActive(true);
 		}
 
-		public void LoadScene(string scene){
+		public void StartGame(string scene){
 			if(scene != ""){
+				SaveMaster.DeleteSave();
+				LoadingData.sceneToLoad = scene;
 				StartCoroutine(LoadAsynchronously(scene));
+			}
+		}
+		public void LoadGame()
+		{
+			if(LoadingData.sceneToLoad != "")
+			{
+				StartCoroutine(LoadAsynchronously(LoadingData.sceneToLoad));
 			}
 		}
 

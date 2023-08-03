@@ -8175,6 +8175,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  healthRejenerations: 1
+  regenerationPeriod: 5
+  timer: 0
 --- !u!114 &8871834104011393457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8192,6 +8195,7 @@ MonoBehaviour:
   mobileMovement: 0
   flipOnAim: 1
   selfRighting: 0
+  ForwardMove: 0
   isMoving: 0
   isFlipped: 0
   isAiming: 0
@@ -9753,6 +9757,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3297364353584691495, guid: e558e33dcde2d274e98ea8fb355c4e98, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7981936012473061185}
+    - targetCorrespondingSourceObject: {fileID: 3297364353584691495, guid: e558e33dcde2d274e98ea8fb355c4e98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2316772147662107760}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: e558e33dcde2d274e98ea8fb355c4e98, type: 3}
 --- !u!4 &433954222333684109 stripped
 Transform:
@@ -9869,6 +9876,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2316772147662107760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3462960629169565890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3d06d0aa4fb16478b835169159c42a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeMagnitude: 0.7
 --- !u!4 &4256187539985239732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2800530008725014353, guid: e558e33dcde2d274e98ea8fb355c4e98, type: 3}
