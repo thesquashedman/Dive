@@ -20,6 +20,9 @@ public class PavelPlayerSettingStates : MonoBehaviour
     [Tooltip("Self right when stopped moving")]
     public bool selfRighting = false;
 
+    [Tooltip("Moves in the forward direction and rotates towards move direction when true. If false, will move towards move direction instead")]
+    public bool ForwardMove = false;
+
     #endregion
 
     #region States
@@ -42,6 +45,7 @@ public class PavelPlayerSettingStates : MonoBehaviour
     [Tooltip("Is the player dead?")]
     public bool isDead = false;
 
+    
     /*
     [Tooltip("Current Weapon of player, null mean's unequipped")]
     public PavelWeapon equippedWeapon;
