@@ -161,7 +161,7 @@ AudioMixerSnapshotController:
     cb73d16cfb7d3f6449bd5f9c5d29e101: 0.8
     fdf2fcfc9d1f6b14db8e9fdecf61b71e: 0.6
     767445fdd1967424dad07a230c2255f2: 0.905
-    b534761e6ce6c954d800da82cc570bba: -0.30163807
+    b534761e6ce6c954d800da82cc570bba: -0.002441872
     d074dece2becddb489223feac04dd59f: 0.0624
     c2c3b0ffaad7ca241856792cba740aa1: -0.801
   m_TransitionOverrides: {}

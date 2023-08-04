@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &248119906756063951
 MonoBehaviour:
@@ -47,13 +47,13 @@ MonoBehaviour:
   sounds:
   - name: Player_Breathing
     clip: {fileID: 8300000, guid: f14e541c8c261d049af53e785ffef705, type: 3}
-    volume: 0.319
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 2
   - name: Player_HeavyBreathing
     clip: {fileID: 8300000, guid: ebb021668391e8149926a5f2ca6221f6, type: 3}
-    volume: 0.505
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 2
@@ -131,13 +131,13 @@ MonoBehaviour:
     id: 2
   - name: Ambience_Underwater
     clip: {fileID: 8300000, guid: fec142d484da70c4ab3dbe138e45cf10, type: 3}
-    volume: 0.505
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 2
   - name: Ambience_Underwater2
     clip: {fileID: 8300000, guid: 088180a9a88ded0498eca61b11b2ea8c, type: 3}
-    volume: 0.505
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 2
@@ -155,73 +155,73 @@ MonoBehaviour:
     id: 3
   - name: Underwater_Moving
     clip: {fileID: 8300000, guid: 1a93194fbc86bea458ae28c322498ec3, type: 3}
-    volume: 0.505
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 2
   - name: Bite_Crunch
     clip: {fileID: 8300000, guid: f8b839e7613ee2e4cb1d8d6aac11f453, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Bite_Growl
     clip: {fileID: 8300000, guid: 5e5517eb912bba44ea1cb11c15b74d5a, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl
     clip: {fileID: 8300000, guid: 9c112745c0e7a3042902a709a5a1877b, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl2_Extended
     clip: {fileID: 8300000, guid: a09a6e78d9f4b9441b217779181eb0b3, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl2_Short
     clip: {fileID: 8300000, guid: 52e31226aa7aa8c458a56ece4950623e, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl3_Bassy
     clip: {fileID: 8300000, guid: cbc6de1a408a4b94fa01cb5d08ee7cc1, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl3_Normal
     clip: {fileID: 8300000, guid: 8cc5c8ba02cea9e4fb12db612e9d8361, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl4_1
     clip: {fileID: 8300000, guid: 452a5a0db62586244bacc048ef2287a1, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl4_2
     clip: {fileID: 8300000, guid: 271cef40a5d185447bc15c0c4370ab8f, type: 3}
-    volume: 0.512
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl4_3
     clip: {fileID: 8300000, guid: a46103465a84fbd40a0acc12e437dac0, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl4_4
     clip: {fileID: 8300000, guid: 4974cd4ae814f1543b3c1fa0b7467a53, type: 3}
-    volume: 0.528
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 3
@@ -231,27 +231,21 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     id: 3
-  - name: ItemPickup_2
-    clip: {fileID: 8300000, guid: 5c1dc937fc5ad4841888313877873274, type: 3}
-    volume: 0.79
-    pitch: 1
-    source: {fileID: 0}
-    id: 3
   - name: EchoesofTime
     clip: {fileID: 8300000, guid: b2f40aa31b4a7aa4484ebd24e2792ccc, type: 3}
-    volume: 0.698
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 0
   - name: Nightmare
     clip: {fileID: 8300000, guid: 338c7de5c9529704ab903a1e5654bc24, type: 3}
-    volume: 0.698
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 0
   - name: TheFog
     clip: {fileID: 8300000, guid: 4ce2d3b5dc890b240b6a7b8f76128d18, type: 3}
-    volume: 0.698
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     id: 0
