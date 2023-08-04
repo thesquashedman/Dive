@@ -18,7 +18,7 @@ namespace SlimUI.ModernMenu{
 		public GameObject mobileShadowhightextLINE;
 
 		[Header("VIDEO SETTINGS")]
-		// public GameObject fullscreentext;
+		public GameObject fullscreentext;
 		public GameObject ambientocclusiontext;
 		public GameObject shadowofftextLINE;
 		public GameObject shadowlowtextLINE;
@@ -46,7 +46,7 @@ namespace SlimUI.ModernMenu{
 		public GameObject invertmousetext;
 
 		// sliders
-		// public GameObject musicSlider;
+		public GameObject musicSlider;
 		public GameObject sensitivityXSlider;
 		public GameObject sensitivityYSlider;
 		public GameObject mouseSmoothSlider;
@@ -55,9 +55,27 @@ namespace SlimUI.ModernMenu{
 		private float sliderValueXSensitivity = 0.0f;
 		private float sliderValueYSensitivity = 0.0f;
 		private float sliderValueSmoothing = 0.0f;
-
+		
+		[Header("RESOLUTION SETTING")]
+		Resolution[] resolutions; 
+		public TMPro.TMP_Dropdown resolutionDropdown;
 
 		public void  Start (){
+
+			resolutions = Screen.resolutions;
+			resolutionDropdown.ClearOptions();
+			List<string> options = new List<string>();
+			int currentResolutionIndex = 0;
+			for (int i = 0; i < resolutions.Length; i++) {
+				string option = resolutions[i].width + "x" + resolutions[i].height;
+				options.Add(option);
+				if (resolutions[i].width == Screen.currentResolution.width &&
+					resolutions[i].height == Screen.currentResolution.height)
+					currentResolutionIndex = i;
+			}
+			resolutionDropdown.AddOptions(options);
+			resolutionDropdown.value = currentResolutionIndex;
+			resolutionDropdown.RefreshShownValue();
 			
 			// InitializeResolution();
 			// check difficulty
@@ -72,18 +90,18 @@ namespace SlimUI.ModernMenu{
 			}
 
 			// check slider values
-			// musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
 			sensitivityXSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("XSensitivity");
 			sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
 			mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
 
 			// check full screen
-			// if(Screen.fullScreen == true){
-			// 	fullscreentext.GetComponent<TMP_Text>().text = "on";
-			// }
-			// else if(Screen.fullScreen == false){
-			// 	fullscreentext.GetComponent<TMP_Text>().text = "off";
-			// }
+			if(Screen.fullScreen == true){
+				fullscreentext.GetComponent<TMP_Text>().text = "on";
+			}
+			else if(Screen.fullScreen == false){
+				fullscreentext.GetComponent<TMP_Text>().text = "off";
+			}
 
 			 
 
@@ -211,21 +229,21 @@ namespace SlimUI.ModernMenu{
 			sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
 		}
 
-		// public void FullScreen (){
-		// 	Screen.fullScreen = !Screen.fullScreen;
+		public void FullScreen (){
+			Screen.fullScreen = !Screen.fullScreen;
 
-		// 	if(Screen.fullScreen == true){
-		// 		fullscreentext.GetComponent<TMP_Text>().text = "on";
-		// 	}
-		// 	else if(Screen.fullScreen == false){
-		// 		fullscreentext.GetComponent<TMP_Text>().text = "off";
-		// 	}
-		// }
+			if(Screen.fullScreen == true){
+				fullscreentext.GetComponent<TMP_Text>().text = "on";
+			}
+			else if(Screen.fullScreen == false){
+				fullscreentext.GetComponent<TMP_Text>().text = "off";
+			}
+		}
 
-		// public void MusicSlider (){
+		public void MusicSlider (){
 			//PlayerPrefs.SetFloat("MusicVolume", sliderValue);
-		// 	PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().value);
-		// }
+			PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().value);
+		}
 
 		public void SensitivityXSlider (){
 			PlayerPrefs.SetFloat("XSensitivity", sliderValueXSensitivity);
@@ -439,5 +457,26 @@ namespace SlimUI.ModernMenu{
 			Screen.fullScreen = isFullscreen;
 		}
 
+		public void InitializeResolution() {
+			resolutions = Screen.resolutions;
+			resolutionDropdown.ClearOptions();
+			List<string> options = new List<string>();
+			int currentResolutionIndex = 0;
+			for (int i = 0; i < resolutions.Length; i++) {
+				string option = resolutions[i].width + "x" + resolutions[i].height;
+				options.Add(option);
+				if (resolutions[i].width == Screen.currentResolution.width &&
+					resolutions[i].height == Screen.currentResolution.height)
+					currentResolutionIndex = i;
+			}
+			resolutionDropdown.AddOptions(options);
+			resolutionDropdown.value = currentResolutionIndex;
+			resolutionDropdown.RefreshShownValue();
+		}
+
+		public void SetResolution(int resolutionIndex) {
+			Resolution resolution = resolutions[resolutionIndex];
+			Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+		}
 	}
 }
