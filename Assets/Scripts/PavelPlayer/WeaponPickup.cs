@@ -12,6 +12,9 @@ public class WeaponPickup : MonoBehaviour
     {
         EventManager.current.onPlayerinteract += Interact;
     }
+    void OnDestroy() {
+        EventManager.current.onPlayerinteract -= Interact;
+    }
 
     // Update is called once per frame
     void Update()
