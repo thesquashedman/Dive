@@ -70,14 +70,31 @@ public class MobileController : MonoBehaviour
     void Update()
     {
         // Update Joystick
-        if (Mathf.Abs(joystickLeft.Vertical) >= 0.05 || Mathf.Abs(joystickLeft.Horizontal) >= 0.05)
+        if (Mathf.Abs(joystickLeft.Vertical) >= 0.05 || Mathf.Abs(joystickLeft.Horizontal) >= 0.05) {
             directionLeft = Vector3.up * joystickLeft.Vertical + Vector3.right * joystickLeft.Horizontal;
+        }
         else
             directionLeft = Vector3.zero;
 
-        if (Mathf.Abs(joystickRight.Vertical) >= 0.05 || Mathf.Abs(joystickRight.Horizontal) >= 0.05)
+        if (Mathf.Abs(joystickRight.Vertical) >= 0.05 || Mathf.Abs(joystickRight.Horizontal) >= 0.05) {
             directionRight = Vector3.up * joystickRight.Vertical + Vector3.right * joystickRight.Horizontal;
-        
+        }
+
+        if (joystickRight.Direction.magnitude >= 0.9) {
+            isAttacking = true;
+        }
+        else {
+            isAttacking = false;
+        }
+        // if (Input.touchCount > 0) {
+        //     Touch touch = Input.GetTouch(0);
+
+        //     // Update the Text on the screen depending on current position of the touch each frame
+        //     Debug.Log("touch position = " + touch.position);
+        // }
+        // else {
+        // }
+
         UpdateAmmo();
 
         // Debug.Log(timerOn);
