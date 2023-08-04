@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4940587208739390503}
   - component: {fileID: 458549809813004965}
   - component: {fileID: 1457678619227631126}
-  - component: {fileID: 6351134214065695452}
   m_Layer: 0
   m_Name: AmmoPistel
   m_TagString: Untagged
@@ -180,16 +179,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cd76ad2f77e2e44b03d83d030b026a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6351134214065695452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086172260850297589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344202a20fa561e48a4873c33f90b2ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioNames: []
