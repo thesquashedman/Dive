@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-Written by Justin using code from this tutorial:
+Written by Jusin using code from this tutorial:
 https://www.youtube.com/watch?v=7sArQk03ccE
 
 Shakes the camera when prompted

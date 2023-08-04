@@ -53,12 +53,12 @@ public class PavelPlayerController : MonoBehaviour
             {
                 MouseMovementInput();
             }
-            if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            if(Input.GetKeyDown(KeyCode.Space))
             {
                 PavelPlayerSettingStates.current.isAttacking = true;
                 EventManager.current.PlayerAttack();
             }
-            if(Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
+            if(Input.GetKeyUp(KeyCode.Space))
             {
                 PavelPlayerSettingStates.current.isAttacking = false;
                 EventManager.current.PlayerStopAttack();

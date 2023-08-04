@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: 1
   oxygenToAdd: 20
-  oxygenIncreaseRate: 1
+  oxygenIncreaseRate: 10
   playerOxygenSystem: {fileID: 0}
   bubbleParticles: {fileID: 0}
 --- !u!61 &5169154915152865045

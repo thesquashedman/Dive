@@ -10,7 +10,6 @@ public class FixObject : MonoBehaviour
     public Light2D light2D;
     public Color FixedColor;
     public GameObject text;
-    public ProgressFill myProgress;
 
     float value = 0;
     public float curent = 0;
@@ -33,39 +32,34 @@ public class FixObject : MonoBehaviour
     {
         if(!isFixed)
         {
+
+        
             if(PavelPlayerSettingStates.current.isInteracting)
             {
                 if(Vector2.Distance(transform.position, PavelPlayerSettingStates.current.transform.position) > interactDistance)
                 {
                     return;
                 }
-                myProgress.setActive(true);
                 Fix(fixSpeed * Time.deltaTime);
                 
             }
             else
             {
-                if(Vector2.Distance(transform.position, PavelPlayerSettingStates.current.transform.position) > interactDistance) {
-                    myProgress.setActive(false);
-                }
-
                 if(curent <= 0)
                 {
                     curent = 0;
-                } else {
+                }
+                else
+                {
                     curent -= fixSpeed * Time.deltaTime;
                 }
             }
-
-            myProgress.setCurr(curent);
         }
     }
-
     void StartFixing()
     {
 
     }
-
     private void OnDrawGizmos() {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, interactDistance);
@@ -73,20 +67,11 @@ public class FixObject : MonoBehaviour
 
     public void Fix(float fixAmount) {
         curent += fixAmount;
-
         if (curent >= 100) {
             EventManager.current.taskCompleted(myName);
-
             light2D.color = FixedColor;
-            
-            ParticleSystem myParticle = GetComponentInChildren<ParticleSystem>();
-            if(myParticle != null) {
-                myParticle.Stop();
-            }
-            
             isFixed = true;
             text.SetActive(false);
-            myProgress.setActive(false);
         }
     }
 }

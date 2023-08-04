@@ -13,21 +13,23 @@ public class WinConditions : MonoBehaviour
 {
     public string targetTask = "";
 
+    private int myCount = 0;
+
     public int targetCount = 5;
 
     // Start is called before the first frame update
     void Start()
     {
         EventManager.current.onTaskCompleted += counter;
-        ObjectiveTracker.current.addCountObj(targetTask, targetCount);
-        ObjectiveTracker.current.addTextObj("Get to the Exit.");
-        ObjectiveTracker.current.addTextObj("Collect Pearls.");
     }
 
     private void counter(string curr) {
-        if(curr == targetTask && ObjectiveTracker.current.completed(targetTask)) {
-            EventManager.current.levelWin();
-            Debug.Log("Win!");
+        if(curr == targetTask) {
+            myCount++;
+
+            if(myCount == targetCount) {
+                EventManager.current.levelWin();
+            }
         }
     }
 
