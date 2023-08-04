@@ -17,8 +17,8 @@ public class MobileController : MonoBehaviour
     public Vector3 directionRight;
 
     // public Weapon curentWeapon;
-    public GameObject mobileUI;
-    public GameObject playerState;
+    // public GameObject mobileUI;
+    // public GameObject playerState;
     public GameObject mobileAttack;
     
     
@@ -65,23 +65,14 @@ public class MobileController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // maxTime = 0.5f;
-        // Button btn = mobileAttack.GetComponent<Button>();
-		// btn.onClick.AddListener(Attack);
-        isMobileActive = PavelPlayerSettingStates.current.mobileMovement;
-        if (!isMobileActive) {
-            mobileUI.SetActive(false);
-        }
-        else {
-            playerState.SetActive(false);
-        }
-        //weapons = GetComponentsInChildren<PavelWeapon>(includeInactive: true);
+        // CheckMobileMode();
         EventManager.current.onPlayerSwitchWeapon += SwitchWeapon;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // CheckMobileMode();
         // Update Joystick
         if (Mathf.Abs(joystickLeft.Vertical) >= 0.05 || Mathf.Abs(joystickLeft.Horizontal) >= 0.05) {
             directionLeft = Vector3.up * joystickLeft.Vertical + Vector3.right * joystickLeft.Horizontal;
@@ -135,7 +126,41 @@ public class MobileController : MonoBehaviour
 
     public void OpenWeaponList() {
         weaponList.SetActive(true);
+        foreach(PavelWeapon weapon in weapons) {
+            if(weaponName == "Unequipped") {
+                weapon0.SetActive(false);
+            }
+            else {
+                weapon0.SetActive(true);
+            }
+
+            if(weapon.isAquired && weapon.weaponName == "Saw") {
+                weapon1.SetActive(true);
+            }
+            else {
+                weapon1.SetActive(false);
+            }
+
+            if(weapon.isAquired && weapon.weaponName == "ProjectileGun") {
+                    weapon2.SetActive(true);
+            }
+            else{
+                weapon2.SetActive(false);
+            }
+        }
     }
+
+    // private void CheckMobileMode() {
+    //     isMobileActive = PavelPlayerSettingStates.current.mobileMovement;
+    //     if (!isMobileActive) {
+    //         mobileUI.SetActive(false);
+    //         playerState.SetActive(true);
+    //     }
+    //     else {
+    //         mobileUI.SetActive(true);
+    //         playerState.SetActive(false);
+    //     }
+    // }
 
     public void CloseWeaponList() {
         weaponList.SetActive(false);
@@ -170,7 +195,7 @@ public class MobileController : MonoBehaviour
     }
 
     public void ClickSwitchWeapon() {
-        Debug.Log(weaponList.activeSelf);
+        // Debug.Log(weaponList.activeSelf);
         if (weaponList.activeSelf == false) {
             OpenWeaponList();
         }  
@@ -182,34 +207,23 @@ public class MobileController : MonoBehaviour
 
     public void SwitchWeapon(string weaponName) {
         Debug.Log("switch weapon is called: " + weaponName);
-        foreach(PavelWeapon weapon in weapons)
-        {
-            if(weapon.isAquired)
-            {
-                if(weapon.weaponName == weaponName)
-                {
-                    if(weaponName == "Saw")
-                    {
+        foreach(PavelWeapon weapon in weapons) {
+            if(weapon.isAquired) {
+                if(weapon.weaponName == weaponName) {
+                    if(weaponName == "Saw") {
                         weaponIndex = 1;
                         Sprite img = weapon1.GetComponent<Image>().sprite;
                         mobileSwitchWeapon.GetComponent<Image>().sprite = img;
                     }
-                    else if(weaponName == "ProjectileGun")
-                    {
+                    else if(weaponName == "ProjectileGun") {
                         weaponIndex = 2;
                         Sprite img = weapon2.GetComponent<Image>().sprite;
                         mobileSwitchWeapon.GetComponent<Image>().sprite = img;
                     }
                     // weapon.gameObject.SetActive(true);s
                 }
-                else
-                {
-                    // weapon.gameObject.SetActive(false);
-                }
             }
-            
         }
-        
     }
 
     public void Attack() {

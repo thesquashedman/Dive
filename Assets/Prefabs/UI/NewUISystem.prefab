@@ -1147,10 +1147,13 @@ MonoBehaviour:
   - {fileID: 8410054110276421457}
   - {fileID: 5086810404584656757}
   - {fileID: 382685617311344445}
+  mobileUI: {fileID: 8258805385559584631}
+  playerState: {fileID: 7153255735924112608}
   oxygenText: {fileID: 6953787670664548375}
   healthText: {fileID: 4850345915302455505}
   bulletsForPistol: {fileID: 900741265100031949}
   recouceOneText: {fileID: 7827883458937395834}
+  isMobileActive: 0
 --- !u!1 &1038670718161806542
 GameObject:
   m_ObjectHideFlags: 0
@@ -3717,7 +3720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3576808208695557763
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3767,7 +3770,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: cf705ddeab02a4988a23162f1a7db449, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5121,8 +5124,6 @@ MonoBehaviour:
   joystickRight: {fileID: 2058741675605769772}
   directionLeft: {x: 0, y: 0, z: 0}
   directionRight: {x: 0, y: 0, z: 0}
-  mobileUI: {fileID: 8258805385559584631}
-  playerState: {fileID: 7153255735924112608}
   mobileAttack: {fileID: 1038670718161806542}
   mobileSwitchWeapon: {fileID: 5640315863284795209}
   mobileInteraction: {fileID: 3550687608891430845}

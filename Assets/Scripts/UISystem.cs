@@ -14,6 +14,8 @@ public class UISystem : MonoBehaviour
     public PlayerResourcesSystem playerResourceSys;
 
     public GameObject[] BloodObjects;
+    public GameObject mobileUI;
+    public GameObject playerState;
 
     // Reference to the Text UI component
     public Text oxygenText;
@@ -22,9 +24,15 @@ public class UISystem : MonoBehaviour
     public Text bulletsForPistol;
     public Text recouceOneText;
 
+    public bool isMobileActive;
+
+    void Start() {
+        CheckMobileMode();
+    }
     // Update is called once per frame
     void Update()
     {
+        CheckMobileMode();
         // Update the oxygen text with the current oxygen level from the player's OxygenSystem script
         if (playerOxygenSystem != null && oxygenText != null)
         {
@@ -65,6 +73,18 @@ public class UISystem : MonoBehaviour
         else if (playeHealth.GetHealth() > 80)
         {
             TurnOffAllBloodEffect();
+        }
+    }
+
+    void CheckMobileMode() {
+        isMobileActive = PavelPlayerSettingStates.current.mobileMovement;
+        if (!isMobileActive) {
+            mobileUI.SetActive(false);
+            playerState.SetActive(true);
+        }
+        else {
+            mobileUI.SetActive(true);
+            playerState.SetActive(false);
         }
     }
 
