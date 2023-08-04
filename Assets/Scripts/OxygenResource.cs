@@ -68,7 +68,7 @@ public class OxygenResource : MonoBehaviour
         {
             timePassed += Time.deltaTime;
 
-            if (timePassed >= 1f) // 1 second interval
+            if (timePassed >= 0.15f) // 1 second interval
             {
                 float newOxygenLevel = playerOxygenSystem.oxygenLevel + oxygenIncreaseRate;
                 playerOxygenSystem.SetOxygenLevel(newOxygenLevel);
