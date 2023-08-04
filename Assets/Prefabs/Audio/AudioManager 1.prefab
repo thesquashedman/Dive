@@ -233,7 +233,7 @@ MonoBehaviour:
     id: 3
   - name: ItemPickup_2
     clip: {fileID: 8300000, guid: 5c1dc937fc5ad4841888313877873274, type: 3}
-    volume: 0.767
+    volume: 0.79
     pitch: 1
     source: {fileID: 0}
     id: 3
