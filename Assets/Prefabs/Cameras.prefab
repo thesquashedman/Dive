@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 6116138264793747406}
   - component: {fileID: 4748030981062138919}
   - component: {fileID: 800745585072627473}
-  - component: {fileID: 4262593816815126356}
   - component: {fileID: 979726101054740165}
+  - component: {fileID: 1606608852498586560}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -167,7 +167,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c52e1413f30d4d9b12a9997331e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4262593816815126356
+--- !u!114 &979726101054740165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3021356462559825896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558ae83d98734da488f8c95ddf9fa762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgNames:
+  - EchoesofTime
+  - TheFog
+  - Nightmare
+--- !u!114 &1606608852498586560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,13 +198,13 @@ MonoBehaviour:
   sounds:
   - name: Player_Breathing
     clip: {fileID: 8300000, guid: f14e541c8c261d049af53e785ffef705, type: 3}
-    volume: 1
+    volume: 0.319
     pitch: 1
     source: {fileID: 0}
     id: 2
   - name: Player_HeavyBreathing
     clip: {fileID: 8300000, guid: ebb021668391e8149926a5f2ca6221f6, type: 3}
-    volume: 1
+    volume: 0.505
     pitch: 1
     source: {fileID: 0}
     id: 2
@@ -266,13 +282,13 @@ MonoBehaviour:
     id: 2
   - name: Ambience_Underwater
     clip: {fileID: 8300000, guid: fec142d484da70c4ab3dbe138e45cf10, type: 3}
-    volume: 1
+    volume: 0.505
     pitch: 1
     source: {fileID: 0}
     id: 2
   - name: Ambience_Underwater2
     clip: {fileID: 8300000, guid: 088180a9a88ded0498eca61b11b2ea8c, type: 3}
-    volume: 1
+    volume: 0.505
     pitch: 1
     source: {fileID: 0}
     id: 2
@@ -290,73 +306,73 @@ MonoBehaviour:
     id: 3
   - name: Underwater_Moving
     clip: {fileID: 8300000, guid: 1a93194fbc86bea458ae28c322498ec3, type: 3}
-    volume: 1
+    volume: 0.505
     pitch: 1
     source: {fileID: 0}
     id: 2
   - name: Bite_Crunch
     clip: {fileID: 8300000, guid: f8b839e7613ee2e4cb1d8d6aac11f453, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Bite_Growl
     clip: {fileID: 8300000, guid: 5e5517eb912bba44ea1cb11c15b74d5a, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl
     clip: {fileID: 8300000, guid: 9c112745c0e7a3042902a709a5a1877b, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl2_Extended
     clip: {fileID: 8300000, guid: a09a6e78d9f4b9441b217779181eb0b3, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl2_Short
     clip: {fileID: 8300000, guid: 52e31226aa7aa8c458a56ece4950623e, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl3_Bassy
     clip: {fileID: 8300000, guid: cbc6de1a408a4b94fa01cb5d08ee7cc1, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl3_Normal
     clip: {fileID: 8300000, guid: 8cc5c8ba02cea9e4fb12db612e9d8361, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl4_1
     clip: {fileID: 8300000, guid: 452a5a0db62586244bacc048ef2287a1, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl4_2
     clip: {fileID: 8300000, guid: 271cef40a5d185447bc15c0c4370ab8f, type: 3}
-    volume: 1
+    volume: 0.512
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl4_3
     clip: {fileID: 8300000, guid: a46103465a84fbd40a0acc12e437dac0, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Growl4_4
     clip: {fileID: 8300000, guid: 4974cd4ae814f1543b3c1fa0b7467a53, type: 3}
-    volume: 1
+    volume: 0.528
     pitch: 1
     source: {fileID: 0}
     id: 3
@@ -366,41 +382,31 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     id: 3
+  - name: ItemPickup_2
+    clip: {fileID: 8300000, guid: 5c1dc937fc5ad4841888313877873274, type: 3}
+    volume: 0.767
+    pitch: 1
+    source: {fileID: 0}
+    id: 0
   - name: EchoesofTime
     clip: {fileID: 8300000, guid: b2f40aa31b4a7aa4484ebd24e2792ccc, type: 3}
-    volume: 1
+    volume: 0.698
     pitch: 1
     source: {fileID: 0}
     id: 0
   - name: Nightmare
     clip: {fileID: 8300000, guid: 338c7de5c9529704ab903a1e5654bc24, type: 3}
-    volume: 1
+    volume: 0.698
     pitch: 1
     source: {fileID: 0}
     id: 0
   - name: TheFog
     clip: {fileID: 8300000, guid: 4ce2d3b5dc890b240b6a7b8f76128d18, type: 3}
-    volume: 1
+    volume: 0.698
     pitch: 1
     source: {fileID: 0}
     id: 0
   curr: 
---- !u!114 &979726101054740165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3021356462559825896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558ae83d98734da488f8c95ddf9fa762, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bgNames:
-  - EchoesofTime
-  - TheFog
-  - Nightmare
 --- !u!1 &5921904404370914158
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +750,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2918040445470873885}
+  - component: {fileID: 5360096817274408475}
+  - component: {fileID: 7088791327397726718}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -770,6 +778,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5360096817274408475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7518145439560685995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f44c20d5265344e82c54abd93f74be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySound: SpookyBreathing
+--- !u!95 &7088791327397726718
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7518145439560685995}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 438109a4f1dfd8c47a4e47c3e5605fe2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7622128423720856191
 GameObject:
   m_ObjectHideFlags: 0
