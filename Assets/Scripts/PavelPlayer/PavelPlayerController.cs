@@ -135,7 +135,7 @@ public class PavelPlayerController : MonoBehaviour
         // Mobile Switching Weapon
         // private string[] weapons = {"Unequipped", "Saw", "ProjectileGun", "RaycastGun"};
         // private weaponIndex = MobileController.current.weaponIndex;
-        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
+        // EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
 
     }
     void WASDMovementInput()

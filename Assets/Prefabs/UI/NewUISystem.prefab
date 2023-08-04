@@ -3633,7 +3633,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b197efca4f90646aabc5e6b0af2dc700, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf705ddeab02a4988a23162f1a7db449, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3689,7 +3689,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6814643517597870248}
         m_TargetAssemblyTypeName: MobileController, Assembly-CSharp
-        m_MethodName: SwitchWeapon
+        m_MethodName: ClickSwitchWeapon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5122,6 +5122,7 @@ MonoBehaviour:
   directionLeft: {x: 0, y: 0, z: 0}
   directionRight: {x: 0, y: 0, z: 0}
   mobileUI: {fileID: 8258805385559584631}
+  playerState: {fileID: 7153255735924112608}
   mobileAttack: {fileID: 1038670718161806542}
   mobileSwitchWeapon: {fileID: 5640315863284795209}
   mobileInteraction: {fileID: 3550687608891430845}
@@ -5138,6 +5139,7 @@ MonoBehaviour:
   curTime: 0
   maxTime: 0.5
   timerOn: 0
+  weapons: []
 --- !u!1 &8410054110276421457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,7 +5439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -93, y: -85}
+  m_AnchoredPosition: {x: -89, y: 3}
   m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3985128646843211615
@@ -5468,8 +5470,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 373b2985ce5bf2d4e9087e510d761960, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

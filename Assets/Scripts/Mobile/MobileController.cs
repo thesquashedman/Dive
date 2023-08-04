@@ -18,7 +18,9 @@ public class MobileController : MonoBehaviour
 
     // public Weapon curentWeapon;
     public GameObject mobileUI;
+    public GameObject playerState;
     public GameObject mobileAttack;
+    
     
     public GameObject mobileSwitchWeapon;
     public GameObject mobileInteraction;
@@ -27,6 +29,9 @@ public class MobileController : MonoBehaviour
     public GameObject weapon0;
     public GameObject weapon1;
     public GameObject weapon2;
+
+    //public PavelWeapon saw;
+    //public PavelWeapon pistol;
 
     public TextMeshProUGUI ammoText;
 
@@ -42,6 +47,8 @@ public class MobileController : MonoBehaviour
     public float curTime;
     public float maxTime;
     public bool timerOn = false;
+
+    public PavelWeapon[] weapons;
 
     private void Awake() {
         Debug.Log("EventManager Active.");
@@ -62,8 +69,14 @@ public class MobileController : MonoBehaviour
         // Button btn = mobileAttack.GetComponent<Button>();
 		// btn.onClick.AddListener(Attack);
         isMobileActive = PavelPlayerSettingStates.current.mobileMovement;
-        if (!isMobileActive)
+        if (!isMobileActive) {
             mobileUI.SetActive(false);
+        }
+        else {
+            playerState.SetActive(false);
+        }
+        //weapons = GetComponentsInChildren<PavelWeapon>(includeInactive: true);
+        EventManager.current.onPlayerSwitchWeapon += SwitchWeapon;
     }
 
     // Update is called once per frame
@@ -128,6 +141,7 @@ public class MobileController : MonoBehaviour
         weaponName = "Unequipped";
         Sprite img = weapon0.GetComponent<Image>().sprite;
         mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
         CloseWeaponList();
     }
 
@@ -136,18 +150,21 @@ public class MobileController : MonoBehaviour
         weaponName = "Saw";
         Sprite img = weapon1.GetComponent<Image>().sprite;
         mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
         CloseWeaponList();
     }
 
     public void ChooseWeapon2() {
+        Debug.Log("Chooseweapon2 called");
         weaponIndex = 2;
         weaponName = "ProjectileGun";
         Sprite img = weapon2.GetComponent<Image>().sprite;
         mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
         CloseWeaponList();
     }
 
-    public void SwitchWeapon() {
+    public void ClickSwitchWeapon() {
         Debug.Log(weaponList.activeSelf);
         if (weaponList.activeSelf == false) {
             OpenWeaponList();
@@ -156,6 +173,36 @@ public class MobileController : MonoBehaviour
             CloseWeaponList();
         }
         // EventManager.current.PlayerSwitchWeapon("Saw");
+    }
+
+    public void SwitchWeapon(string weaponName) {
+        Debug.Log("switch weapon is called: " + weaponName);
+        foreach(PavelWeapon weapon in weapons)
+        {
+            if(weapon.isAquired)
+            {
+                if(weapon.weaponName == weaponName)
+                {
+                    if(weaponName == "Saw")
+                    {
+                        Sprite img = weapon1.GetComponent<Image>().sprite;
+                        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+                    }
+                    else if(weaponName == "ProjectileGun")
+                    {
+                        Sprite img = weapon2.GetComponent<Image>().sprite;
+                        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+                    }
+                    // weapon.gameObject.SetActive(true);s
+                }
+                else
+                {
+                    // weapon.gameObject.SetActive(false);
+                }
+            }
+            
+        }
+        
     }
 
     public void Attack() {
