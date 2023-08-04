@@ -5139,7 +5139,9 @@ MonoBehaviour:
   curTime: 0
   maxTime: 0.5
   timerOn: 0
-  weapons: []
+  weapons:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8410054110276421457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5439,7 +5441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -89, y: 3}
+  m_AnchoredPosition: {x: -77, y: -77}
   m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3985128646843211615
