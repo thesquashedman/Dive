@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1770539446279851728}
   - component: {fileID: 722159151503738518}
   - component: {fileID: 4329176183600746619}
+  - component: {fileID: 6806165751080413932}
   m_Layer: 0
   m_Name: AmmoMachineGun
   m_TagString: Untagged
@@ -133,3 +134,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cd76ad2f77e2e44b03d83d030b026a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6806165751080413932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3209721094590356739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344202a20fa561e48a4873c33f90b2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioNames: []
