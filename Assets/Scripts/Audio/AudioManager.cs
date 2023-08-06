@@ -93,6 +93,8 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("Playing " + name);
+
         //Ensures only one music clip can play at once
         if(s.id == 0 || s.id == 1) {
             Stop(curr);

@@ -34,6 +34,10 @@ public class UISystem : MonoBehaviour
             recouceOneText.text = "Pearls: " + playerResourceSys.GetResourceOne().ToString("F1");
         }
 
+        if(Input.GetKeyDown(KeyCode.E)) {
+
+        }
+        
         BloodEffects();
     }
 

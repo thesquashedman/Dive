@@ -144,7 +144,7 @@ namespace SlimUI.ModernMenu{
 
 		public void StartGame(string scene){
 			if(scene != ""){
-				SaveMaster.DeleteSave();
+				SaveMaster.WipeSceneData(scene);
 				LoadingData.sceneToLoad = scene;
 				StartCoroutine(LoadAsynchronously(scene));
 			}

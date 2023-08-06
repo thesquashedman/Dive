@@ -18,7 +18,9 @@ public class MobileController : MonoBehaviour
 
     // public Weapon curentWeapon;
     public GameObject mobileUI;
+    public GameObject playerState;
     public GameObject mobileAttack;
+    
     
     public GameObject mobileSwitchWeapon;
     public GameObject mobileInteraction;
@@ -27,6 +29,9 @@ public class MobileController : MonoBehaviour
     public GameObject weapon0;
     public GameObject weapon1;
     public GameObject weapon2;
+
+    //public PavelWeapon saw;
+    //public PavelWeapon pistol;
 
     public TextMeshProUGUI ammoText;
 
@@ -42,6 +47,8 @@ public class MobileController : MonoBehaviour
     public float curTime;
     public float maxTime;
     public bool timerOn = false;
+
+    public PavelWeapon[] weapons;
 
     private void Awake() {
         Debug.Log("EventManager Active.");
@@ -62,22 +69,45 @@ public class MobileController : MonoBehaviour
         // Button btn = mobileAttack.GetComponent<Button>();
 		// btn.onClick.AddListener(Attack);
         isMobileActive = PavelPlayerSettingStates.current.mobileMovement;
-        if (!isMobileActive)
+        if (!isMobileActive) {
             mobileUI.SetActive(false);
+        }
+        else {
+            playerState.SetActive(false);
+        }
+        //weapons = GetComponentsInChildren<PavelWeapon>(includeInactive: true);
+        EventManager.current.onPlayerSwitchWeapon += SwitchWeapon;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Update Joystick
-        if (Mathf.Abs(joystickLeft.Vertical) >= 0.05 || Mathf.Abs(joystickLeft.Horizontal) >= 0.05)
+        if (Mathf.Abs(joystickLeft.Vertical) >= 0.05 || Mathf.Abs(joystickLeft.Horizontal) >= 0.05) {
             directionLeft = Vector3.up * joystickLeft.Vertical + Vector3.right * joystickLeft.Horizontal;
+        }
         else
             directionLeft = Vector3.zero;
 
-        if (Mathf.Abs(joystickRight.Vertical) >= 0.05 || Mathf.Abs(joystickRight.Horizontal) >= 0.05)
+        if (Mathf.Abs(joystickRight.Vertical) >= 0.05 || Mathf.Abs(joystickRight.Horizontal) >= 0.05) {
             directionRight = Vector3.up * joystickRight.Vertical + Vector3.right * joystickRight.Horizontal;
-        
+        }
+
+        if (joystickRight.Direction.magnitude >= 0.9) {
+            isAttacking = true;
+        }
+        else {
+            isAttacking = false;
+        }
+        // if (Input.touchCount > 0) {
+        //     Touch touch = Input.GetTouch(0);
+
+        //     // Update the Text on the screen depending on current position of the touch each frame
+        //     Debug.Log("touch position = " + touch.position);
+        // }
+        // else {
+        // }
+
         UpdateAmmo();
 
         // Debug.Log(timerOn);
@@ -90,9 +120,14 @@ public class MobileController : MonoBehaviour
     }
 
     public void UpdateAmmo() {
-        currentWeaponAmmo = PlayerResourcesSystem.current.bullets1;
-        if (weaponIndex == 2)
+        if (weaponIndex == 2) {
+            currentWeaponAmmo = PlayerResourcesSystem.current.bullets1;
             ammoText.SetText(currentWeaponAmmo.ToString());
+        }
+        else if (weaponIndex == 3) {
+            currentWeaponAmmo = PlayerResourcesSystem.current.bullets2;
+            ammoText.SetText(currentWeaponAmmo.ToString());
+        }
         else {
             ammoText.SetText("∞");
         }
@@ -111,6 +146,7 @@ public class MobileController : MonoBehaviour
         weaponName = "Unequipped";
         Sprite img = weapon0.GetComponent<Image>().sprite;
         mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
         CloseWeaponList();
     }
 
@@ -119,18 +155,21 @@ public class MobileController : MonoBehaviour
         weaponName = "Saw";
         Sprite img = weapon1.GetComponent<Image>().sprite;
         mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
         CloseWeaponList();
     }
 
     public void ChooseWeapon2() {
+        Debug.Log("Chooseweapon2 called");
         weaponIndex = 2;
         weaponName = "ProjectileGun";
         Sprite img = weapon2.GetComponent<Image>().sprite;
         mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
         CloseWeaponList();
     }
 
-    public void SwitchWeapon() {
+    public void ClickSwitchWeapon() {
         Debug.Log(weaponList.activeSelf);
         if (weaponList.activeSelf == false) {
             OpenWeaponList();
@@ -139,6 +178,38 @@ public class MobileController : MonoBehaviour
             CloseWeaponList();
         }
         // EventManager.current.PlayerSwitchWeapon("Saw");
+    }
+
+    public void SwitchWeapon(string weaponName) {
+        Debug.Log("switch weapon is called: " + weaponName);
+        foreach(PavelWeapon weapon in weapons)
+        {
+            if(weapon.isAquired)
+            {
+                if(weapon.weaponName == weaponName)
+                {
+                    if(weaponName == "Saw")
+                    {
+                        weaponIndex = 1;
+                        Sprite img = weapon1.GetComponent<Image>().sprite;
+                        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+                    }
+                    else if(weaponName == "ProjectileGun")
+                    {
+                        weaponIndex = 2;
+                        Sprite img = weapon2.GetComponent<Image>().sprite;
+                        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+                    }
+                    // weapon.gameObject.SetActive(true);s
+                }
+                else
+                {
+                    // weapon.gameObject.SetActive(false);
+                }
+            }
+            
+        }
+        
     }
 
     public void Attack() {
