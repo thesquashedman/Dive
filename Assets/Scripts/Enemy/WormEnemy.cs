@@ -15,12 +15,39 @@ public class WormEnemy : Enemy
         wormBehavior = GetComponent<WormBehavior>();
     }
 
+    protected override void OnEnable()
+    {
+        // Subscribe to events.
+        EventManager.current.onDealDamageEnemy += DecreaseHealth;
+        EventManager.current.onEnemyDeath += Die;
+        EventManager.current.onEnemyAttackSuccess += TimeReset;
+    }
+   
+    protected override void OnDisable()
+    {
+        // Unsubscribe to events.
+        EventManager.current.onDealDamageEnemy -= DecreaseHealth;
+        EventManager.current.onEnemyDeath -= Die;
+        EventManager.current.onEnemyAttackSuccess -= TimeReset;
+    }
+
     protected override void Die(int objectID)
     {
         if (objectID == gameObject.GetInstanceID())
         {
-            base.Die(objectID);
+            // Unsubscribe to events.
+            EventManager.current.onDealDamageEnemy -= DecreaseHealth;
+            EventManager.current.onEnemyDeath -= Die;
+            EventManager.current.onEnemyAttackSuccess -= TimeReset;
             wormBehavior.SwitchMode("dead");
+        }
+    }
+
+    private void TimeReset(int objectID)
+    {
+        if (objectID == gameObject.GetInstanceID())
+        {
+            wormBehavior.TimeReset();
         }
     }
 }

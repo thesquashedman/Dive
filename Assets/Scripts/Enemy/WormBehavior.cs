@@ -21,7 +21,7 @@ public class WormBehavior : FishEnemyBehavior
 
     // Variables for attacking.
     public float attackSpeed = 15f;
-    public float attackLastingTime = 4f;
+    public float attackLastingTime = 3f;
     private float attackTimer = 0f;
 
     // Variables for idling and returning.
@@ -189,6 +189,11 @@ public class WormBehavior : FishEnemyBehavior
         {            
             SwitchMode("idle");
         }
+    }
+
+    public void TimeReset()
+    {
+        attackTimer = 0f;
     }
 
     // This function moves this worm out of the wall.
