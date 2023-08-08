@@ -17,8 +17,12 @@ public class AmmoPickup : MonoBehaviour
     {
         
     }
+
     private void OnTriggerEnter2D(Collider2D other) {
-        EventManager.current.playerPickupResource(ammoName, ammoAmount);
-        Destroy(this.gameObject);
+        if (other.tag == "Player")
+        {
+            EventManager.current.playerPickupResource(ammoName, ammoAmount);
+            Destroy(this.gameObject);
+        }
     }
 }
