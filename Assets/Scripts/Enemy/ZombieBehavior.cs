@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ZombieBehavior : FishEnemyBehavior
 {
+    // Whether this zombie is awake.
     private bool awake = false;
 
     // The radius within which this zombie will attack the player.
@@ -100,7 +101,7 @@ public class ZombieBehavior : FishEnemyBehavior
     }
 
     // This function acts as the common interface for switching the action mode
-    // of this wanderer.
+    // of this zombie.
     public override void SwitchMode(string newMode)
     {
         if (mode != "dead")
@@ -113,6 +114,7 @@ public class ZombieBehavior : FishEnemyBehavior
                 aiPath.enableRotation = true;
                 attackSystem.SetActive(true);
                 idleTimer = 0f;
+                rigidbody.gravityScale = 0f;
 
                 // Issue the enemy attack event.
                 EventManager.current.EnemyAttack(gameObject.GetInstanceID());
@@ -195,6 +197,7 @@ public class ZombieBehavior : FishEnemyBehavior
         }
     }
 
+    // This function wakes this zombie up if the player is within the attack range.
     private void CheckAwake()
     {
         distanceToPlayer = GetDistanceToPlayer();

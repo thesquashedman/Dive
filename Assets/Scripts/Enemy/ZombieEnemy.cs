@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZombieEnemy : Enemy
 {
     private ZombieBehavior zombieBehavior;
-    public float maxHealth = 40f;
+    public float maxHealth = 50f;
 
     // Start is called before the first frame update
     protected override void Start()
