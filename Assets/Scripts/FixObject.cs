@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Lowscope.Saving;
 
-public class FixObject : MonoBehaviour
+public class FixObject : MonoBehaviour, ISaveable
 {
 
     
@@ -22,15 +23,24 @@ public class FixObject : MonoBehaviour
 
     public float interactDistance = 1.5f;
 
-    // Start is called before the first frame update
-    void Start()
+    bool temp = false;
+
+    public struct SaveData
     {
-        
+        public bool isFixed;
     }
+
+    // Start is called before the first frame update
+    
 
     // Update is called once per frame
     void Update()
     {
+        if(temp)
+        {
+            EventManager.current.taskCompleted(myName);
+            temp = false;
+        }
         if(!isFixed)
         {
             if(PavelPlayerSettingStates.current.isInteracting)
@@ -88,5 +98,34 @@ public class FixObject : MonoBehaviour
             text.SetActive(false);
             myProgress.setActive(false);
         }
+    }
+
+    public string OnSave()
+    {
+        return JsonUtility.ToJson(new SaveData { isFixed = isFixed });
+    }
+
+    public void OnLoad(string data)
+    {
+        
+        isFixed = JsonUtility.FromJson<SaveData>(data).isFixed;
+        if(isFixed)
+        {
+            temp = true;
+            light2D.color = FixedColor;
+            
+            ParticleSystem myParticle = GetComponentInChildren<ParticleSystem>();
+            if(myParticle != null) {
+                myParticle.Stop();
+            }
+            
+            text.SetActive(false);
+            myProgress.setActive(false);
+        }
+    }
+
+    public bool OnSaveCondition()
+    {
+        return !PavelPlayerSettingStates.current.isDead;
     }
 }
