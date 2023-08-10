@@ -12,16 +12,10 @@ namespace SlimUI.ModernMenu{
 
         // campaign button sub menu
         [Header("MENUS")]
-        [Tooltip("The Menu for when the MAIN menu buttons")]
         public GameObject mainMenu;
-        [Tooltip("THe first list of buttons")]
-        public GameObject firstMenu;
-        [Tooltip("The Menu for when the PLAY button is clicked")]
+        public GameObject viewport;
         public GameObject playMenu;
-        [Tooltip("The Menu for when the EXIT button is clicked")]
         public GameObject exitMenu;
-        [Tooltip("Optional 4th Menu")]
-        public GameObject extrasMenu;
 
         public enum Theme {custom1, custom2, custom3};
         [Header("THEME SETTINGS")]
@@ -36,6 +30,8 @@ namespace SlimUI.ModernMenu{
         public GameObject PanelControls;
         public GameObject PanelGeneral;
 
+        public static bool isGamePaused = false;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -45,6 +41,49 @@ namespace SlimUI.ModernMenu{
         // Update is called once per frame
         void Update()
         {
+            if(Input.GetKeyDown(KeyCode.Escape)) {
+                if (isGamePaused) {
+                    ResumeGame();
+                }
+                else {
+                    PauseGame();
+                }
+            }
+        }
+
+        public void AreYouSure(){
+			exitMenu.SetActive(true);
+			// DisablePlayCampaign();
+		}
+
+        public void ReturnMenu(){
+			exitMenu.SetActive(false);
+			mainMenu.SetActive(true);
+		}
+
+        public void QuitGame(){
+			#if UNITY_EDITOR
+				UnityEditor.EditorApplication.isPlaying = false;
+			#else
+				Application.Quit();
+			#endif
+		}
+
+        public void PauseGame() {
+            isGamePaused = true;
+            // Time.timeScale = 0f;
+            mainMenu.SetActive(true);
+            viewport.SetActive(false);
+        }
+
+        public void ResumeGame() {
+            isGamePaused = false;
+            // Time.timeScale = 1.0f;
+            mainMenu.SetActive(false);
+            viewport.SetActive(true);
+        }
+
+        public void GoToStartMenu() {
             
         }
     }
