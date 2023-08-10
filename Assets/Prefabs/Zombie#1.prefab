@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 2539722076402063005}
   - component: {fileID: 7050495088946416456}
   - component: {fileID: 6593360239551912237}
-  - component: {fileID: 4178849764309057422}
+  - component: {fileID: 4797761727045201676}
   m_Layer: 0
   m_Name: Zombie#1
   m_TagString: Enemie
@@ -257,23 +257,23 @@ MonoBehaviour:
   idleIntervalUpperBound: 5
   bloodParticlesPrefab: {fileID: 6906312204478914072, guid: f370e76661d06d043bca57f1cdb606e1, type: 3}
   bloodExistTime: 30
---- !u!114 &4178849764309057422
+--- !u!114 &4797761727045201676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6052245034139944880}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5531adbf62b03a745b4666ab225ed806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioNames:
-  - Growl4_2
-  - Bite_Crunch
-  - Growl4_1
-  - Wail
+  - Zombie_Growl4
+  - Zombie_Growl2
+  - Zombie_Grunt
+  - Zombie_Snarl
 --- !u!1 &8145111288411708383
 GameObject:
   m_ObjectHideFlags: 0

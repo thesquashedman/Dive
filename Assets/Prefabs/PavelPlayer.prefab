@@ -8289,6 +8289,7 @@ MonoBehaviour:
   - Saw_MidLoop
   - Saw_WindDown
   - Gunshot
+  - Machine_Gun
 --- !u!114 &8044177902933627495
 MonoBehaviour:
   m_ObjectHideFlags: 0

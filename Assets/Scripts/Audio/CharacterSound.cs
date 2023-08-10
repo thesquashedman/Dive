@@ -71,13 +71,15 @@ public class CharacterSound : EntitySound
     //Saw uses audio[3,4,5]
     //Gun uses audio[6]
     void playerAttack() {
-        Debug.Log("Player attack");
-        Debug.Log(currWeapon);
+        Debug.Log("Player attacking with: " + currWeapon);
+
         if(currWeapon == "ProjectileGun") {
             audios[6].Play();
         } else if (currWeapon == "Saw"){
             audios[3].Play();
             StartCoroutine(sawLoop());
+        } else if (currWeapon == "ProjectileMachineGun") {
+            audios[7].Play();
         }
     }
 
@@ -92,6 +94,7 @@ public class CharacterSound : EntitySound
     //Stops the audio when player stops attacking
     void stopAttack() {
         if(currWeapon == "Saw" && (audios[4].isPlaying || audios[3].isPlaying)) {
+            //Debug.Log("stopping saw");
             audios[3].Stop();
             audios[4].Stop();
             audios[5].Play();

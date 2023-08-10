@@ -217,16 +217,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2891155158420149830}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5531adbf62b03a745b4666ab225ed806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioNames:
-  - Growl4_2
-  - Bite_Crunch
-  - Growl4_1
-  - Wail
+  - Zombie_Growl4
+  - Zombie_Growl2
+  - Zombie_Grunt
+  - Zombie_Snarl
 --- !u!1 &5549159546808356870
 GameObject:
   m_ObjectHideFlags: 0

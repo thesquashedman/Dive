@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicPlayer : MonoBehaviour
 {
@@ -9,8 +10,13 @@ public class MusicPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Put events here
-        AudioManager.instance.Play(bgNames[0]);
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name == "Level Two (Mikhail)") {
+            playBG(1);
+        } else {
+            //Put events here
+            playBG(0);
+        }
     }
 
     // Update is called once per frame
