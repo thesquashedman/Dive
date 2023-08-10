@@ -5,34 +5,49 @@ using UnityEngine;
 public class WormEnemy : Enemy
 {
     private WormBehavior wormBehavior;
-    public int healtCount = 2;
+    private float maxHealth = 60f;
 
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
+        health.SetMaxHealth(maxHealth);
         wormBehavior = GetComponent<WormBehavior>();
     }
 
-    // When the worm is hit, its health count is decreased. The worm will go back
-    // into the wall when the health count reaches 0.
-    protected override void DecreaseHealth(int objectID, float amount)
+    protected override void OnEnable()
     {
-        if (objectID == gameObject.GetInstanceID())
-        {
-            healtCount--;
-            if (healtCount <= 0)
-            {
-                wormBehavior.SwitchMode("idle");
-            }
-        }
+        // Subscribe to events.
+        EventManager.current.onDealDamageEnemy += DecreaseHealth;
+        EventManager.current.onEnemyDeath += Die;
+        EventManager.current.onEnemyAttackSuccess += TimeReset;
+    }
+   
+    protected override void OnDisable()
+    {
+        // Unsubscribe to events.
+        EventManager.current.onDealDamageEnemy -= DecreaseHealth;
+        EventManager.current.onEnemyDeath -= Die;
+        EventManager.current.onEnemyAttackSuccess -= TimeReset;
     }
 
     protected override void Die(int objectID)
     {
         if (objectID == gameObject.GetInstanceID())
         {
-            base.Die(objectID);
+            // Unsubscribe to events.
+            EventManager.current.onDealDamageEnemy -= DecreaseHealth;
+            EventManager.current.onEnemyDeath -= Die;
+            EventManager.current.onEnemyAttackSuccess -= TimeReset;
             wormBehavior.SwitchMode("dead");
+        }
+    }
+
+    private void TimeReset(int objectID)
+    {
+        if (objectID == gameObject.GetInstanceID())
+        {
+            wormBehavior.TimeReset();
         }
     }
 }
