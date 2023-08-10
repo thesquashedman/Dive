@@ -17,8 +17,8 @@ public class MobileController : MonoBehaviour
     public Vector3 directionRight;
 
     // public Weapon curentWeapon;
-    // public GameObject mobileUI;
-    // public GameObject playerState;
+    public GameObject mobileUI;
+    public GameObject playerState;
     public GameObject mobileAttack;
     
     
@@ -65,14 +65,14 @@ public class MobileController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // CheckMobileMode();
+        CheckMobileMode();
         EventManager.current.onPlayerSwitchWeapon += SwitchWeapon;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // CheckMobileMode();
+        CheckMobileMode();
         // Update Joystick
         if (Mathf.Abs(joystickLeft.Vertical) >= 0.05 || Mathf.Abs(joystickLeft.Horizontal) >= 0.05) {
             directionLeft = Vector3.up * joystickLeft.Vertical + Vector3.right * joystickLeft.Horizontal;
@@ -150,17 +150,22 @@ public class MobileController : MonoBehaviour
         }
     }
 
-    // private void CheckMobileMode() {
-    //     isMobileActive = PavelPlayerSettingStates.current.mobileMovement;
-    //     if (!isMobileActive) {
-    //         mobileUI.SetActive(false);
-    //         playerState.SetActive(true);
-    //     }
-    //     else {
-    //         mobileUI.SetActive(true);
-    //         playerState.SetActive(false);
-    //     }
-    // }
+    private void CheckMobileMode() {
+        isMobileActive = PavelPlayerSettingStates.current.mobileMovement;
+        if (!isMobileActive) {
+            mobileUI.SetActive(false);
+            playerState.SetActive(true);
+        }
+        else {
+            mobileUI.SetActive(true);
+            playerState.SetActive(false);
+        }
+    }
+
+    public void SetMobileMode(bool mode) {
+        PavelPlayerSettingStates.current.mobileMovement = mode;
+        CheckMobileMode();
+    }
 
     public void CloseWeaponList() {
         weaponList.SetActive(false);
