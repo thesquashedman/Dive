@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Lowscope.Saving;
+using System.IO;
 
 namespace SlimUI.ModernMenu{
 	public class UIMenuManager : MonoBehaviour {
@@ -144,7 +145,13 @@ namespace SlimUI.ModernMenu{
 
 		public void StartGame(string scene){
 			if(scene != ""){
-				SaveMaster.WipeSceneData(scene);
+				
+				for(int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+				{
+					SaveMaster.WipeSceneData(Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)));
+
+				}
+				Debug.Log("Loading Scene: " + scene);
 				LoadingData.sceneToLoad = scene;
 				StartCoroutine(LoadAsynchronously(scene));
 			}

@@ -165,6 +165,19 @@ public class PlayerResourcesSystem : MonoBehaviour, ISaveable
         bullets3 = (int)JsonUtility.FromJson<SaveData>(data).bullets3;
         bombs = (int)JsonUtility.FromJson<SaveData>(data).bombs;
         HPKit = (int)JsonUtility.FromJson<SaveData>(data).HPKit;
+
+        if(bullets1 < 15)
+        {
+            bullets1 = 15;
+        }
+        if(bullets2 < 15)
+        {
+            bullets2 = 15;
+        }
+        if(bullets3 < 15)
+        {
+            bullets3 = 15;
+        }
     }
 
     public bool OnSaveCondition()

@@ -22,6 +22,8 @@ public class GlobalLightHandler : MonoBehaviour
 
     public float lerpspeed = 0.05f;
     public float colorLerpSpeed = 0.25f;
+
+    public Texture2D currentTexture;
     private void Awake() {
         //Singleton pattern
         if(current != null && current != this) {
@@ -48,9 +50,9 @@ public class GlobalLightHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Texture2D temp = GetRTPixels(globalLighting);
+        
         //float previousIntensity = globalLight.intensity;
-        float intensity = temp.GetPixel(globalLighting.width/2, globalLighting.height/2).grayscale;
+        float intensity = GetIntensity(globalLighting);
         float lerp = Mathf.Lerp((globalLight.intensity - lightMin) / (lightMax -lightMin), intensity, lerpspeed);
         globalLight.intensity = lerp * (lightMax - lightMin) + lightMin;
         
@@ -70,9 +72,8 @@ public class GlobalLightHandler : MonoBehaviour
             sprite.renderer.color = newColor;
             */
         }
-        Destroy(temp);
     }
-    static public Texture2D GetRTPixels(RenderTexture rt)
+    public float GetIntensity(RenderTexture rt)
     {
         // Remember currently active render texture
         RenderTexture currentActiveRT = RenderTexture.active;
@@ -81,11 +82,19 @@ public class GlobalLightHandler : MonoBehaviour
         RenderTexture.active = rt;
 
         // Create a new Texture2D and read the RenderTexture image into it
-        Texture2D tex = new Texture2D(rt.width, rt.height);
-        tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
-
+        if (currentTexture == null)
+            currentTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false, true);
+ 
+        // copy the single pixel value from the render texture to the texture2D on the GPU
+        currentTexture.ReadPixels(new Rect(rt.width / 2,rt.height / 2,1,1), 0, 0, false);
+        //Texture2D tex = new Texture2D(rt.width, rt.height);
+        //tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
+        
+        
         // Restorie previously active render texture
+        Debug.Log("Texture" + currentTexture.GetPixel(0, 0));
         RenderTexture.active = currentActiveRT;
-        return tex;
+        Debug.Log("intensity" + currentTexture.GetPixel(0, 0).grayscale);
+        return currentTexture.GetPixel(0, 0).grayscale;
     }
 }
