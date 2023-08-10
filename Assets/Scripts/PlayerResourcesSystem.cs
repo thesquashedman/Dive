@@ -113,14 +113,14 @@ public class PlayerResourcesSystem : MonoBehaviour, ISaveable
             Debug.Log("Resource " + resourceName + " not found!");
         }
 
-        AudioManager.instance.Play("ItemPickup_2");
+        AudioManager.instance.Play("ItemPickup");
     }
 
     //Change the number of HPKits by the input
     public void ChangeHPKit(int change) {
         HPKit += change;
 
-        AudioManager.instance.Play("ItemPickup_2");
+        AudioManager.instance.Play("ItemPickup");
     }
 
     //If there is 1 or more HPKits, triggers the healPlayer event
@@ -139,7 +139,7 @@ public class PlayerResourcesSystem : MonoBehaviour, ISaveable
     {
         resouceOne += chage;
 
-        AudioManager.instance.Play("ItemPickup_2");
+        AudioManager.instance.Play("ItemPickup");
     }
 
     public float GetResourceOne() { 
