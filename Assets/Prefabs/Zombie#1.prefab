@@ -86,7 +86,7 @@ Transform:
   - {fileID: 5476931682298623615}
   - {fileID: 4192054877316945567}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 64.168}
 --- !u!114 &9152149293801836770
 MonoBehaviour:
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
-  nextWaypointDistance: 2
+  nextWaypointDistance: 0.5
   updatePathInterval: 0.3
   speed: 5
   rotationSpeed: 150
