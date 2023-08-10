@@ -209,8 +209,11 @@ public class ZombieBehavior : FishEnemyBehavior
 
     public void WakeUp()
     {
-        awake = true;
-        SwitchMode("attack");
+        if (!awake)
+        {
+            awake = true;
+            SwitchMode("attack");
+        }
     }
 
     protected override void CoolDown()
