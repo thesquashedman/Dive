@@ -61,6 +61,7 @@ public class WormBehavior : FishEnemyBehavior
             GameObject temp = Instantiate(jawColliderPrefab);
             temp.transform.position = jawBones[i].transform.position;
             temp.transform.parent = jawBones[i].transform;
+            temp.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
             temp.GetComponent<BodyPart>().enemyID = wormID;
         }
     }
@@ -255,7 +256,7 @@ public class WormBehavior : FishEnemyBehavior
     // This function moves the worm completely into the wall.
     private void Die()
     {
-        Vector3 targetRootPosition = (Vector2)initialPosition + returnDirection * wormLength;
+        Vector3 targetRootPosition = initialPosition;
         Vector3 targetHeadPosition = initialPosition;
 
         // Move this worm into the wall.
