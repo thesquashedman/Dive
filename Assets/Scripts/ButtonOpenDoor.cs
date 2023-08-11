@@ -32,6 +32,7 @@ public class ButtonOpenDoor : MonoBehaviour
                 }
                 
             }
+            AudioManager.instance.Play("");
             
 
 
