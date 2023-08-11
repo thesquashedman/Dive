@@ -38,7 +38,7 @@ public class ZombieAnimationController : MonoBehaviour
         {
             animator.speed = 0f;
         }
-        else if (animator.speed == 0f && zombieBehavior.IsAwake())
+        else if (animator.speed == 0f && zombieBehavior.IsAwake() && mode != "dead")
         {
             animator.speed = 1f;
         }
