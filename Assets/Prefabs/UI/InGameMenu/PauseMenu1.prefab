@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 2261962333903169666}
-  firstMenu: {fileID: 0}
+  viewport: {fileID: 0}
   playMenu: {fileID: 0}
   exitMenu: {fileID: 6561671441908962316}
   theme: 0
@@ -1095,7 +1095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4966840999866648262, guid: b3e16b494dfd1451da7d9cd38c6143ae, type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 32711
       objectReference: {fileID: 0}
     - target: {fileID: 5641492866630372673, guid: b3e16b494dfd1451da7d9cd38c6143ae, type: 3}
       propertyPath: m_SortingLayer
@@ -1146,7 +1146,8 @@ PrefabInstance:
       value: SlimUI.ModernMenu.UIManage, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8426982316076650276, guid: b3e16b494dfd1451da7d9cd38c6143ae, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2858928061202142145, guid: b3e16b494dfd1451da7d9cd38c6143ae, type: 3}
       insertIndex: -1

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4748030981062138919}
   - component: {fileID: 800745585072627473}
   - component: {fileID: 979726101054740165}
-  - component: {fileID: 1606608852498586560}
+  - component: {fileID: 4802314953174902829}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -77,7 +77,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1207
+    m_Bits: 3575
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
   - EchoesofTime
   - TheFog
   - Nightmare
---- !u!114 &1606608852498586560
+--- !u!114 &4802314953174902829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,6 +241,12 @@ MonoBehaviour:
   - name: Gunshot_Powerful
     clip: {fileID: 8300000, guid: b22f412f8acdaf943a6a1c58e1fbd04c, type: 3}
     volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Machine_Gun
+    clip: {fileID: 8300000, guid: 3c52d90c16e609249994c393d64f5eb2, type: 3}
+    volume: 0.508
     pitch: 1
     source: {fileID: 0}
     id: 3
@@ -354,7 +360,7 @@ MonoBehaviour:
     id: 3
   - name: Growl4_1
     clip: {fileID: 8300000, guid: 452a5a0db62586244bacc048ef2287a1, type: 3}
-    volume: 0.528
+    volume: 0.62
     pitch: 1
     source: {fileID: 0}
     id: 3
@@ -382,12 +388,72 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     id: 3
-  - name: ItemPickup_2
-    clip: {fileID: 8300000, guid: 5c1dc937fc5ad4841888313877873274, type: 3}
-    volume: 0.767
+  - name: ItemPickup
+    clip: {fileID: 8300000, guid: 049cf2db1a211494fa8be84bdcb06167, type: 3}
+    volume: 0.79
     pitch: 1
     source: {fileID: 0}
-    id: 0
+    id: 3
+  - name: Worm_Attack
+    clip: {fileID: 8300000, guid: 00f74ccfaf019244b9956aa4f52e21b7, type: 3}
+    volume: 0.508
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Worm_Attack2
+    clip: {fileID: 8300000, guid: 93698d340dbb2bb4292807d8baf388e0, type: 3}
+    volume: 0.508
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Worm_Chitter
+    clip: {fileID: 8300000, guid: b50cf68e3823bcb4cb7ce371c866fa02, type: 3}
+    volume: 0.508
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Worm_Dying
+    clip: {fileID: 8300000, guid: 219906a39065c0e4f83d8c6e087ebf33, type: 3}
+    volume: 0.675
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Zombie_Growl1
+    clip: {fileID: 8300000, guid: 83a7017d9f578a34c8126b23ae03d42a, type: 3}
+    volume: 0.508
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Zombie_Growl2
+    clip: {fileID: 8300000, guid: ae8f3faa3df66284fbbeaf7878746c82, type: 3}
+    volume: 0.508
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Zombie_Growl3
+    clip: {fileID: 8300000, guid: c54883ea594e9de4ba848667568f785d, type: 3}
+    volume: 0.508
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Zombie_Growl4
+    clip: {fileID: 8300000, guid: 924a6b766afb87c4e95df9ce7a13c006, type: 3}
+    volume: 0.508
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Zombie_Grunt
+    clip: {fileID: 8300000, guid: 18bcf1ee746e700479366bcb8adbdfd9, type: 3}
+    volume: 0.508
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
+  - name: Zombie_Snarl
+    clip: {fileID: 8300000, guid: 452e505300f59984dbd345b2974dc75f, type: 3}
+    volume: 0.663
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
   - name: EchoesofTime
     clip: {fileID: 8300000, guid: b2f40aa31b4a7aa4484ebd24e2792ccc, type: 3}
     volume: 0.698
@@ -1111,3 +1177,4 @@ MonoBehaviour:
   colorDarkenMaxPercentage: 0.5
   lerpspeed: 0.05
   colorLerpSpeed: 0.25
+  currentTexture: {fileID: 0}

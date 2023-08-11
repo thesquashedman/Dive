@@ -10,12 +10,20 @@ public class PavelWeaponContact : PavelWeapon
     public float damage = 10f;
     bool attackReady = false;
 
-     public string[] enemyTags;
+    public string[] enemyTags;
+
     void Start()
     {
         attackPeriodTimer = 0;
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+        EventManager.current.onPlayerAttack += TriggerRecoil;
+
         
+    }
+
+    void TriggerRecoil()
+    {
+        EventManager.current.PlayPlayerRecoil();
     }
 
     // Update is called once per frame
@@ -68,5 +76,9 @@ public class PavelWeaponContact : PavelWeapon
         }
         
         
+    }
+
+    private void OnDisable() {
+        EventManager.current.onPlayerAttack -= TriggerRecoil;
     }
 }

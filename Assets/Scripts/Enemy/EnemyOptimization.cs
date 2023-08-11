@@ -47,6 +47,7 @@ public class EnemyOptimization : MonoBehaviour
                     {
                         enemies.RemoveAt(i);
                         i--;
+                        count--;
                     }
                     enemy.gameObject.SetActive(false);
                 }
