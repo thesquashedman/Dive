@@ -373,7 +373,7 @@ Transform:
   - {fileID: 6349847302432901269}
   - {fileID: 4478925048480195707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &3047071495391082045
 EdgeCollider2D:
@@ -516,7 +516,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-  m_SpriteShape: {fileID: 0}
+  m_SpriteShape: {fileID: 11400000, guid: ac4bc9a5256673540b3a08282a54fd87, type: 2}
   m_FillPixelPerUnit: 100
   m_StretchTiling: 1
   m_SplineDetail: 16
@@ -597,7 +597,7 @@ MonoBehaviour:
   - {x: -16.114822, y: -12.555053, z: 0}
   m_ShapePathHash: -1908504073
   m_Mesh: {fileID: 0}
-  m_InstanceId: -675154
+  m_InstanceId: 362850
   m_LocalBounds:
     m_Center: {x: -15.198397, y: -12.541597, z: 0}
     m_Extent: {x: 0.9164257, y: 0.016542912, z: 0}
