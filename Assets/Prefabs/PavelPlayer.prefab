@@ -8872,6 +8872,8 @@ MonoBehaviour:
   attackPeriodTimer: 0
   damage: 10
   projectileSpeed: 20
+  useBullet1: 1
+  useBullet2: 0
   projectilePrefab: {fileID: 611829897026759435, guid: cc6d40889e2832b47a7ef3bbf1f3b55a, type: 3}
   enemyTags:
   - Enemie
@@ -9210,6 +9212,8 @@ MonoBehaviour:
   attackPeriodTimer: 0
   damage: 10
   projectileSpeed: 20
+  useBullet1: 1
+  useBullet2: 0
   projectilePrefab: {fileID: 611829897026759435, guid: cc6d40889e2832b47a7ef3bbf1f3b55a, type: 3}
   enemyTags:
   - Enemie
