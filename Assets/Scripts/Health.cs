@@ -12,6 +12,11 @@ public class Health : MonoBehaviour
         
     }
 
+    public float GetCurentHealth() 
+    { 
+        return currentHealth;
+    }
+
     public float GetMaxHealth()
     {
         return maxHealth;
