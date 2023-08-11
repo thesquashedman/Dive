@@ -99,6 +99,7 @@ MonoBehaviour:
   attackPeriod: 1.5
   enemyID: 0
   damageSystem: {fileID: 6860825454685322096}
+  knockbackForce: 500
 --- !u!114 &6860825454685322096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +151,7 @@ Transform:
   - {fileID: 1862351215781885159}
   - {fileID: 7661676977818985335}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2082053489916176648
 MonoBehaviour:
@@ -308,6 +309,7 @@ MonoBehaviour:
   wanderingAreaWidth: 10
   wanderingAreaHeight: 1
   wanderingSpeed: 7
+  gravityScale: 1
   attackSystem: {fileID: 4494275928638372881}
   attackRange: 10
   attackSpeed: 30
@@ -315,6 +317,7 @@ MonoBehaviour:
   hostile: 0
   activeChase: 1
   chaseRange: 60
+  returningSpeed: 10
   idleIntervalLowerBound: 0
   idleIntervalUpperBound: 0
   bloodParticlesPrefab: {fileID: 6906312204478914072, guid: f370e76661d06d043bca57f1cdb606e1, type: 3}
@@ -436,15 +439,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 683650805199822136, guid: c324d0e7b86a7a3429f2e2c41b1d5eef, type: 3}
       propertyPath: m_Color.b
-      value: 0.4056604
+      value: 0.254717
       objectReference: {fileID: 0}
     - target: {fileID: 683650805199822136, guid: c324d0e7b86a7a3429f2e2c41b1d5eef, type: 3}
       propertyPath: m_Color.g
-      value: 0.4056604
+      value: 0.254717
       objectReference: {fileID: 0}
     - target: {fileID: 683650805199822136, guid: c324d0e7b86a7a3429f2e2c41b1d5eef, type: 3}
       propertyPath: m_Color.r
-      value: 0.4056604
+      value: 0.254717
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
