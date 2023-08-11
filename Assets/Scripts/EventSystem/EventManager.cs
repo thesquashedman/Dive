@@ -346,4 +346,14 @@ public class EventManager : MonoBehaviour
         onPlayPlayerRecoil?.Invoke();
     }
 
+    ///<summary>
+    ///Triggered when the player gets to the end
+    ///</summary> 
+    public event Action onPlayerBeatLevel;
+
+    public void PlayerBeatLevel()
+    {
+        onPlayPlayerRecoil?.Invoke();
+    }
+
 }

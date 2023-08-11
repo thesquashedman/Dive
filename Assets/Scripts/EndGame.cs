@@ -29,6 +29,7 @@ public class EndGame : MonoBehaviour
             {
                 winMessage.SetActive(true);
                 PavelPlayerSettingStates.current.GetComponent<PavelPlayerHealth>().enabled = false;
+                EventManager.current.PlayerBeatLevel();
             }
         }
     }
