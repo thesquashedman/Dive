@@ -28,8 +28,8 @@ public class LoadBox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if(isActive) {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             SceneManager.LoadSceneAsync(name);
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         }
     }
 
