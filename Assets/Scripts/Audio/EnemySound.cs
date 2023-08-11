@@ -73,6 +73,9 @@ public class EnemySound : EntitySound
     // unsubscribes from events.
     private void die(int objectID) {
         if(objectID == myID) {
+            audios[0].Stop();
+            audios[1].Stop();
+            audios[2].Stop();
             audios[3].Play();
             EventManager.current.onEnemyAttack -= attack;
             EventManager.current.onEnemyAttackSuccess -= atkDealt;

@@ -416,6 +416,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie#3
       objectReference: {fileID: 0}
+    - target: {fileID: -7694217771748202108, guid: df7df2d4bfffebd4d97090a0e2cf5b2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98493296
+      objectReference: {fileID: 0}
+    - target: {fileID: -7694217771748202108, guid: df7df2d4bfffebd4d97090a0e2cf5b2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7694217771748202108, guid: df7df2d4bfffebd4d97090a0e2cf5b2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7694217771748202108, guid: df7df2d4bfffebd4d97090a0e2cf5b2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.17293666
+      objectReference: {fileID: 0}
+    - target: {fileID: -7694217771748202108, guid: df7df2d4bfffebd4d97090a0e2cf5b2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -19.917
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: df7df2d4bfffebd4d97090a0e2cf5b2c, type: 3}
       propertyPath: m_RootOrder
       value: 0

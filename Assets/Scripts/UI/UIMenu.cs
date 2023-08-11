@@ -32,7 +32,7 @@ namespace SlimUI.ModernMenu{
         // Start is called before the first frame update
         void Start()
         {
-            
+            EventManager.current.onPlayerDeath += YouDied;
         }
 
         // Update is called once per frame
@@ -81,12 +81,12 @@ namespace SlimUI.ModernMenu{
         }
 
         public void GoToStartMenu() {
-            
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void YouDied() {
             deadInfo.SetActive(true);
-            // viewport.SetActive(false);
+            viewport.SetActive(false);
         }
 
         public void Report() {

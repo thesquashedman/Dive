@@ -10,6 +10,8 @@ public class PavelWeaponProjectile : PavelWeapon
     public float damage = 10f;
     public float projectileSpeed = 100f;
     bool attackReady = false;
+    public bool useBullet1 = true;
+    public bool useBullet2 = false;
 
     public GameObject projectilePrefab;
 
@@ -30,13 +32,27 @@ public class PavelWeaponProjectile : PavelWeapon
             
             if(attackReady)
             {
-                if(PlayerResourcesSystem.current.bullets1 > 0)
+                if(useBullet1)
                 {
-                    FireProjectile();
+                    if(PlayerResourcesSystem.current.bullets1 > 0)
+                    {
+                        FireProjectile();
+                    }
+                    else
+                    {
+                        EmptyClip();
+                    }
                 }
-                else
+                else if(useBullet2)
                 {
-                    EmptyClip();
+                    if(PlayerResourcesSystem.current.bullets2 > 0)
+                    {
+                        FireProjectile();
+                    }
+                    else
+                    {
+                        EmptyClip();
+                    }
                 }
                 
             }
@@ -66,7 +82,15 @@ public class PavelWeaponProjectile : PavelWeapon
         rb.AddForce(transform.right * projectileSpeed, ForceMode2D.Impulse);
         attackPeriodTimer = 0;
         attackReady = false;
-        PlayerResourcesSystem.current.bullets1 -= 1;
+        if(useBullet1)
+        {
+            PlayerResourcesSystem.current.bullets1 -= 1;
+        }
+        else if(useBullet2)
+        {
+            PlayerResourcesSystem.current.bullets2 -= 1;
+        }
+        
 
     }
     void EmptyClip()

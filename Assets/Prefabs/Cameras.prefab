@@ -198,31 +198,31 @@ MonoBehaviour:
   sounds:
   - name: Player_Breathing
     clip: {fileID: 8300000, guid: f14e541c8c261d049af53e785ffef705, type: 3}
-    volume: 0.319
+    volume: 0.111
     pitch: 1
     source: {fileID: 0}
     id: 2
   - name: Player_HeavyBreathing
     clip: {fileID: 8300000, guid: ebb021668391e8149926a5f2ca6221f6, type: 3}
-    volume: 0.505
+    volume: 0.271
     pitch: 1
     source: {fileID: 0}
     id: 2
   - name: Saw_RevUp
     clip: {fileID: 8300000, guid: cb555b6080e608642ac91bf22ba1e2b3, type: 3}
-    volume: 1
+    volume: 0.276
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Saw_WindDown
     clip: {fileID: 8300000, guid: 18fef93fc61410040b630c87a0cb1231, type: 3}
-    volume: 1
+    volume: 0.166
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Saw_MidLoop
     clip: {fileID: 8300000, guid: dde7c5401f2cf1f40abc23301dab3374, type: 3}
-    volume: 1
+    volume: 0.276
     pitch: 1
     source: {fileID: 0}
     id: 2
@@ -304,9 +304,15 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     id: 3
+  - name: MetalDoor
+    clip: {fileID: 8300000, guid: a02683c7684a4fe43bbc4158229d957c, type: 3}
+    volume: 0.821
+    pitch: 1
+    source: {fileID: 0}
+    id: 3
   - name: SpookyBreathing
     clip: {fileID: 8300000, guid: 4377834613af1ad4e8d6e008049d3519, type: 3}
-    volume: 1
+    volume: 0.778
     pitch: 1
     source: {fileID: 0}
     id: 3
