@@ -29,6 +29,7 @@ public class MobileController : MonoBehaviour
     public GameObject weapon0;
     public GameObject weapon1;
     public GameObject weapon2;
+    public GameObject weapon3;
 
     //public PavelWeapon saw;
     //public PavelWeapon pistol;
@@ -66,6 +67,7 @@ public class MobileController : MonoBehaviour
     void Start()
     {
         CheckMobileMode();
+        WeaponInitailize();
         EventManager.current.onPlayerSwitchWeapon += SwitchWeapon;
     }
 
@@ -127,6 +129,7 @@ public class MobileController : MonoBehaviour
     public void OpenWeaponList() {
         weaponList.SetActive(true);
         foreach(PavelWeapon weapon in weapons) {
+            Debug.Log(weapon.weaponName + " is aquired " + weapon.isAquired);
             if(weaponName == "Unequipped") {
                 weapon0.SetActive(false);
             }
@@ -137,15 +140,22 @@ public class MobileController : MonoBehaviour
             if(weapon.isAquired && weapon.weaponName == "Saw") {
                 weapon1.SetActive(true);
             }
-            else {
+            else if(weaponName == "Saw") {
                 weapon1.SetActive(false);
             }
 
             if(weapon.isAquired && weapon.weaponName == "ProjectileGun") {
-                    weapon2.SetActive(true);
+                weapon2.SetActive(true);
             }
-            else{
+            else if(weaponName == "ProjectileGun"){
                 weapon2.SetActive(false);
+            }
+
+            if(weapon.isAquired && weapon.weaponName == "ProjectileMachineGun") {
+                weapon3.SetActive(true);
+            }
+            else if(weaponName == "ProjectileMachineGun"){
+                weapon3.SetActive(false);
             }
         }
     }
@@ -160,6 +170,12 @@ public class MobileController : MonoBehaviour
             mobileUI.SetActive(true);
             playerState.SetActive(false);
         }
+    }
+
+    private void WeaponInitailize() {
+        weapon1.SetActive(false);
+        weapon2.SetActive(false);
+        weapon3.SetActive(false);
     }
 
     public void SetMobileMode(bool mode) {
@@ -199,6 +215,16 @@ public class MobileController : MonoBehaviour
         CloseWeaponList();
     }
 
+    public void ChooseWeapon3() {
+        Debug.Log("Chooseweapon3 called");
+        weaponIndex = 3;
+        weaponName = "ProjectileMachineGun";
+        Sprite img = weapon3.GetComponent<Image>().sprite;
+        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+        EventManager.current.PlayerSwitchWeapon(MobileController.current.weaponName);
+        CloseWeaponList();
+    }
+
     public void ClickSwitchWeapon() {
         // Debug.Log(weaponList.activeSelf);
         if (weaponList.activeSelf == false) {
@@ -225,6 +251,11 @@ public class MobileController : MonoBehaviour
                         else if(weaponName == "ProjectileGun") {
                             weaponIndex = 2;
                             Sprite img = weapon2.GetComponent<Image>().sprite;
+                            mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+                        }
+                        else if(weaponName == "ProjectileMachineGun") {
+                            weaponIndex = 3;
+                            Sprite img = weapon3.GetComponent<Image>().sprite;
                             mobileSwitchWeapon.GetComponent<Image>().sprite = img;
                         }
                         // weapon.gameObject.SetActive(true);s
