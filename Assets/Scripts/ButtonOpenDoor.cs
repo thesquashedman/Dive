@@ -9,6 +9,9 @@ public class ButtonOpenDoor : MonoBehaviour
     public Transform doorMovePoint;
     bool isOpen = false;
     public float interactDistance = 1f;
+
+    public float speed = 0.01f;
+    public bool startOpening = false;
     void Start()
     {
         
@@ -17,6 +20,10 @@ public class ButtonOpenDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (startOpening) {
+            door.transform.position = Vector2.MoveTowards(door.transform.position, doorMovePoint.position, speed);
+        }
+
         if(!isOpen)
         {
             if(PavelPlayerSettingStates.current.isInteracting)
@@ -25,14 +32,18 @@ public class ButtonOpenDoor : MonoBehaviour
                 {
                     return;
                 }
-                door.transform.position = Vector2.MoveTowards(door.transform.position, doorMovePoint.position, 0.1f);
-                if(Vector2.Distance(door.transform.position, doorMovePoint.position) < 0.1f)
+                //door.transform.position = Vector2.MoveTowards(door.transform.position, doorMovePoint.position, speed);
+                if (!startOpening) {
+                    AudioManager.instance.Play("MetalDoor");
+                }
+                startOpening = true;
+                if (Vector2.Distance(door.transform.position, doorMovePoint.position) < 0.1f)
                 {
                     isOpen = true;
                 }
                 
             }
-            AudioManager.instance.Play("");
+            
             
 
 
