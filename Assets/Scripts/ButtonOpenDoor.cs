@@ -20,9 +20,6 @@ public class ButtonOpenDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startOpening) {
-            door.transform.position = Vector2.MoveTowards(door.transform.position, doorMovePoint.position, speed);
-        }
 
         if(!isOpen)
         {
@@ -50,6 +47,15 @@ public class ButtonOpenDoor : MonoBehaviour
             
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (startOpening)
+        {
+            door.transform.position = Vector2.MoveTowards(door.transform.position, doorMovePoint.position, speed);
+        }
+    }
+
     void OpenDoor()
     {
         door.transform.position = doorMovePoint.position;

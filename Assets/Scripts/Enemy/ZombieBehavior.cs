@@ -30,7 +30,7 @@ public class ZombieBehavior : FishEnemyBehavior
     public float idleIntervalUpperBound = 5f;
 
     // Variables related to blood particles.
-    public GameObject bloodParticlesPrefab;
+    public GameObject bloodParticlesPrefab = null;
     private ParticleSystem bloodParticles = null;
     private float bloodExistTimer = 0f;
     public float bloodExistTime = 60f;
