@@ -81,7 +81,7 @@ namespace SlimUI.ModernMenu{
         }
 
         public void GoToStartMenu() {
-            
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void YouDied() {
