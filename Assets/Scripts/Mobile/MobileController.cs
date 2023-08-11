@@ -213,19 +213,22 @@ public class MobileController : MonoBehaviour
     public void SwitchWeapon(string weaponName) {
         Debug.Log("switch weapon is called: " + weaponName);
         foreach(PavelWeapon weapon in weapons) {
-            if(weapon.isAquired) {
-                if(weapon.weaponName == weaponName) {
-                    if(weaponName == "Saw") {
-                        weaponIndex = 1;
-                        Sprite img = weapon1.GetComponent<Image>().sprite;
-                        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+            if(weapon != null)
+            {
+                if(weapon.isAquired) {
+                    if(weapon.weaponName == weaponName) {
+                        if(weaponName == "Saw") {
+                            weaponIndex = 1;
+                            Sprite img = weapon1.GetComponent<Image>().sprite;
+                            mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+                        }
+                        else if(weaponName == "ProjectileGun") {
+                            weaponIndex = 2;
+                            Sprite img = weapon2.GetComponent<Image>().sprite;
+                            mobileSwitchWeapon.GetComponent<Image>().sprite = img;
+                        }
+                        // weapon.gameObject.SetActive(true);s
                     }
-                    else if(weaponName == "ProjectileGun") {
-                        weaponIndex = 2;
-                        Sprite img = weapon2.GetComponent<Image>().sprite;
-                        mobileSwitchWeapon.GetComponent<Image>().sprite = img;
-                    }
-                    // weapon.gameObject.SetActive(true);s
                 }
             }
         }
