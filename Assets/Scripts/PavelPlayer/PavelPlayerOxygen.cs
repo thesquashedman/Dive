@@ -75,12 +75,11 @@ public class PavelPlayerOxygen :  MonoBehaviour, ISaveable
                 EventManager.current.playerSuffocate();
                 timePassedDamage = 0;
             }
-        } else {
-            if(!lightBreathing.source.isPlaying) {
-                AudioManager.instance.Stop(heavyBreathing.name);
-                AudioManager.instance.Play(lightBreathing.name);
-            }
+        } else if(heavyBreathing.source.isPlaying) {
+            AudioManager.instance.Stop(heavyBreathing.name);
+            AudioManager.instance.Play(lightBreathing.name);
         }
+        
     }
 
     // Function to set the oxygen level
