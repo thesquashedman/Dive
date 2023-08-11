@@ -59,19 +59,19 @@ MonoBehaviour:
     id: 2
   - name: Saw_RevUp
     clip: {fileID: 8300000, guid: cb555b6080e608642ac91bf22ba1e2b3, type: 3}
-    volume: 0.541
+    volume: 0.276
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Saw_WindDown
     clip: {fileID: 8300000, guid: 18fef93fc61410040b630c87a0cb1231, type: 3}
-    volume: 0.522
+    volume: 0.166
     pitch: 1
     source: {fileID: 0}
     id: 3
   - name: Saw_MidLoop
     clip: {fileID: 8300000, guid: dde7c5401f2cf1f40abc23301dab3374, type: 3}
-    volume: 0.522
+    volume: 0.276
     pitch: 1
     source: {fileID: 0}
     id: 2

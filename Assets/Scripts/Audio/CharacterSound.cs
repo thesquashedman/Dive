@@ -92,6 +92,8 @@ public class CharacterSound : EntitySound
         }
 
         audios[4].Play();
+
+        yield break;
     }
 
     //Stops the audio when player stops attacking
