@@ -29,8 +29,6 @@ namespace SlimUI.ModernMenu{
 
         public static bool isGamePaused = false;
 
-        public static bool isGamePaused = false;
-
         // Start is called before the first frame update
         void Start()
         {
@@ -89,6 +87,10 @@ namespace SlimUI.ModernMenu{
         public void YouDied() {
             deadInfo.SetActive(true);
             // viewport.SetActive(false);
+        }
+
+        public void CountScore() {
+            
         }
 
         public void Report() {
