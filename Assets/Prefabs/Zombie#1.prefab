@@ -246,7 +246,8 @@ MonoBehaviour:
   wanderingSpeed: 30
   gravityScale: 1
   attackSystem: {fileID: 8145111288411708383}
-  attackRange: 3
+  initialAttackRange: 10
+  subsequentAttackRange: 10
   attackSpeed: 100
   pathfindingRotationSpeed: 100
   hostile: 1
@@ -782,6 +783,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 386791141387813222, guid: 1e92b8ce1ea94b847a4b896247dc777d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2896569043561961719}
+    - targetCorrespondingSourceObject: {fileID: 386791141387813222, guid: 1e92b8ce1ea94b847a4b896247dc777d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5042022293420730561}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 1e92b8ce1ea94b847a4b896247dc777d, type: 3}
 --- !u!1 &4848951262576278579 stripped
 GameObject:
@@ -799,8 +803,8 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0ab9cbcefa2591f49bd73cea692810ab, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
+  m_CullingMode: 1
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -809,6 +813,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5042022293420730561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4848951262576278579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b202f2e0278857d45a6943748d0a67d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombieBehavior: {fileID: 6593360239551912237}
 --- !u!4 &5853290896647242891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 1e92b8ce1ea94b847a4b896247dc777d, type: 3}

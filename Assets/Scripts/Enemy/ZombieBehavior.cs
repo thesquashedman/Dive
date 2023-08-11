@@ -8,7 +8,8 @@ public class ZombieBehavior : FishEnemyBehavior
     private bool awake = false;
 
     // The radius within which this zombie will attack the player.
-    public float attackRange = 10f;
+    public float initialAttackRange = 10f;
+    public float subsequentAttackRange = 10f;
 
     // Public variables for pathfinding.
     public float attackSpeed = 10f;
@@ -176,7 +177,7 @@ public class ZombieBehavior : FishEnemyBehavior
         distanceToPlayer = GetDistanceToPlayer();
         float distanceToHabitat = Vector2.Distance(transform.position, habitat.transform.position);
 
-        if (mode != "attack" && distanceToPlayer <= attackRange)
+        if (mode != "attack" && distanceToPlayer <= initialAttackRange)
         {
             SwitchMode("attack");
         }
@@ -186,7 +187,7 @@ public class ZombieBehavior : FishEnemyBehavior
             // zombie to the player exceeds the attack range. If activeChase is false, this zombie
             // will chase the player until the distance from this zombie to the habitat exceeds the
             // chase range.
-            if (activeChase && distanceToPlayer > attackRange)
+            if (activeChase && distanceToPlayer > subsequentAttackRange)
             {
                 SwitchMode("coolDown");
             }
@@ -201,11 +202,17 @@ public class ZombieBehavior : FishEnemyBehavior
     private void CheckAwake()
     {
         distanceToPlayer = GetDistanceToPlayer();
-        if (distanceToPlayer <= attackRange)
+        if (distanceToPlayer <= initialAttackRange)
         {
             WakeUp();
         }
     }
+
+    public bool IsAwake()
+    {
+        return awake;
+    }
+
 
     public void WakeUp()
     {
