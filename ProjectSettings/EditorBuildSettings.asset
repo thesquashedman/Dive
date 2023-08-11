@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: b1d9a92dbf96c489195cb23bb6283d43
+  - enabled: 1
+    path: Assets/Scenes/Level Two (Mikhail).unity
+    guid: b72a83f72dbefb147a76edfdb7ff3458
   m_configObjects: {}
