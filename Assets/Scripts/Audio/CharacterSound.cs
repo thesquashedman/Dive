@@ -76,6 +76,9 @@ public class CharacterSound : EntitySound
         if(currWeapon == "ProjectileGun") {
             audios[6].Play();
         } else if (currWeapon == "Saw"){
+            audios[3].Stop();
+            audios[4].Stop();
+            audios[5].Stop();
             audios[3].Play();
             StartCoroutine(sawLoop());
         } else if (currWeapon == "ProjectileMachineGun") {
@@ -97,6 +100,7 @@ public class CharacterSound : EntitySound
             //Debug.Log("stopping saw");
             audios[3].Stop();
             audios[4].Stop();
+            audios[5].Stop();
             audios[5].Play();
         } 
     }
