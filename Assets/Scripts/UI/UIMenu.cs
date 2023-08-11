@@ -24,11 +24,8 @@ namespace SlimUI.ModernMenu{
         public ThemedUIData themeController;
     
         [Header("PANELS")]
-        [Tooltip("The UI Panel parenting all sub menus")]
-        public GameObject mainCanvas;
-        [Tooltip("The UI Panel that holds the CONTROLS window tab")]
-        public GameObject PanelControls;
-        public GameObject PanelGeneral;
+        public GameObject deadInfo;
+        public GameObject reportPanel;
 
         public static bool isGamePaused = false;
 
@@ -85,6 +82,15 @@ namespace SlimUI.ModernMenu{
 
         public void GoToStartMenu() {
             
+        }
+
+        public void YouDied() {
+            deadInfo.SetActive(true);
+            // viewport.SetActive(false);
+        }
+
+        public void Report() {
+            reportPanel.SetActive(true);
         }
     }
 }
