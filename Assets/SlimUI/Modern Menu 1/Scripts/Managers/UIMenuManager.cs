@@ -163,6 +163,10 @@ namespace SlimUI.ModernMenu{
 				StartCoroutine(LoadAsynchronously(LoadingData.sceneToLoad));
 			}
 		}
+		public void Credits()
+		{
+			StartCoroutine(LoadAsynchronously("Credits"));
+		}
 
 		public void  DisablePlayCampaign(){
 			playMenu.SetActive(false);
