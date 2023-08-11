@@ -5027,8 +5027,8 @@ MonoBehaviour:
   exitMenu: {fileID: 5028243302738754874}
   theme: 0
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  deadInfo: {fileID: 0}
-  reportPanel: {fileID: 0}
+  deadInfo: {fileID: 1317766512295905854}
+  reportPanel: {fileID: 2474074832543292507}
 --- !u!114 &3600476162439779235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6731,7 +6731,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Dead
+  m_text: You Died
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

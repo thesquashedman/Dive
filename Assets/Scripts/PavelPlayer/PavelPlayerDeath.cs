@@ -29,7 +29,7 @@ public class PavelPlayerDeath : MonoBehaviour
         this.GetComponent<PavelMovement>().enabled = false;
         this.GetComponent<PavelPlayerController>().enabled = false;
         this.GetComponent<Rigidbody2D>().gravityScale = 1;
-        deathMessage.SetActive(true);
+        // deathMessage.SetActive(true);
     }
     IEnumerator Reload()
     {
