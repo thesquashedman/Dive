@@ -168,7 +168,7 @@ public class MobileController : MonoBehaviour
         }
         else {
             mobileUI.SetActive(true);
-            playerState.SetActive(false);
+            playerState.SetActive(true);
         }
     }
 
