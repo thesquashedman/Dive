@@ -1023,6 +1023,7 @@ MonoBehaviour:
   attackPeriod: 1.5
   enemyID: 0
   damageSystem: {fileID: 1973551366954493240}
+  knockbackForce: 500
 --- !u!114 &1973551366954493240
 MonoBehaviour:
   m_ObjectHideFlags: 0

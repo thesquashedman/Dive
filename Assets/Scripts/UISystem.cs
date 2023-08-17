@@ -28,12 +28,12 @@ public class UISystem : MonoBehaviour
     public bool isMobileActive;
 
     void Start() {
-        CheckMobileMode();
+        
     }
     // Update is called once per frame
     void Update()
     {
-        CheckMobileMode();
+        
         // Update the oxygen text with the current oxygen level from the player's OxygenSystem script
         if (playerOxygenSystem != null && oxygenText != null)
         {
