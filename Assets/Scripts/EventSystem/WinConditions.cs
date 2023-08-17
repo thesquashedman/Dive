@@ -15,13 +15,21 @@ public class WinConditions : MonoBehaviour
 
     public int targetCount = 5;
 
+    public List<string> otherTargets = new List<string>();
+
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.current.onTaskCompleted += counter;
-        ObjectiveTracker.current.addCountObj(targetTask, targetCount);
-        ObjectiveTracker.current.addTextObj("Get to the Exit.");
-        ObjectiveTracker.current.addTextObj("Collect Pearls.");
+        if (targetTask != "")
+        {
+            EventManager.current.onTaskCompleted += counter;
+            ObjectiveTracker.current.addCountObj(targetTask, targetCount);
+        }
+
+        foreach (string s in otherTargets)
+        {
+            ObjectiveTracker.current.addTextObj(s);
+        }
     }
 
     private void counter(string curr) {
@@ -32,6 +40,9 @@ public class WinConditions : MonoBehaviour
     }
 
     private void OnDisable() {
-        EventManager.current.onTaskCompleted -= counter;
+        if (targetTask != "")
+        {
+            EventManager.current.onTaskCompleted -= counter;
+        }
     }
 }
