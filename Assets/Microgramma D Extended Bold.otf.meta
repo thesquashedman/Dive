@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 7862fa56375751a4f9b1adb721adfa41
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Microgramma D Extended
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: bf4cd66c2b1266f48aa0291d7025a83e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
