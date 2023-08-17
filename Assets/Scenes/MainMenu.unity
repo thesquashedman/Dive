@@ -421,6 +421,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5475405713987601759, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
+      propertyPath: mobileMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475405713987601759, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
+      propertyPath: mobiletext
+      value: 
+      objectReference: {fileID: 1605832752}
+    - target: {fileID: 5475405713987601759, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
+      propertyPath: mobileModeText
+      value: 
+      objectReference: {fileID: 1605832750}
     - target: {fileID: 5516679840261041135, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -507,10 +519,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4021063397063067521, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
       insertIndex: 3
       addedObject: {fileID: 1155231505}
-    - targetCorrespondingSourceObject: {fileID: 4021125446041217111, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 4021298919036096247, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
       insertIndex: -1
       addedObject: {fileID: 938644882}
-    - targetCorrespondingSourceObject: {fileID: 4021125446041217111, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 4021298919036096247, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2084029118}
     m_AddedComponents:
@@ -562,6 +574,11 @@ RectTransform:
 --- !u!224 &793823796 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4021014427266100937, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
+  m_PrefabInstance: {fileID: 561688282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &818074709 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4021298919036096247, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
   m_PrefabInstance: {fileID: 561688282}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &902975833
@@ -635,16 +652,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938644881}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00048279756}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000047683716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1908108757}
+  m_Father: {fileID: 818074709}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 331.45, y: -437.53156}
+  m_AnchoredPosition: {x: 332.50012, y: -432.48004}
   m_SizeDelta: {x: 461, y: 66.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &938644883
@@ -1655,7 +1672,7 @@ GameObject:
   - component: {fileID: 1605832753}
   - component: {fileID: 1605832752}
   m_Layer: 0
-  m_Name: mobileMode
+  m_Name: mobileModeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1899,11 +1916,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861229378}
   m_CullTransparentMesh: 1
---- !u!224 &1908108757 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4021125446041217111, guid: f7f2169a305f8407c8d8d0912ef08a72, type: 3}
-  m_PrefabInstance: {fileID: 561688282}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2019766656 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8613742107060129095, guid: 4c163128908bf4a1cbeca156ab40edba, type: 3}
@@ -1936,17 +1948,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084029117}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00058412546}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00011920929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1605832751}
-  m_Father: {fileID: 1908108757}
+  m_Father: {fileID: 818074709}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 378.40012, y: -84.52654}
+  m_AnchoredPosition: {x: 379.00024, y: -81.99999}
   m_SizeDelta: {x: 401, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2084029119
@@ -1995,7 +2007,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 42345065}
         m_TargetAssemblyTypeName: UISetting, Assembly-CSharp
-        m_MethodName: FullScreen
+        m_MethodName: SwitchMobileMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

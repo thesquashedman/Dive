@@ -11,6 +11,8 @@ public class UISetting : MonoBehaviour
     // public TMPro.TMP_Dropdown resolutionDropdown;
     public GameObject resolutionDropdown;
     public GameObject fullscreentext;
+    public GameObject mobileModeText;
+
     Resolution[] resolutions; 
 
     // AudioMixer
@@ -22,6 +24,8 @@ public class UISetting : MonoBehaviour
 
     private float musicSliderValue = 0.0f;
     private float effectSliderValue = 0.0f;
+
+    public bool mobileMode = false;
 	// private float sliderValueXSensitivity = 0.0f;
 	// private float sliderValueYSensitivity = 0.0f;
 	// private float sliderValueSmoothing = 0.0f;
@@ -58,6 +62,17 @@ public class UISetting : MonoBehaviour
         effectSliderValue = GetVolumn("Effect");
         // SetEffectVolumn();
 		// effectSlider.GetComponent<Slider>().value = effectSliderValue;
+
+        // mobileMode = PavelPlayerSettingStates.current.mobileMovement;
+
+        // if (mobileMode == true) {
+        //     mobileModeText.GetComponent<TMP_Text>().text = "on";
+        // }
+        // else if (!mobileMode == false) {
+        //     mobileModeText.GetComponent<TMP_Text>().text = "off";
+        // }
+
+
     }
 
     void Update() {
@@ -81,6 +96,20 @@ public class UISetting : MonoBehaviour
 		else if(Screen.fullScreen == false){
 			fullscreentext.GetComponent<TMP_Text>().text = "off";
 		}
+	}
+
+    public void SwitchMobileMode (){
+		mobileMode = !mobileMode;
+        // PavelPlayerSettingStates.current.mobileMovement = mobileMode;
+
+		if (mobileMode) {
+            mobileModeText.GetComponent<TMP_Text>().text = "on";
+            // mobiletext.SetText("on");
+        }
+        else if (!mobileMode) {
+            mobileModeText.GetComponent<TMP_Text>().text = "off";
+            // mobiletext.SetText("off");
+        }
 	}
 
     public void SetResolution() {
