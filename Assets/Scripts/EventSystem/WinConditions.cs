@@ -20,6 +20,7 @@ public class WinConditions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(targetTask);
         if (targetTask != "")
         {
             EventManager.current.onTaskCompleted += counter;
@@ -33,6 +34,7 @@ public class WinConditions : MonoBehaviour
     }
 
     private void counter(string curr) {
+        //bug.Log("Current task: " + curr + " Done: " + ObjectiveTracker.current.completed(targetTask));
         if(curr == targetTask && ObjectiveTracker.current.completed(targetTask)) {
             EventManager.current.levelWin();
             Debug.Log("Win!");

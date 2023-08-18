@@ -81,6 +81,8 @@ namespace SlimUI.ModernMenu{
         }
 
         public void GoToStartMenu() {
+            LoadingData.sceneToLoad = SceneManager.GetActiveScene().name;
+            Debug.Log(LoadingData.sceneToLoad);
             SceneManager.LoadScene("MainMenu");
         }
 

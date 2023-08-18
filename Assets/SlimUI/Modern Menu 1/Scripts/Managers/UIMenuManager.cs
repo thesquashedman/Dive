@@ -160,6 +160,7 @@ namespace SlimUI.ModernMenu{
 		{
 			if(LoadingData.sceneToLoad != "")
 			{
+				Debug.Log(LoadingData.sceneToLoad);
 				StartCoroutine(LoadAsynchronously(LoadingData.sceneToLoad));
 			}
 		}

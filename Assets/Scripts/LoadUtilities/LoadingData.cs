@@ -6,25 +6,41 @@ using System.IO;
 public class LoadingData : MonoBehaviour
 {
     public static string sceneToLoad = "";
+    public static LoadingData current;
+
     private void Awake() {
+        if (current != null && current != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            current = this;
+        }
         DontDestroyOnLoad(this);
         LoadingData.LoadSceneName();
     }
     public static void LoadSceneName()
     {
-        if (File.Exists(Application.persistentDataPath + "/CurrentScene"))
+        if (sceneToLoad == "")
         {
-            using (var reader = new BinaryReader(File.Open(Application.persistentDataPath + "/CurrentScene", FileMode.Open)))
+            if (File.Exists(Application.persistentDataPath + "/CurrentScene"))
             {
-                sceneToLoad = reader.ReadString();
+                using (var reader = new BinaryReader(File.Open(Application.persistentDataPath + "/CurrentScene", FileMode.Open)))
+                {
+                    sceneToLoad = reader.ReadString();
+                }
             }
         }
     }
     void OnDestroy() {
         using (var writer = new BinaryWriter(File.Open(Application.persistentDataPath + "/CurrentScene", FileMode.Create)))
         {
-
-            writer.Write(sceneToLoad);
+            if(sceneToLoad != "MainMenu")
+            {
+                writer.Write(sceneToLoad);
+            }
+            
         }
     }
     
